@@ -6,11 +6,15 @@ import android.util.Log;
 
 import com.lzy.testproject.R;
 
+import org.reactivestreams.Subscriber;
+
 import java.util.concurrent.TimeUnit;
 
+import io.reactivex.Notification;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.ObservableSource;
 import io.reactivex.Observer;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -18,6 +22,7 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
+import io.reactivex.schedulers.Timed;
 
 public class RxActivity extends AppCompatActivity {
 
@@ -32,8 +37,10 @@ public class RxActivity extends AppCompatActivity {
 //        testJust();
 //        testRange();
 //        intervalRange();
-        countDown();
-
+//        countDown();
+//        doOnEach();
+//        timeInterval();
+        flatMap();
     }
 
     private void testCreate() {
@@ -143,4 +150,46 @@ public class RxActivity extends AppCompatActivity {
     }
 
 
+    private void doOnEach() {
+        Observable.just(1, 2, 3, 4, 5)
+                .doOnEach(new Consumer<Notification<Integer>>() {
+                    @Override
+                    public void accept(Notification<Integer> integerNotification) throws Exception {
+                        Log.i(TAG, "doOnEach accept: " + integerNotification.isOnComplete() + "    " + integerNotification.getValue());
+                    }
+                })
+                .subscribe(new Consumer<Integer>() {
+                    @Override
+                    public void accept(Integer integer) throws Exception {
+                        Log.i(TAG, "subscribe accept: " + integer);
+                    }
+                });
+    }
+
+    private void timeInterval() {
+        Observable.just("time", "hello", "love")
+                .timeInterval(TimeUnit.SECONDS)
+                .subscribe(new Consumer<Timed<String>>() {
+                    @Override
+                    public void accept(Timed<String> stringTimed) throws Exception {
+                        Log.i(TAG, "accept: " + stringTimed);
+                    }
+                });
+    }
+
+    private void flatMap() {
+        Observable.just(1, 2, 3, 4, 5)
+                .flatMap(new Function<Integer, ObservableSource<String>>() {
+                    @Override
+                    public ObservableSource<String> apply(Integer integer) throws Exception {
+                        return Observable.just(integer + "_love",integer+"_you");
+                    }
+                })
+                .subscribe(new Consumer<String>() {
+                    @Override
+                    public void accept(String s) throws Exception {
+                        Log.i(TAG, "accept: " + s);
+                    }
+                });
+    }
 }
