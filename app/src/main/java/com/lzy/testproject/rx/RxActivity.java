@@ -20,6 +20,7 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
+import io.reactivex.observables.GroupedObservable;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.schedulers.Timed;
@@ -40,7 +41,8 @@ public class RxActivity extends AppCompatActivity {
 //        countDown();
 //        doOnEach();
 //        timeInterval();
-        flatMap();
+//        flatMap();
+        groupBy();
     }
 
     private void testCreate() {
@@ -182,13 +184,35 @@ public class RxActivity extends AppCompatActivity {
                 .flatMap(new Function<Integer, ObservableSource<String>>() {
                     @Override
                     public ObservableSource<String> apply(Integer integer) throws Exception {
-                        return Observable.just(integer + "_love",integer+"_you");
+                        return Observable.just(integer + "_love", integer + "_you");
                     }
                 })
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {
                         Log.i(TAG, "accept: " + s);
+                    }
+                });
+    }
+
+    private void groupBy() {
+        Observable.range(0, 10)
+                .groupBy(new Function<Integer, Integer>() {
+                    @Override
+                    public Integer apply(Integer integer) throws Exception {
+                        return integer % 3;//返回分组名
+                    }
+                })
+                .subscribe(new Consumer<GroupedObservable<Integer, Integer>>() {
+                    @Override
+                    public void accept(GroupedObservable<Integer, Integer> integerIntegerGroupedObservable) throws Exception {
+                        final Integer key = integerIntegerGroupedObservable.getKey();
+                        integerIntegerGroupedObservable.subscribe(new Consumer<Integer>() {
+                            @Override
+                            public void accept(Integer integer) {
+                                Log.i(TAG, "accept: " + key + "   " + integer);
+                            }
+                        });
                     }
                 });
     }
