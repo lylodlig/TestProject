@@ -12,10 +12,10 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".searchview.TestActivity" />
         <activity android:name=".constraintlayout.TestActivity" />
-        <activity android:name=".rx.RxActivity">
-
-        </activity>
+        <activity android:name=".rx.RxActivity"></activity>
         <activity android:name=".designpatterns.strategy.StrategyActivity">
+        </activity>
+        <activity android:name=".kotlin.KotlinActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
