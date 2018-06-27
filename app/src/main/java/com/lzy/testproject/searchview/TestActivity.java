@@ -21,6 +21,7 @@ public class TestActivity extends AppCompatActivity {
 		textView.setTextSize(16);
 //		searchView.setIconified(false);
 		searchView.setIconifiedByDefault(false);
+
 //		searchView.onActionViewExpanded();
 		searchView.setQueryHint("sdfsfs");
 
