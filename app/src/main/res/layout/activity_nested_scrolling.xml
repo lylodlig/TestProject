@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.lzy.testproject.nestedscrolling.MyNestedScrollParent xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".nestedscrolling.NestedScrollingActivity">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="500px"
+        android:background="@color/colorAccent" />
+
+    <!--<View-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="100px"-->
+        <!--android:background="@color/colorPrimary" />-->
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="顺丰航空件还顺丰航空件还是尽快发货数据开发和数据库顺丰航空件还是尽快发货数据开发和数据库顺丰航空件还是尽快发货数据开发和数据库顺丰航空件还是尽快发货数据开发和数据库顺丰航空件还是尽快发货数据开发和数据库顺丰航空件还是尽快发货数据开发和数据库顺丰航空件还是尽快发货数据开发和数据库顺丰航空件还是尽快发货数据开发和数据库顺丰航空件还是尽快发货数据开发和数据库顺丰航空件还是尽快发货数据开发和数据库顺丰航空件还是尽快发货数据开发和数据库顺丰航空件还是尽快发货数据开发和数据库顺丰航空件还是尽快发货数据开发和数据库顺丰航空件还是尽快发货数据开发和数据库顺丰航空件还是尽快发货数据开发和数据库顺丰航空件还是尽快发货数据开发和数据库顺丰航空件还是尽快发货数据开发和数据库是尽快发货数据开发和数据库"
+            android:textSize="30sp" />
+    </android.support.v4.widget.NestedScrollView>
+</com.lzy.testproject.nestedscrolling.MyNestedScrollParent>
