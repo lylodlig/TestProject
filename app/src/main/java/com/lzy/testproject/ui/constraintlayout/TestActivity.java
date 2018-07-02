@@ -1,4 +1,4 @@
-package com.lzy.testproject.constraintlayout;
+package com.lzy.testproject.ui.constraintlayout;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

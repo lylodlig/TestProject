@@ -1,4 +1,4 @@
-package com.lzy.testproject.nestedscrolling.test1;
+package com.lzy.testproject.ui.nestedscrolling.test1;
 
 import android.content.Context;
 import android.os.Build;

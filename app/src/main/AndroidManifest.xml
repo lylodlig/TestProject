@@ -9,26 +9,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
-
-        </activity>
-        <activity android:name=".searchview.TestActivity" />
-        <activity android:name=".constraintlayout.TestActivity" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".ui.searchview.TestActivity" />
+        <activity android:name=".ui.constraintlayout.TestActivity" />
         <activity android:name=".rx.RxActivity" />
         <activity android:name=".designpatterns.strategy.StrategyActivity" />
-        <activity android:name=".kotlin.MainActivity"></activity>
-        <activity android:name=".nestedscrolling.test1.Test1Activity">
-        <activity android:name=".rx.RxActivity" />
-        <activity android:name=".designpatterns.strategy.StrategyActivity"></activity>
-        <activity android:name=".kotlin.KotlinActivity">
-        </activity>
-        <activity android:name=".nestedscrolling.NestedScrollingActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".kotlin.MainActivity" />
+        <activity android:name=".ui.nestedscrolling.test1.Test1Activity" />
+        <activity android:name=".kotlin.KotlinActivity" />
+        <activity android:name=".ui.nestedscrolling.NestedScrollingActivity"></activity>
+        <activity android:name=".ui.recyclerview.drag.DragActivity">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
+        <activity android:name=".ui.recyclerview.drag.SwipActivity"> <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter></activity>
     </application>
 
 </manifest>

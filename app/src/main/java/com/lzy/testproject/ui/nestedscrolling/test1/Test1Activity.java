@@ -1,15 +1,15 @@
-package com.lzy.testproject.nestedscrolling;
+package com.lzy.testproject.ui.nestedscrolling.test1;
 
 import android.app.Activity;
 import android.os.Bundle;
 
 import com.lzy.testproject.R;
 
-public class NestedScrollingActivity extends Activity {
+public class Test1Activity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nested_scrolling);
+        setContentView(R.layout.activity_test1);
     }
 }

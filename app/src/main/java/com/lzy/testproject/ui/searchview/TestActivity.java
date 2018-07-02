@@ -1,4 +1,4 @@
-package com.lzy.testproject.searchview;
+package com.lzy.testproject.ui.searchview;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

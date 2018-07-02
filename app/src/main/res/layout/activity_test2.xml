@@ -5,7 +5,7 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	tools:context=".constraintlayout.TestActivity"
+	tools:context=".ui.constraintlayout.TestActivity"
 	tools:layout_editor_absoluteY="81dp">
 
 	<TextView

@@ -6,7 +6,7 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:orientation="vertical"
-	tools:context=".searchview.TestActivity">
+	tools:context=".ui.searchview.TestActivity">
 
 	<android.support.v7.widget.SearchView
 		android:id="@+id/searchView"
