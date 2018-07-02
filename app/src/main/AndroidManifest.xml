@@ -9,9 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity">
+
+        </activity>
         <activity android:name=".searchview.TestActivity" />
         <activity android:name=".constraintlayout.TestActivity" />
+        <activity android:name=".rx.RxActivity" />
+        <activity android:name=".designpatterns.strategy.StrategyActivity" />
+        <activity android:name=".kotlin.MainActivity"></activity>
+        <activity android:name=".nestedscrolling.test1.Test1Activity">
         <activity android:name=".rx.RxActivity" />
         <activity android:name=".designpatterns.strategy.StrategyActivity"></activity>
         <activity android:name=".kotlin.KotlinActivity">
