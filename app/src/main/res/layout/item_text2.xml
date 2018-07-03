@@ -1,55 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_height="wrap_content"
+<com.lzy.testproject.ui.recyclerview.drag.SwipeMenuView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:orientation="horizontal">
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:paddingBottom="1dp">
 
-    <RelativeLayout
+    <LinearLayout
+        android:id="@+id/swipe_content"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="#ffffff"
-        android:layout_marginLeft="4dp"
-        android:layout_marginRight="4dp"
-        android:layout_marginBottom="4dp"
-        >
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorAccent">
-            <TextView
-                android:id="@+id/item"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="22sp"
-                android:padding="4dp"
-                android:layout_centerInParent="true"/>
-
-        </RelativeLayout>
-    </RelativeLayout>
-
-    <FrameLayout
-        android:layout_width="200px"
-        android:layout_height="match_parent"
-        android:layout_marginRight="4dp"
-        android:layout_marginBottom="4dp"
-        android:background="#f33213">
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_launcher_background"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="6dp">
 
         <ImageView
-            android:id="@+id/iv_img"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:src="@mipmap/ic_launcher"
-            android:visibility="invisible"/>
+            android:id="@+id/icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@mipmap/ic_launcher" />
+
         <TextView
-            android:id="@+id/tv_text"
-            android:layout_width="wrap_content"
+            android:id="@+id/title"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="左滑删除"
-            android:textSize="18sp"
-            android:textColor="#ffffff"
-            android:layout_gravity="center"/>
-    </FrameLayout>
-</LinearLayout>
+            android:layout_marginLeft="10dp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnTop"
+        android:layout_width="60dp"
+        android:layout_height="match_parent"
+        android:background="#d9dee4"
+        android:text="置顶"
+        android:textColor="@android:color/white" />
+
+    <Button
+        android:id="@+id/btnUnRead"
+        android:layout_width="120dp"
+        android:layout_height="match_parent"
+        android:background="#ecd50a"
+        android:clickable="true"
+        android:text="标记未读"
+        android:textColor="@android:color/white" />
+
+    <Button
+        android:id="@+id/btnDelete"
+        android:layout_width="60dp"
+        android:layout_height="match_parent"
+        android:background="#243433"
+        android:text="删除"
+        android:textColor="@android:color/white" />
+
+</com.lzy.testproject.ui.recyclerview.drag.SwipeMenuView>
