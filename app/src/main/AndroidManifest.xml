@@ -17,17 +17,17 @@
         <activity android:name=".kotlin.MainActivity" />
         <activity android:name=".ui.nestedscrolling.test1.Test1Activity" />
         <activity android:name=".kotlin.KotlinActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".ui.nestedscrolling.NestedScrollingActivity" />
         <activity android:name=".ui.recyclerview.drag.DragActivity" />
         <activity android:name=".ui.recyclerview.drag.SwipActivity"></activity>
         <activity android:name=".ui.paging.PagingActivity"></activity>
         <activity android:name=".ui.recyclerview.diffcallback.DiffActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
