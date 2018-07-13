@@ -17,17 +17,22 @@
         <activity android:name=".kotlin.MainActivity" />
         <activity android:name=".ui.nestedscrolling.test1.Test1Activity" />
         <activity android:name=".kotlin.KotlinActivity">
+        </activity>
+        <activity android:name=".ui.nestedscrolling.NestedScrollingActivity" />
+        <activity android:name=".ui.recyclerview.drag.DragActivity" />
+        <activity android:name=".ui.recyclerview.drag.SwipActivity" />
+        <activity android:name=".ui.paging.PagingActivity" />
+        <activity android:name=".ui.recyclerview.diffcallback.DiffActivity" />
+        <activity android:name=".framework.room.RoomActivity">
+        </activity>
+        <activity android:name=".ui.softinput.SoftInputActivity">
+        </activity>
+        <activity android:name=".test.TestActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".ui.nestedscrolling.NestedScrollingActivity" />
-        <activity android:name=".ui.recyclerview.drag.DragActivity" />
-        <activity android:name=".ui.recyclerview.drag.SwipActivity"></activity>
-        <activity android:name=".ui.paging.PagingActivity"></activity>
-        <activity android:name=".ui.recyclerview.diffcallback.DiffActivity">
         </activity>
     </application>
 
