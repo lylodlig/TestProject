@@ -2,12 +2,17 @@ package com.lzy.testproject.test;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
 
 import com.lzy.testproject.R;
 
 public class TestActivity extends AppCompatActivity {
 
+    private static final String TAG = "lzy";
     private int count = 1;
 
     @Override
@@ -15,38 +20,33 @@ public class TestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test3);
 
-        test();
-
-        try {
-            Thread.sleep(1245);
-            change();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private synchronized void change() {
-        Log.e("lzy", "--" + String.valueOf(count));
-        count = 2;
-    }
-
-    private synchronized void test() {
-        Task1 task1 = new Task1();
-        task1.start();
-    }
-
-    class Task1 extends Thread {
-        @Override
-        public void run() {
-            super.run();
-            try {
-                Thread.sleep(1000);
-                Log.e("lzy", String.valueOf(count));
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+        EditText editText= findViewById(R.id.editText);
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
-            test();
-        }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                Log.e(TAG, "onTextChanged: "+s.toString().length());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+//        try {
+//            Thread.sleep(1245);
+//            change();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 
 
