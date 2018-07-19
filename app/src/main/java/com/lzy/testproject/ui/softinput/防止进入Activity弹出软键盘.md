@@ -1,1 +1,0 @@
-写一个View，并且布局在EditText的上面，设置她的focus，调用requestFocus方法
