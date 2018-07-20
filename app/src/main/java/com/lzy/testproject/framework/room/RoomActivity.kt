@@ -7,7 +7,9 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.lzy.testproject.R
+import com.lzy.testproject.framework.room.dao.StudentDao
 import com.lzy.testproject.framework.room.database.RoomDemoDB
+import com.lzy.testproject.framework.room.entity.StudentEntity
 
 class RoomActivity : AppCompatActivity() {
 
@@ -16,12 +18,11 @@ class RoomActivity : AppCompatActivity() {
         setContentView(R.layout.activity_room)
 
         //创建数据库实例
-        val database = Room.databaseBuilder(
+        var database = Room.databaseBuilder(
                 applicationContext,
                 RoomDemoDB::class.java,
                 "database_name"
-        )
-        database.addCallback(object : RoomDatabase.Callback() {
+        ).addCallback(object : RoomDatabase.Callback() {
             //第一次创建数据库时调用，但是在创建所有表之后调用的
             override fun onCreate(db: SupportSQLiteDatabase) {
                 super.onCreate(db)
@@ -35,6 +36,11 @@ class RoomActivity : AppCompatActivity() {
             }
         })
                 .allowMainThreadQueries()//允许主线程查询数据
+                .build()
 
+        var studentEntity = StudentEntity()
+        studentEntity.id = 1
+        studentEntity.name = "测试"
+        database.studentDao().insert(studentEntity)
     }
 }

@@ -1,4 +1,12 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+//使用生成文件
+//kapt {
+//    generateStubs = true
+//}
 configurations.all {
     resolutionStrategy.force 'com.android.support:support-annotations:27.1.1'
 }
@@ -32,7 +40,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    annotationProcessor "android.arch.persistence.room:compiler:1.0.0"
 
     implementation rootProject.ext.dependencies["appcompat-v7"]
     implementation rootProject.ext.dependencies["design"]
@@ -41,8 +48,10 @@ dependencies {
     implementation rootProject.ext.dependencies["rxandroid"]
     implementation rootProject.ext.dependencies["room"]
     implementation rootProject.ext.dependencies["design"]
+    kapt 'android.arch.persistence.room:compiler:latest.release'
+
+    debugImplementation 'com.github.whataa:pandora:v1.0.5'
+    releaseImplementation 'com.github.whataa:pandora-no-op:v1.0.3'
 }
 
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
+
