@@ -5,8 +5,18 @@ package com.lzy.testproject.kotlin
  */
 class Company {
     var name: String = ""
-    //abstract var size : Int//必须在抽象类中使用
+        private set
 
     var boss = "L"
+        get() = field
+        set(value) {
+            field = value
+        }
+
+    var address: String = ""
+        get() = if (field.length > 0) "" else "大家好看"
+        set(value) {
+            field = if (value.length > 0) "" else value
+        }
 
 }

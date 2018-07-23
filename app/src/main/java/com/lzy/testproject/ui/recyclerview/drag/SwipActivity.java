@@ -27,6 +27,7 @@ public class SwipActivity extends AppCompatActivity {
 
     private List<String> list = new ArrayList<>();
     private MyAdapter adapter;
+    private String TAG="lzy";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,12 +38,51 @@ public class SwipActivity extends AppCompatActivity {
             list.add("sfjlkskfj是德国进口了：" + i);
         }
 
-        RecyclerView mRecyclerView = findViewById(R.id.recyclerview);
+        final RecyclerView mRecyclerView = findViewById(R.id.recyclerview);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new MyAdapter();
         mRecyclerView.setAdapter(adapter);
 
+        //判断滑动到顶部，底部
+        //方法1
+        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
 
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                Log.i(TAG, "--------------------------------------");
+                if(mRecyclerView.canScrollVertically(1)){
+                    Log.i(TAG, "direction 1: true");
+                }else {
+                    Log.i(TAG, "direction 1: false");//滑动到底部
+                }
+                if(mRecyclerView.canScrollVertically(-1)){
+                    Log.i(TAG, "direction -1: true");
+                }else {
+                    Log.i(TAG, "direction -1: false");//滑动到顶部
+                }
+            }
+        });
+
+        //方法2
+        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                Log.i(TAG, "--------------------------------------");
+                LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+                int firstCompletelyVisibleItemPosition = layoutManager.findFirstCompletelyVisibleItemPosition();
+                Log.i(TAG, "firstCompletelyVisibleItemPosition: "+firstCompletelyVisibleItemPosition);
+                if(firstCompletelyVisibleItemPosition==0)
+                    Log.i(TAG, "滑动到顶部");
+
+                int lastCompletelyVisibleItemPosition = layoutManager.findLastCompletelyVisibleItemPosition();
+                Log.i(TAG, "lastCompletelyVisibleItemPosition: "+lastCompletelyVisibleItemPosition);
+                if(lastCompletelyVisibleItemPosition==layoutManager.getItemCount()-1)
+                    Log.i(TAG, "滑动到底部");
+            }
+        });
     }
 
 
