@@ -31,6 +31,19 @@ android {
             }
         }
     }
+
+	flavorDimensions "channel"
+	productFlavors{
+		demo{
+			manifestPlaceholders = ["APP_NAME":"测试哈哈"]
+			buildConfigField "String","Host","\"http://192.168.98.1:8080\""
+			dimension "channel"
+		}
+		demo1{
+			buildConfigField "String","Host","\"http://192.168.18.1:8080\""
+			dimension "channel"
+		}
+	}
 }
 
 dependencies {

@@ -262,3 +262,66 @@ repositories {
 }
 
 ```
+
+## Product Flavors
+顾名思义就是描述产品的特性，可以实现一套代码创建不同的产品
+Module层级的gradle文件，productFlavors段。productFlavors的设置会自动使用defaultConfig配置。如果设置了几个不同的productFlavors，它们会共用defaultConfig配置，以及自己各自的配置，如applicationId。注意，不同的productFlavors都是通过manifest文件里的package属性定义的名字来引用R文件，而不是使用各自的applicationId，所以applicationId其实是可以随意取名的。
+
+```
+android {
+    ...
+    defaultConfig {
+        applicationId "com.magic.wdl.simpledaggerdemo"
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {...}
+    productFlavors {
+        demo {
+            applicationId "com.magic.wdl.simpledaggerdemo.demo"
+            versionName "1.0-demo"
+        }
+
+        full {
+            applicationId "com.magic.wdl.simpledaggerdemo.full"
+            versionName "1.0-full"
+        }
+    }
+}
+
+```
+通过 Build > Select Build Variant可以选择要生成的apk类型。
+![](https://upload-images.jianshu.io/upload_images/2839011-46120a50bbaf7698.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/364)
+
+上面的方式在BuildConfig中生成了定义的HOST，也可以使用在Manifest中：
+```
+demo{
+			manifestPlaceholders = ["APP_NAME":"测试哈哈"]
+		}
+```
+使用：
+` android:label="${APP_NAME}" `
+
+在res中使用：
+```
+demo{
+			resValue "string", "appName", '"柳州数字质监移动办公"'
+		}
+```
+使用：
+```
+<resources>
+    <string name="app_name">@string/appName</string>`
+</resource>
+```
+
+当然如果存放一些公共的变量可以存在defaultConfig中：
+```
+defaultConfig{
+        //存放公共变量
+        buildConfigField 'String', 'COMMON', '"admin"'
+    }
+```
+
