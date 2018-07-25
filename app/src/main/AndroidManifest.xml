@@ -25,18 +25,15 @@
         <activity android:name=".ui.recyclerview.diffcallback.DiffActivity" />
 
         <activity android:name=".framework.room.RoomActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+		</activity>
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+	    <activity android:name=".ui.bigpicture.BigActivity">
+		    <intent-filter>
+			    <action android:name="android.intent.action.MAIN" />
 
-        <activity android:name=".ui.softinput.SoftInputActivity"></activity>
-
-        <activity android:name=".test.TestActivity">
-
-        </activity>
-    </application>
+			    <category android:name="android.intent.category.LAUNCHER"/>
+		    </intent-filter>
+	    </activity>
+	</application>
 
 </manifest>
