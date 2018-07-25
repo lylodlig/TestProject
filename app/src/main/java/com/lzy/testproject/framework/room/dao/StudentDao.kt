@@ -13,10 +13,10 @@ import com.lzy.testproject.framework.room.entity.StudentEntity
 @Dao
 interface StudentDao {
 
-    @Query("SELECT * FROM StudentEntity")
+    @Query("SELECT * FROM tb_student")
     fun getAll(): List<StudentEntity>
 
-    @Query("SELECT * FROM StudentEntity WHERE id IN (:ids)")
+    @Query("SELECT * FROM tb_student WHERE id IN (:ids)")
     fun getAllById(ids: LongArray): List<StudentEntity>
 
     @Insert

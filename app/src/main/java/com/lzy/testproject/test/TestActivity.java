@@ -10,6 +10,8 @@ import android.widget.EditText;
 
 import com.lzy.testproject.R;
 
+import java.text.DecimalFormat;
+
 public class TestActivity extends AppCompatActivity {
 
     private static final String TAG = "lzy";
@@ -21,6 +23,8 @@ public class TestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_test3);
 
         EditText editText= findViewById(R.id.editText);
+
+
         editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

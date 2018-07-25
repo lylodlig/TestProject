@@ -7,11 +7,10 @@ import com.lzy.testproject.framework.room.entity.ClassEntity
 /**
  * Created by LiZhiyu on 2018/7/12.
  */
-@Entity(tableName = "tb_student",//定义表名
-        indices = [(Index(value = arrayOf("name", "sex"), unique = true))],//定义索引
-        foreignKeys = [(ForeignKey(entity = ClassEntity::class, parentColumns = arrayOf("id"), childColumns = arrayOf("class_id")))])//定义外键
-//定义索引
-//定义外键
+@Entity(tableName = "tb_student"//定义表名
+        ,indices = [(Index(value = arrayOf("name", "sex"), unique = true))]//定义索引
+//        ,foreignKeys = [(ForeignKey(entity = ClassEntity::class, parentColumns = arrayOf("id"), childColumns = arrayOf("class_id")))]//定义外键
+)
 class StudentEntity {
     @PrimaryKey //定义主键
     var id: Long = 0
