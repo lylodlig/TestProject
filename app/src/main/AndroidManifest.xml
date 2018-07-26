@@ -3,9 +3,9 @@
     package="com.lzy.testproject">
 
     <application
+        android:name=".MyApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:name=".MyApp"
         android:label="${APP_NAME}"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -17,23 +17,24 @@
         <activity android:name=".designpatterns.strategy.StrategyActivity" />
         <activity android:name=".kotlin.MainActivity" />
         <activity android:name=".ui.nestedscrolling.test1.Test1Activity" />
-        <activity android:name=".kotlin.KotlinActivity"></activity>
+        <activity android:name=".kotlin.KotlinActivity" />
         <activity android:name=".ui.nestedscrolling.NestedScrollingActivity" />
         <activity android:name=".ui.recyclerview.drag.DragActivity" />
         <activity android:name=".ui.recyclerview.drag.SwipActivity" />
         <activity android:name=".ui.paging.PagingActivity" />
         <activity android:name=".ui.recyclerview.diffcallback.DiffActivity" />
+        <activity android:name=".framework.room.RoomActivity" />
+        <activity android:name=".ui.bigpicture.BigActivity" />
+        <activity android:name=".ui.softinput.SoftInputActivity" />
+        <activity android:name=".test.TestActivity" />
+        <activity android:name=".rx.ExampleActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-        <activity android:name=".framework.room.RoomActivity">
-		</activity>
-
-	    <activity android:name=".ui.bigpicture.BigActivity">
-		    <intent-filter>
-			    <action android:name="android.intent.action.MAIN" />
-
-			    <category android:name="android.intent.category.LAUNCHER"/>
-		    </intent-filter>
-	    </activity>
-	</application>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".test.TestKActivity"></activity>
+    </application>
 
 </manifest>
