@@ -1,10 +1,12 @@
 package com.lzy.testproject.rx
 
 import android.app.Activity
+import android.graphics.Color
 import android.os.Bundle
 import android.support.annotation.Size
 import android.util.Log
 import com.lzy.testproject.R
+import com.lzy.testproject.utils.StatusBarUtil
 import io.reactivex.Observable
 import io.reactivex.observers.DisposableObserver
 import java.util.concurrent.TimeUnit
@@ -14,6 +16,8 @@ class ExampleActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_example)
+        StatusBarUtil.setColor(this, Color.GREEN, 100)
+
         countDownTimer(4, arrayOf(1))
 
     }
