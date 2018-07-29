@@ -50,6 +50,7 @@ public class WechatRecordActivity extends AppCompatActivity {
 						database.rawExecSQL("PRAGMA cipher_migrate;");//很重要
 					}
 				};
+
 				SQLiteDatabase db = openDatabase(newPath, password, null, NO_LOCALIZED_COLLATORS, hook);
 				String sql = "select * from message";
 				Log.e("sql", sql);

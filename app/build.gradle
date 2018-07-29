@@ -66,6 +66,6 @@ dependencies {
 	debugImplementation 'com.github.whataa:pandora:v1.0.5'
 	releaseImplementation 'com.github.whataa:pandora-no-op:v1.0.3'
 
-	implementation 'net.zetetic:android-database-sqlcipher:3.4.0'
+	implementation 'net.zetetic:android-database-sqlcipher:3.5.9'
 	implementation 'org.dom4j:dom4j:2.1.1'
 }
