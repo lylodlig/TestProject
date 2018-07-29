@@ -1,40 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.lzy.testproject">
+<manifest package="com.lzy.testproject"
+          xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <application
-        android:name=".MyApp"
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="${APP_NAME}"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity" />
-        <activity android:name=".ui.searchview.TestActivity" />
-        <activity android:name=".ui.constraintlayout.TestActivity" />
-        <activity android:name=".rx.RxActivity" />
-        <activity android:name=".designpatterns.strategy.StrategyActivity" />
-        <activity android:name=".kotlin.MainActivity" />
-        <activity android:name=".ui.nestedscrolling.test1.Test1Activity" />
-        <activity android:name=".kotlin.KotlinActivity" />
-        <activity android:name=".ui.nestedscrolling.NestedScrollingActivity" />
-        <activity android:name=".ui.recyclerview.drag.DragActivity" />
-        <activity android:name=".ui.recyclerview.drag.SwipActivity" />
-        <activity android:name=".ui.paging.PagingActivity" />
-        <activity android:name=".ui.recyclerview.diffcallback.DiffActivity" />
-        <activity android:name=".framework.room.RoomActivity" />
-        <activity android:name=".ui.bigpicture.BigActivity" />
-        <activity android:name=".ui.softinput.SoftInputActivity" />
-        <activity android:name=".test.TestActivity" />
-        <activity android:name=".rx.ExampleActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+	<uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+	<uses-permission android:name="android.permission.INTERNET"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".test.TestKActivity"></activity>
-    </application>
+	<application
+		android:name=".MyApp"
+		android:allowBackup="true"
+		android:icon="@mipmap/ic_launcher"
+		android:label="${APP_NAME}"
+		android:roundIcon="@mipmap/ic_launcher_round"
+		android:supportsRtl="true"
+		android:theme="@style/AppTheme">
+		<activity android:name=".MainActivity"/>
+		<activity android:name=".ui.searchview.TestActivity"/>
+		<activity android:name=".ui.constraintlayout.TestActivity"/>
+		<activity android:name=".rx.RxActivity"/>
+		<activity android:name=".designpatterns.strategy.StrategyActivity"/>
+		<activity android:name=".kotlin.MainActivity"/>
+		<activity android:name=".ui.nestedscrolling.test1.Test1Activity"/>
+		<activity android:name=".kotlin.KotlinActivity"/>
+		<activity android:name=".ui.nestedscrolling.NestedScrollingActivity"/>
+		<activity android:name=".ui.recyclerview.drag.DragActivity"/>
+		<activity android:name=".ui.recyclerview.drag.SwipActivity"/>
+		<activity android:name=".ui.paging.PagingActivity"/>
+		<activity android:name=".ui.recyclerview.diffcallback.DiffActivity"/>
+		<activity android:name=".framework.room.RoomActivity"/>
+		<activity android:name=".ui.bigpicture.BigActivity"/>
+		<activity android:name=".ui.softinput.SoftInputActivity"/>
+		<activity android:name=".test.TestActivity"/>
+		<activity android:name=".rx.ExampleActivity">
+		</activity>
+		<activity android:name=".test.TestKActivity"/>
+		<activity android:name=".other.getwechatrecord.WechatRecordActivity">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN"/>
+
+				<category android:name="android.intent.category.LAUNCHER"/>
+			</intent-filter>
+		</activity>
+	</application>
 
 </manifest>

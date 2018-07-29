@@ -8,61 +8,64 @@ apply plugin: 'kotlin-android-extensions'
 //    generateStubs = true
 //}
 configurations.all {
-    resolutionStrategy.force 'com.android.support:support-annotations:27.1.1'
+	resolutionStrategy.force 'com.android.support:support-annotations:27.1.1'
 }
 android {
-    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
-    defaultConfig {
-        applicationId rootProject.ext.android["applicationId"]
-        minSdkVersion rootProject.ext.android["minSdkVersion"]
-        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
-        versionCode rootProject.ext.android["versionCode"]
-        versionName rootProject.ext.android["versionName"]
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-    }
-    buildTypes {
-        release {
-            postprocessing {
-                removeUnusedCode false
-                removeUnusedResources false
-                obfuscate false
-                optimizeCode false
-                proguardFile 'proguard-rules.pro'
-            }
-        }
-    }
+	compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+	defaultConfig {
+		applicationId rootProject.ext.android["applicationId"]
+		minSdkVersion rootProject.ext.android["minSdkVersion"]
+		targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+		versionCode rootProject.ext.android["versionCode"]
+		versionName rootProject.ext.android["versionName"]
+		testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+	}
+	buildTypes {
+		release {
+			postprocessing {
+				removeUnusedCode false
+				removeUnusedResources false
+				obfuscate false
+				optimizeCode false
+				proguardFile 'proguard-rules.pro'
+			}
+		}
+	}
 
-    flavorDimensions "channel"
-    productFlavors {
-        demo {
-            manifestPlaceholders = ["APP_NAME": "测试哈哈"]
-            buildConfigField "String", "Host", "\"http://192.168.98.1:8080\""
-            dimension "channel"
-        }
-        demo1 {
-            buildConfigField "String", "Host", "\"http://192.168.18.1:8080\""
-            dimension "channel"
-        }
-    }
+	flavorDimensions "channel"
+	productFlavors {
+		demo {
+			manifestPlaceholders = ["APP_NAME": "测试哈哈"]
+			buildConfigField "String", "Host", "\"http://192.168.98.1:8080\""
+			dimension "channel"
+		}
+		demo1 {
+			buildConfigField "String", "Host", "\"http://192.168.18.1:8080\""
+			dimension "channel"
+		}
+	}
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+	implementation fileTree(dir: 'libs', include: ['*.jar'])
+	implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+	testImplementation 'junit:junit:4.12'
+	androidTestImplementation 'com.android.support.test:runner:1.0.2'
+	androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+	implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
-    implementation rootProject.ext.dependencies["appcompat-v7"]
-    implementation rootProject.ext.dependencies["design"]
-    implementation rootProject.ext.dependencies["constraint-layout"]
-    implementation rootProject.ext.dependencies["rxjava"]
-    implementation rootProject.ext.dependencies["rxandroid"]
-    implementation rootProject.ext.dependencies["room"]
-    implementation rootProject.ext.dependencies["design"]
-    kapt 'android.arch.persistence.room:compiler:1.0.0'
+	implementation rootProject.ext.dependencies["appcompat-v7"]
+	implementation rootProject.ext.dependencies["design"]
+	implementation rootProject.ext.dependencies["constraint-layout"]
+	implementation rootProject.ext.dependencies["rxjava"]
+	implementation rootProject.ext.dependencies["rxandroid"]
+	implementation rootProject.ext.dependencies["room"]
+	implementation rootProject.ext.dependencies["design"]
+	kapt 'android.arch.persistence.room:compiler:1.0.0'
 
-    debugImplementation 'com.github.whataa:pandora:v1.0.5'
-    releaseImplementation 'com.github.whataa:pandora-no-op:v1.0.3'
+	debugImplementation 'com.github.whataa:pandora:v1.0.5'
+	releaseImplementation 'com.github.whataa:pandora-no-op:v1.0.3'
+
+	implementation 'net.zetetic:android-database-sqlcipher:3.4.0'
+	implementation 'org.dom4j:dom4j:2.1.1'
 }
