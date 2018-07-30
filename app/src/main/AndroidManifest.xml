@@ -31,15 +31,15 @@
         <activity android:name=".ui.bigpicture.BigActivity" />
         <activity android:name=".ui.softinput.SoftInputActivity" />
         <activity android:name=".test.TestActivity" />
-        <activity android:name=".rx.ExampleActivity"></activity>
-        <activity android:name=".test.TestKActivity" />
-        <activity android:name=".other.getwechatrecord.WechatRecordActivity">
+        <activity android:name=".rx.ExampleActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".test.TestKActivity" />
+        <activity android:name=".other.getwechatrecord.WechatRecordActivity"></activity>
     </application>
 
 </manifest>

@@ -11,6 +11,11 @@ import android.widget.EditText;
 import com.lzy.testproject.R;
 
 import java.text.DecimalFormat;
+import java.util.Observable;
+
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 
 public class TestActivity extends AppCompatActivity {
 
@@ -28,6 +33,14 @@ public class TestActivity extends AppCompatActivity {
         Log.e("lzy", "" + myformat.format(1234));
         Log.e("lzy", "" + myformat.format(1234.121));
         Log.e("lzy", "" + myformat.format(0.12));
+        Class<? extends DecimalFormat> aClass = myformat.getClass();
+        io.reactivex.Observable.just(1, 2)
+                .subscribe(new Consumer<Integer>() {
+                    @Override
+                    public void accept(Integer integer) throws Exception {
+
+                    }
+                });
 
     }
 
