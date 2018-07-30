@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.activity_example.*
 import java.util.concurrent.TimeUnit
 
 class ExampleActivity : Activity() {
-    var compositeDisposable: CompositeDisposable? = null
+    private var compositeDisposable: CompositeDisposable? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,8 +59,8 @@ class ExampleActivity : Activity() {
                     }
 
                     override fun onNext(value: Long?) {
-                        Log.e("lzy", "tag:${value}")
-                        tv_example.text = "onNext${value}"
+                        Log.e("lzy", "tag:$value")
+                        tv_example.text = "onNext$value"
                     }
 
                     override fun onError(e: Throwable?) {
