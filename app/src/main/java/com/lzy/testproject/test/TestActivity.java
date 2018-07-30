@@ -22,8 +22,13 @@ public class TestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test3);
 
+        DecimalFormat myformat = new DecimalFormat();
+        myformat.applyPattern("##,###.00");
+        Log.e("lzy", "" + myformat.format(3424241234.12));
+        Log.e("lzy", "" + myformat.format(1234));
+        Log.e("lzy", "" + myformat.format(1234.121));
+        Log.e("lzy", "" + myformat.format(0.12));
 
-        
     }
 
     @Override
