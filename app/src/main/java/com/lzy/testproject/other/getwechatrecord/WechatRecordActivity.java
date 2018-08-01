@@ -11,6 +11,8 @@ import net.sqlcipher.database.SQLiteDatabase;
 import net.sqlcipher.database.SQLiteDatabaseHook;
 
 import java.io.File;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicReference;
 
 import static android.database.sqlite.SQLiteDatabase.NO_LOCALIZED_COLLATORS;
 import static net.sqlcipher.database.SQLiteDatabase.openDatabase;
@@ -21,7 +23,8 @@ public class WechatRecordActivity extends AppCompatActivity {
 
     //	String oldPath = "/data/data/com.tencent.mm/MicroMsg/54466d9340acc4a839b45831dadd8dc0/EnMicroMsg.db";
     String newPath = "/data/data/com.lzy.testproject/EnMicroMsg.db";
-//	String uin = "669000982";
+    //	String uin = "669000982";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
