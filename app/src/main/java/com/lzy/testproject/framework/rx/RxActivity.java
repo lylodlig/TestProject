@@ -1,4 +1,4 @@
-package com.lzy.testproject.rx;
+package com.lzy.testproject.framework.rx;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

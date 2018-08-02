@@ -17,7 +17,7 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".ui.searchview.TestActivity" />
         <activity android:name=".ui.constraintlayout.TestActivity" />
-        <activity android:name=".rx.RxActivity" />
+        <activity android:name=".framework.rx.RxActivity" />
         <activity android:name=".designpatterns.strategy.StrategyActivity" />
         <activity android:name=".kotlin.MainActivity" />
         <activity android:name=".ui.nestedscrolling.test1.Test1Activity" />
@@ -31,14 +31,22 @@
         <activity android:name=".ui.bigpicture.BigActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".ui.softinput.SoftInputActivity" />
         <activity android:name=".test.TestActivity" />
-        <activity android:name=".rx.ExampleActivity"></activity>
+        <activity android:name=".framework.rx.ExampleActivity" />
         <activity android:name=".test.TestKActivity" />
-        <activity android:name=".other.getwechatrecord.WechatRecordActivity"></activity>
+        <activity android:name=".other.getwechatrecord.WechatRecordActivity" />
+        <activity android:name=".framework.retrofit.RetrofitActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

@@ -1,4 +1,4 @@
-package com.lzy.testproject.rx
+package com.lzy.testproject.framework.rx
 
 import android.app.Activity
 import android.graphics.Color
