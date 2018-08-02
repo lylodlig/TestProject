@@ -208,3 +208,59 @@ public interface GetRequest_Interface {
 
 }
 ```
+
+# 3.源码
+## 3.1 大致流程
+- 通过解析 网络请求接口的注解 配置 网络请求参数
+- 通过 动态代理 生成 网络请求对象
+- 通过 网络请求适配器 将 网络请求对象 进行平台适配
+- 通过 网络请求执行器 发送网络请求
+- 通过 数据转换器 解析服务器返回的数据
+- 通过 回调执行器 切换线程（子线程 ->>主线程）
+- 用户在主线程处理返回结果
+
+## 3.2 创建Retrofit实例
+```
+val retrofit = Retrofit.Builder()
+                .baseUrl("http://fanyi.youdao.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .build()
+```
+
+### 3.2.1 步骤1
+下面是Retrofit的构造器  
+```
+Retrofit(okhttp3.Call.Factory callFactory, HttpUrl baseUrl,
+      List<Converter.Factory> converterFactories, List<CallAdapter.Factory> callAdapterFactories,
+      @Nullable Executor callbackExecutor, boolean validateEagerly) {
+    this.callFactory = callFactory;
+    this.baseUrl = baseUrl;
+    this.converterFactories = converterFactories; // Copy+unmodifiable at call site.
+    this.callAdapterFactories = callAdapterFactories; // Copy+unmodifiable at call site.
+    this.callbackExecutor = callbackExecutor;
+    this.validateEagerly = validateEagerly;
+  }
+```
+分别配置了如下设置：  
+- callFactory：网络请求的工厂  
+
+- baseUrl：网络请求的url地址
+
+- converterFactories：数据转换器工厂的集合
+
+- adapterFactories：网络请求适配器工厂的集合
+
+- callbackExecutor：回调方法执行器
+
+### 3.2.2 CallAdapter
+网络请求执行器（Call）的适配器  
+> Call在Retrofit里默认是OkHttpCall  
+  在Retrofit中提供了四种CallAdapterFactory： ExecutorCallAdapterFactory（默认）、GuavaCallAdapterFactory、Java8CallAdapterFactory、RxJavaCallAdapterFactory
+
+### 3.2.3 构建Retrofit
+可以看出Retrofit实例的创建是采用Builder模式来实现，Builder内部类封装了Retrofit所需要的参数，最后通过build()方法传入创建Retrofit、
+
+### 3.2.4 总结
+Retrofit实例创建是通过Builder模式实现的，主要是配置了baseUrl，网络请求工厂CallFactory（默认是OkHttpCall），网络请求适配器AdapterFactory（用于把Call转化成适合不同平台的执行形式，比如我们常用的
+RxJava），converter用于转化数据为我们想要的格式，callbackExecutor回调方法执行器，用于切换线程
