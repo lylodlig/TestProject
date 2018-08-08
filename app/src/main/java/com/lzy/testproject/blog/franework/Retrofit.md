@@ -264,3 +264,38 @@ Retrofit(okhttp3.Call.Factory callFactory, HttpUrl baseUrl,
 ### 3.2.4 总结
 Retrofit实例创建是通过Builder模式实现的，主要是配置了baseUrl，网络请求工厂CallFactory（默认是OkHttpCall），网络请求适配器AdapterFactory（用于把Call转化成适合不同平台的执行形式，比如我们常用的
 RxJava），converter用于转化数据为我们想要的格式，callbackExecutor回调方法执行器，用于切换线程
+
+## 3.3 创建请求接口实例
+```
+val request = retrofit.create(ApiService::class.java)  
+val call = request.getCall()
+```
+
+```
+public <T> T create(final Class<T> service) {
+    Utils.validateServiceInterface(service);
+    if (validateEagerly) {
+      eagerlyValidateMethods(service);
+    }
+    //创建网络请求接口的代理对象，通过动态代理创建实例返回
+    return (T) Proxy.newProxyInstance(service.getClassLoader(), new Class<?>[] { service },
+        new InvocationHandler() {
+          private final Platform platform = Platform.get();
+
+          @Override public Object invoke(Object proxy, Method method, @Nullable Object[] args)
+              throws Throwable {
+            // If the method is a method from Object then defer to normal invocation.
+            if (method.getDeclaringClass() == Object.class) {
+              return method.invoke(this, args);
+            }
+            if (platform.isDefaultMethod(method)) {
+              return platform.invokeDefaultMethod(method, service, proxy, args);
+            }
+            ServiceMethod<Object, Object> serviceMethod =
+                (ServiceMethod<Object, Object>) loadServiceMethod(method);
+            OkHttpCall<Object> okHttpCall = new OkHttpCall<>(serviceMethod, args);
+            return serviceMethod.adapt(okHttpCall);
+          }
+        });
+  }
+```

@@ -44,6 +44,10 @@ android {
             dimension "channel"
         }
     }
+
+    packagingOptions{
+        exclude 'META-INF/rxjava.properties'
+    }
 }
 
 dependencies {

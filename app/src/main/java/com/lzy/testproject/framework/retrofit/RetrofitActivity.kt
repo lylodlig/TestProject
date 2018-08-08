@@ -12,6 +12,8 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import rx.Observer
+import java.util.function.Consumer
 
 class RetrofitActivity : AppCompatActivity() {
 
@@ -28,18 +30,29 @@ class RetrofitActivity : AppCompatActivity() {
         val request = retrofit.create(ApiService::class.java)
         val call = request.getCall()
 
-        //异步执行
-        call.enqueue(object : Callback<Reception> {
-            override fun onFailure(call: Call<Reception>?, t: Throwable?) {
+        call.subscribe(object : Observer<Reception> {
+            override fun onError(e: Throwable?) {
 
             }
 
-            override fun onResponse(call: Call<Reception>?, response: Response<Reception>?) {
+            override fun onNext(t: Reception?) {
+            }
 
+            override fun onCompleted() {
             }
         })
-        //同步执行
-        val response = call.execute()
+        //异步执行
+//        call.enqueue(object : Callback<Reception> {
+//            override fun onFailure(call: Call<Reception>?, t: Throwable?) {
+//
+//            }
+//
+//            override fun onResponse(call: Call<Reception>?, response: Response<Reception>?) {
+//
+//            }
+//        })
+//        //同步执行
+//        val response = call.execute()
 
     }
 }

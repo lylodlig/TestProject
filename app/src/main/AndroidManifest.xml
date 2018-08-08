@@ -28,25 +28,19 @@
         <activity android:name=".ui.paging.PagingActivity" />
         <activity android:name=".ui.recyclerview.diffcallback.DiffActivity" />
         <activity android:name=".framework.room.RoomActivity" />
-        <activity android:name=".ui.bigpicture.BigActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".ui.bigpicture.BigActivity"></activity>
         <activity android:name=".ui.softinput.SoftInputActivity" />
         <activity android:name=".test.TestActivity" />
         <activity android:name=".framework.rx.ExampleActivity" />
-        <activity android:name=".test.TestKActivity" />
-        <activity android:name=".other.getwechatrecord.WechatRecordActivity" />
-        <activity android:name=".framework.retrofit.RetrofitActivity">
+        <activity android:name=".test.TestKActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".other.getwechatrecord.WechatRecordActivity" />
+        <activity android:name=".framework.retrofit.RetrofitActivity"></activity>
     </application>
 
 </manifest>
