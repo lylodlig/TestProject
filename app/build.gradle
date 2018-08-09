@@ -75,4 +75,7 @@ dependencies {
 
     implementation 'net.zetetic:android-database-sqlcipher:3.5.9'
     implementation 'org.dom4j:dom4j:2.1.1'
+
+    implementation 'com.alibaba:arouter-api:1.2.1.1'
+    annotationProcessor 'com.alibaba:arouter-compiler:1.1.2.1'
 }

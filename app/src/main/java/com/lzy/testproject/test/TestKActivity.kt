@@ -4,6 +4,7 @@ import android.database.Observable
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.alibaba.android.arouter.launcher.ARouter
 import com.lzy.testproject.R
 import kotlinx.android.synthetic.main.activity_test_k.*
 
@@ -21,6 +22,10 @@ class TestKActivity : AppCompatActivity() {
         tv.text = a
 
         init()
+
+        tv.setOnClickListener {
+            ARouter.getInstance().build("/lzy/constraint/TestActivity").navigation()
+        }
     }
 
     fun init() {

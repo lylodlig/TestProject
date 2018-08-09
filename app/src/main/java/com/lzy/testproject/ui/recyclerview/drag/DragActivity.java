@@ -12,12 +12,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.lzy.testproject.R;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
+@Route(path = "/lzy/constraint/TestActivity")
 public class DragActivity extends AppCompatActivity {
     private List<String> list = new ArrayList<>();
     private MyAdapter adapter;
