@@ -74,6 +74,7 @@ public class WechatRecordActivity extends AppCompatActivity {
 //				JSONObject tmpJson = handleJson(_id, content, type, talker, time);
 //				returnJson.put("data" + count, tmpJson);
                 }
+
                 c.close();
                 db.close();
             } catch (Exception e) {
