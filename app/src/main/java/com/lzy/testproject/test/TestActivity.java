@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.lzy.testproject.R;
 
 import java.text.DecimalFormat;
@@ -27,21 +28,11 @@ public class TestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test3);
 
-        DecimalFormat myformat = new DecimalFormat();
-        myformat.applyPattern("##,###.00");
-        Log.e("lzy", "" + myformat.format(3424241234.12));
-        Log.e("lzy", "" + myformat.format(1234));
-        Log.e("lzy", "" + myformat.format(1234.121));
-        Log.e("lzy", "" + myformat.format(0.12));
-        Class<? extends DecimalFormat> aClass = myformat.getClass();
-        io.reactivex.Observable.just(1, 2)
-                .subscribe(new Consumer<Integer>() {
-                    @Override
-                    public void accept(Integer integer) throws Exception {
 
-                    }
-                });
+    }
 
+    public void bt(View view) {
+        ARouter.getInstance().build("/lzy/constraint/TestActivity").navigation();
     }
 
     @Override

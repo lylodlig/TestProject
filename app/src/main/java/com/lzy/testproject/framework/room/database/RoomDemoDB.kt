@@ -8,7 +8,7 @@ import com.lzy.testproject.framework.room.entity.StudentEntity
 /**
  * Created by LiZhiyu on 2018/7/20.
  */
-@Database(entities = [StudentEntity::class], version = 2)
+@Database(entities = [StudentEntity::class], version = 2, exportSchema = false)
 abstract class RoomDemoDB : RoomDatabase() {
     abstract fun studentDao(): StudentDao
 }
