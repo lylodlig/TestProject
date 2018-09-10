@@ -74,6 +74,7 @@ dependencies {
     implementation rootProject.ext.dependencies["retrofit"]
     implementation rootProject.ext.dependencies["converter-gson"]
     implementation rootProject.ext.dependencies["adapter-rxjava"]
+    implementation rootProject.ext.dependencies["permission-helper"]
     annotationProcessor 'android.arch.persistence.room:compiler:1.0.0'
 
     debugImplementation 'com.github.whataa:pandora:v1.0.5'

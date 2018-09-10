@@ -5,6 +5,8 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
 
     <application
         android:name=".MyApplication"
@@ -13,7 +15,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity android:name=".MainActivity" />
         <activity android:name=".ui.searchview.TestActivity" />
         <activity android:name=".ui.constraintlayout.TestActivity" />
@@ -25,23 +26,25 @@
         <activity android:name=".ui.nestedscrolling.NestedScrollingActivity" />
         <activity android:name=".ui.recyclerview.drag.DragActivity" />
         <activity android:name=".ui.recyclerview.drag.SwipActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".ui.paging.PagingActivity" />
         <activity android:name=".ui.recyclerview.diffcallback.DiffActivity" />
         <activity android:name=".framework.room.RoomActivity" />
         <activity android:name=".ui.bigpicture.BigActivity" />
         <activity android:name=".ui.softinput.SoftInputActivity" />
-        <activity android:name=".test.TestActivity"></activity>
+        <activity android:name=".test.TestActivity" />
         <activity android:name=".framework.rx.ExampleActivity" />
-        <activity android:name=".test.TestKActivity"></activity>
+        <activity android:name=".test.TestKActivity" />
         <activity android:name=".other.getwechatrecord.WechatRecordActivity" />
         <activity android:name=".framework.retrofit.RetrofitActivity" />
-        <activity android:name=".framework.arouter.RouterActivity"></activity>
+        <activity android:name=".framework.arouter.RouterActivity" />
+        <activity android:name=".other.calendar.CalendarActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
