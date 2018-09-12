@@ -1,31 +1,35 @@
 package com.lzy.testproject.other.calendar;
 
 import android.Manifest;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.DatePicker;
 
+import com.haibin.calendarview.CalendarLayout;
+import com.haibin.calendarview.CalendarView;
 import com.leeiidesu.permission.PermissionHelper;
 import com.leeiidesu.permission.callback.OnPermissionResultListener;
 import com.lzy.testproject.R;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
+import java.util.List;
 
 public class CalendarActivity extends AppCompatActivity {
+
+    private CalendarView mCalendarView;
+    private CalendarLayout mCalendarLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_calendar);
-        DatePicker datePicker = new DatePicker(this);
+        setContentView(R.layout.activity_calendar2);
         PermissionHelper.with(this)
                 .permissions(Manifest.permission.WRITE_CALENDAR, Manifest.permission.READ_CALENDAR)
                 .listener(new OnPermissionResultListener() {
                     @Override
                     public void onGranted() {
-                        new MyThread().start();
+//                        new MyThread().start();
                     }
 
                     @Override
@@ -34,6 +38,29 @@ public class CalendarActivity extends AppCompatActivity {
                     }
                 }).request();
 
+        mCalendarView = (CalendarView) findViewById(R.id.calendarView);
+        mCalendarLayout = (CalendarLayout) findViewById(R.id.calendarLayout);
+
+        List<com.haibin.calendarview.Calendar> schemes = new ArrayList<>();
+        int year = mCalendarView.getCurYear();
+        int month = mCalendarView.getCurMonth();
+        schemes.add(getSchemeCalendar(year, month, 3, 0xFF40db25, "假"));
+        schemes.add(getSchemeCalendar(year, month, 6, 0xFFe69138, "事"));
+        schemes.add(getSchemeCalendar(year, month, 10, 0xFFdf1356, "议"));
+        mCalendarView.setSchemeDate(schemes);
+    }
+
+    private com.haibin.calendarview.Calendar getSchemeCalendar(int year, int month, int day, int color, String text) {
+        com.haibin.calendarview.Calendar calendar = new com.haibin.calendarview.Calendar();
+        calendar.setYear(year);
+        calendar.setMonth(month);
+        calendar.setDay(day);
+        calendar.setSchemeColor(color);//如果单独标记颜色、则会使用这个颜色
+        calendar.setScheme(text);
+        calendar.addScheme(new com.haibin.calendarview.Calendar.Scheme());
+        calendar.addScheme(0xFF008800, "假");
+        calendar.addScheme(0xFF008800, "节");
+        return calendar;
     }
 
     private class MyThread extends Thread {

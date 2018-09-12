@@ -81,6 +81,7 @@ dependencies {
     releaseImplementation 'com.github.whataa:pandora-no-op:v1.0.3'
 
     implementation 'net.zetetic:android-database-sqlcipher:3.5.9'
+    implementation 'com.haibin:calendarview:3.4.4'
     implementation 'org.dom4j:dom4j:2.1.1'
 
     compile 'com.alibaba:arouter-api:1.2.1.1'
