@@ -1,15 +1,21 @@
 package com.lzy.testproject.other.calendar;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.BlurMaskFilter;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Shader;
 import android.text.TextUtils;
 import android.view.View;
 
 import com.haibin.calendarview.Calendar;
 import com.haibin.calendarview.MonthView;
+import com.lzy.testproject.R;
 
 /**
  * 演示一个变态需求的月视图
@@ -55,6 +61,7 @@ public class CustomMonthView extends MonthView {
     private Paint mSchemeBasicPaint = new Paint();
 
     private float mSchemeBaseLine;
+    private LinearGradient mLinearGradient;
 
     public CustomMonthView(Context context) {
         super(context);
@@ -102,6 +109,7 @@ public class CustomMonthView extends MonthView {
         setLayerType(View.LAYER_TYPE_SOFTWARE, mSchemeBasicPaint);
         mSchemeBasicPaint.setMaskFilter(new BlurMaskFilter(28, BlurMaskFilter.Blur.SOLID));
 
+
     }
 
     @Override
@@ -126,7 +134,7 @@ public class CustomMonthView extends MonthView {
         if (isSelected) {
             mPointPaint.setColor(Color.WHITE);
         } else {
-            mPointPaint.setColor(Color.GRAY);
+            mPointPaint.setColor(calendar.getSchemeColor());
         }
 
         canvas.drawCircle(x + mItemWidth / 2, y + mItemHeight - 3 * mPadding, mPointRadius, mPointPaint);
@@ -142,11 +150,11 @@ public class CustomMonthView extends MonthView {
             canvas.drawCircle(cx, cy, mRadius, mCurrentDayPaint);
         }
 
-        if (hasScheme) {
-            canvas.drawCircle(x + mItemWidth - mPadding - mCircleRadius / 2, y + mPadding + mCircleRadius, mCircleRadius, mSchemeBasicPaint);
-            mTextPaint.setColor(calendar.getSchemeColor());
-            canvas.drawText(calendar.getScheme(), x + mItemWidth - mPadding - mCircleRadius, y + mPadding + mSchemeBaseLine, mTextPaint);
-        }
+//        if (hasScheme) {
+//            canvas.drawCircle(x + mItemWidth - mPadding - mCircleRadius / 2, y + mPadding + mCircleRadius, mCircleRadius, mSchemeBasicPaint);
+//            mTextPaint.setColor(calendar.getSchemeColor());
+//            canvas.drawText(calendar.getScheme(), x + mItemWidth - mPadding - mCircleRadius, y + mPadding + mSchemeBaseLine, mTextPaint);
+//        }
 
         //当然可以换成其它对应的画笔就不麻烦，
         if (calendar.isWeekend() && calendar.isCurrentMonth()) {
@@ -184,7 +192,7 @@ public class CustomMonthView extends MonthView {
 
             canvas.drawText(calendar.getLunar(), cx, mTextBaseLine + y + mItemHeight / 10,
                     calendar.isCurrentDay() ? mCurDayLunarTextPaint :
-                            calendar.isCurrentMonth() ? !TextUtils.isEmpty(calendar.getSolarTerm()) ? mSolarTermTextPaint  :
+                            calendar.isCurrentMonth() ? !TextUtils.isEmpty(calendar.getSolarTerm()) ? mSolarTermTextPaint :
                                     mCurMonthLunarTextPaint : mOtherMonthLunarTextPaint);
         }
     }

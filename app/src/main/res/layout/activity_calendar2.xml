@@ -1,19 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/content"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_weight="1"
-    android:orientation="vertical">
+    android:background="@mipmap/iboss_calendar_schedule_bg"
+    android:orientation="vertical"
+    android:paddingLeft="12dp"
+    android:paddingRight="12dp"
+    android:paddingTop="14dp">
+
+    <RelativeLayout
+        android:id="@+id/rl_tool"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff">
+
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="8月2018"
+            android:textSize="19sp" />
+
+        <ImageView
+            android:id="@+id/btn_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/tv_date"
+            android:padding="10dp"
+            android:src="@mipmap/iboss_calendar_switch_right" />
+
+        <ImageView
+            android:id="@+id/btn_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@+id/tv_date"
+            android:padding="10dp"
+            android:src="@mipmap/iboss_calendar_switch_left" />
+    </RelativeLayout>
 
     <com.haibin.calendarview.CalendarLayout
         android:id="@+id/calendarLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#fff"
+
         android:orientation="vertical"
+
         app:calendar_content_view_id="@+id/recyclerView">
+
 
         <com.haibin.calendarview.CalendarView
             android:id="@+id/calendarView"
@@ -45,19 +87,39 @@
             app:year_view_month_text_size="20sp"
             app:year_view_scheme_color="#f17706" />
 
-        <!--<com.haibin.calendarviewproject.group.GroupRecyclerView-->
-            <!--android:id="@+id/recyclerView"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:background="@color/content_background"-->
-            <!--app:group_background="@color/content_background"-->
-            <!--app:group_center="false"-->
-            <!--app:group_has_header="false"-->
-            <!--app:group_height="42dp"-->
-            <!--app:group_padding_left="16dp"-->
-            <!--app:group_padding_right="16dp"-->
-            <!--app:group_text_color="#555555"-->
-            <!--app:group_text_size="14sp" />-->
+        <android.support.v4.widget.NestedScrollView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorAccent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="胜多负少开发计划书管理局是可以很感动/n放暑假了烦死了开发几乎是豆腐干胜多负少开发计划书管理局是可以很感动/n放暑假了烦死了开发几乎是豆腐干胜多负少开发计划书管理局是可以很感动/n放暑假了烦死了开发几乎是豆腐干胜多负少开发计划书管理局是可以很感动/n放暑假了烦死了开发几乎是豆腐干胜多负少开发计划书管理局是可以很感动/n放暑假了烦死了开发几乎是豆腐干胜多负少开发计划书管理局是可以很感动/n放暑假了烦死了开发几乎是豆腐干胜多负少开发计划书管理局是可以很感动/n放暑假了烦死了开发几乎是豆腐干" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="胜多负少开发计划书管理局是可以很感动/n放暑假了烦死了开发几乎是豆腐干胜多负少开发计划书管理局是可以很感动/n放暑假了烦死了开发几乎是豆腐干胜多负少开发计划书管理局是可以很感动/n放暑假了烦死了开发几乎是豆腐干胜多负少开发计划书管理局是可以很感动/n放暑假了烦死了开发几乎是豆腐干胜多负少开发计划书管理局是可以很感动/n放暑假了烦死了开发几乎是豆腐干胜多负少开发计划书管理局是可以很感动/n放暑假了烦死了开发几乎是豆腐干胜多负少开发计划书管理局是可以很感动/n放暑假了烦死了开发几乎是豆腐干" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="胜多负少开发计划书管理局是可以很感动/n放暑假了烦死了开发几乎是豆腐干胜多负少开发计划书管理局是可以很感动/n放暑假了烦死了开发几乎是豆腐干胜多负少开发计划书管理局是可以很感动/n放暑假了烦死了开发几乎是豆腐干胜多负少开发计划书管理局是可以很感动/n放暑假了烦死了开发几乎是豆腐干胜多负少开发计划书管理局是可以很感动/n放暑假了烦死了开发几乎是豆腐干胜多负少开发计划书管理局是可以很感动/n放暑假了烦死了开发几乎是豆腐干胜多负少开发计划书管理局是可以很感动/n放暑假了烦死了开发几乎是豆腐干" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="胜多负少开发计划书管理局是可以很感动/n放暑假了烦死了开发几乎是豆腐干胜多负少开发计划书管理局是可以很感动/n放暑假了烦死了开发几乎是豆腐干胜多负少开发计划书管理局是可以很感动/n放暑假了烦死了开发几乎是豆腐干胜多负少开发计划书管理局是可以很感动/n放暑假了烦死了开发几乎是豆腐干胜多负少开发计划书管理局是可以很感动/n放暑假了烦死了开发几乎是豆腐干胜多负少开发计划书管理局是可以很感动/n放暑假了烦死了开发几乎是豆腐干胜多负少开发计划书管理局是可以很感动/n放暑假了烦死了开发几乎是豆腐干" />
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
 
     </com.haibin.calendarview.CalendarLayout>
 
