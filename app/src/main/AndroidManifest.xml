@@ -16,8 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity" />
-        <activity android:name=".ui.searchview.TestActivity">
-        </activity>
+        <activity android:name=".ui.searchview.TestActivity"></activity>
         <activity android:name=".ui.constraintlayout.TestActivity" />
         <activity android:name=".framework.rx.RxActivity" />
         <activity android:name=".designpatterns.strategy.StrategyActivity" />
@@ -26,7 +25,7 @@
         <activity android:name=".kotlin.KotlinActivity" />
         <activity android:name=".ui.nestedscrolling.NestedScrollingActivity" />
         <activity android:name=".ui.recyclerview.drag.DragActivity" />
-        <activity android:name=".ui.recyclerview.drag.SwipActivity"></activity>
+        <activity android:name=".ui.recyclerview.drag.SwipActivity" />
         <activity android:name=".ui.paging.PagingActivity" />
         <activity android:name=".ui.recyclerview.diffcallback.DiffActivity" />
         <activity android:name=".framework.room.RoomActivity" />
@@ -39,6 +38,8 @@
         <activity android:name=".framework.retrofit.RetrofitActivity" />
         <activity android:name=".framework.arouter.RouterActivity" />
         <activity android:name=".other.calendar.CalendarActivity">
+        </activity>
+        <activity android:name=".ui.customview.seekbar.SnailActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

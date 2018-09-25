@@ -1,0 +1,40 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#deeaeb"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/seekbar_percent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="SnailBar"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/seekbar_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="snailbar status"
+            android:textSize="14sp" />
+
+        <com.lzy.testproject.ui.customview.seekbar.SnailBar
+            android:id="@+id/seekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:thumb="@drawable/snailanim"></com.lzy.testproject.ui.customview.seekbar.SnailBar>
+
+
+    </LinearLayout>
+
+</RelativeLayout>
