@@ -16,8 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity" />
-        <activity android:name=".ui.searchview.TestActivity">
-        </activity>
+        <activity android:name=".ui.searchview.TestActivity"></activity>
         <activity android:name=".ui.constraintlayout.TestActivity" />
         <activity android:name=".framework.rx.RxActivity" />
         <activity android:name=".designpatterns.strategy.StrategyActivity" />
@@ -38,7 +37,9 @@
         <activity android:name=".other.getwechatrecord.WechatRecordActivity" />
         <activity android:name=".framework.retrofit.RetrofitActivity" />
         <activity android:name=".framework.arouter.RouterActivity" />
-        <activity android:name=".other.calendar.CalendarActivity">
+        <activity
+            android:name=".other.calendar.CalendarActivity"
+            android:theme="@style/AppTheme.Launch">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
