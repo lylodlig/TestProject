@@ -12,6 +12,7 @@ import android.widget.EditText;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.lzy.testproject.R;
 
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.Observable;
 
@@ -34,8 +35,15 @@ public class TestActivity extends AppCompatActivity {
 
     public void bt(View view) {
 //        ARouter.getInstance().build("/lzy/constraint/TestActivity").navigation();
-        MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.notify);
-        mediaPlayer.start();
+//        MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.notify);
+//        mediaPlayer.start();
+        float c = 121485;
+        float val = c / 10000;
+
+        String format = new DecimalFormat("#.0").format(val);
+        BigDecimal bigDecimal = new BigDecimal(val);
+        bigDecimal.setScale(1, BigDecimal.ROUND_HALF_UP);
+        Log.i("lzy", "bt: "+format);
     }
 
     @Override
