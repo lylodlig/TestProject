@@ -6,12 +6,15 @@ import java.util.Comparator;
  * Created by LiZhiyu on 2018/10/12.
  */
 public class Node {
-    public String data;
+    public int data;
     public Node leftNode;
     public Node rightNode;
 
+    public Node(int data) {
+        this.data = data;
+    }
 
-//    //返回值大于0，表示大于
+    //    //返回值大于0，表示大于
 //    //0，等于
 //    //返回值小于0，表示小于
 //    @Override
