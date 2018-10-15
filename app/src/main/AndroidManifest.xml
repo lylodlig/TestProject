@@ -31,8 +31,7 @@
         <activity android:name=".framework.room.RoomActivity" />
         <activity android:name=".ui.bigpicture.BigActivity" />
         <activity android:name=".ui.softinput.SoftInputActivity" />
-        <activity android:name=".test.TestActivity">
-        </activity>
+        <activity android:name=".test.TestActivity" />
         <activity android:name=".framework.rx.ExampleActivity" />
         <activity android:name=".test.TestKActivity" />
         <activity android:name=".other.getwechatrecord.WechatRecordActivity" />
@@ -42,7 +41,11 @@
             android:name=".other.calendar.CalendarActivity"
             android:theme="@style/AppTheme.Launch" />
         <activity android:name=".ui.customview.seekbar.SnailActivity" />
-        <activity android:name=".saunfa.SuanfaActivity">
+        <activity android:name=".saunfa.SuanfaActivity" />
+        <activity android:name=".ui.animation.object.ObjectAnimationActivity" />
+        <activity android:name=".ui.animation.value.ValueActivity">
+        </activity>
+        <activity android:name=".ui.animation.layout.LayoutActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
