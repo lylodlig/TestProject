@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.ListAdapter;
 
 import com.lzy.testproject.R;
+import com.lzy.testproject.other.disklrucache.DiskLruCache;
 
 public class LayoutActivity extends AppCompatActivity {
 
@@ -27,7 +28,6 @@ public class LayoutActivity extends AppCompatActivity {
         GridView gridView = findViewById(R.id.gridView);
         gridView.setNumColumns(4);
         gridView.setAdapter(new MAdapter(this));
-
         //代码中添加
 //        Animation animation = AnimationUtils.loadAnimation(this, R.anim.anim_home);
 //        LayoutAnimationController controller = new LayoutAnimationController(animation, 0.2f);
