@@ -43,15 +43,12 @@
         <activity android:name=".ui.customview.seekbar.SnailActivity" />
         <activity android:name=".saunfa.SuanfaActivity" />
         <activity android:name=".ui.animation.object.ObjectAnimationActivity" />
-        <activity android:name=".ui.animation.value.ValueActivity"></activity>
+        <activity android:name=".ui.animation.value.ValueActivity" />
         <activity android:name=".ui.animation.layout.LayoutActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".other.disklrucache.CacheActivity">
+        </activity>
+        <activity android:name=".ui.customview.pathmeasure.PathMeasureActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
