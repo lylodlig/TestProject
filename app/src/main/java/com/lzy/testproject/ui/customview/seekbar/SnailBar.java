@@ -2,9 +2,9 @@ package com.lzy.testproject.ui.customview.seekbar;
 
 import android.content.Context;
 import android.graphics.drawable.AnimationDrawable;
+import android.os.Looper;
 import android.support.v7.widget.AppCompatSeekBar;
 import android.util.AttributeSet;
-import android.widget.SeekBar;
 
 import com.lzy.testproject.R;
 
@@ -27,6 +27,7 @@ public class SnailBar extends AppCompatSeekBar {
     }
 
     private void init() {
+        Looper.prepare();
         this.setMax(100);
         this.setThumbOffset(dip2px(getContext(), 20));
         this.setBackgroundResource(R.mipmap.sbg);
