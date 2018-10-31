@@ -38,7 +38,7 @@
         <activity android:name=".framework.retrofit.RetrofitActivity" />
         <activity android:name=".framework.arouter.RouterActivity" />
         <activity
-            android:name=".other.calendar.CalendarActivity"
+            android:name=".ui.customview.calendar.CalendarActivity"
             android:theme="@style/AppTheme.Launch" />
         <activity android:name=".ui.customview.seekbar.SnailActivity" />
         <activity android:name=".saunfa.SuanfaActivity" />

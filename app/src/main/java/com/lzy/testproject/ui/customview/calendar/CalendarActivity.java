@@ -1,10 +1,8 @@
-package com.lzy.testproject.other.calendar;
+package com.lzy.testproject.ui.customview.calendar;
 
 import android.Manifest;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.DatePicker;
 
 import com.haibin.calendarview.CalendarLayout;
 import com.haibin.calendarview.CalendarView;
