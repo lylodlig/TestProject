@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.lzy.testproject.R;
 
@@ -24,6 +25,9 @@ public class PathMeasureActivity extends AppCompatActivity {
         PathLayoutManager mPathLayoutManager = new PathLayoutManager(path, 40);
         recyclerView.setLayoutManager(mPathLayoutManager);
         recyclerView.setAdapter(new MyAdapter(this));
+
+        ProgressBar mLoadingProgressBar = new ProgressBar(this);
+        mLoadingProgressBar.setVisibility(View.VISIBLE);
     }
 
 
