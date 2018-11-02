@@ -2,37 +2,38 @@
 apply from: "config.gradle"
 
 buildscript {
-	ext.kotlin_version = '1.2.30'
+    ext.kotlin_version = '1.2.30'
 
 
-	repositories {
-		google()
-		jcenter()
-	}
-	dependencies {
-		classpath 'com.android.tools.build:gradle:3.1.2'
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.1.2'
 
-		// NOTE: Do not place your application dependencies here; they belong
-		// in the individual module build.gradle files
-		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-	}
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath("com.tinkerpatch.sdk:tinkerpatch-gradle-plugin:${TINKERPATCH_VERSION}") { changing = true }
+    }
 }
 
 allprojects {
-	repositories {
-		google()
-		jcenter()
-		maven { url 'https://jitpack.io' }
-		maven {
-			url 'https://maven.google.com'
-		}
-	}
+    repositories {
+        google()
+        jcenter()
+        maven { url 'https://jitpack.io' }
+        maven {
+            url 'https://maven.google.com'
+        }
+    }
 }
 
 task clean(type: Delete) {
-	delete rootProject.buildDir
+    delete rootProject.buildDir
 }
 
 task haha {
-	println("afhkjjhf")
+    println("afhkjjhf")
 }

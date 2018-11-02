@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 //apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply from: 'tinkerpatch.gradle'
 
 //使用生成文件
 //kapt {
@@ -13,6 +14,7 @@ configurations.all {
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     defaultConfig {
+        multiDexEnabled true
         applicationId rootProject.ext.android["applicationId"]
         minSdkVersion rootProject.ext.android["minSdkVersion"]
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
@@ -23,6 +25,7 @@ android {
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments = [moduleName: project.getName()]
+                includeCompileClasspath true
             }
         }
     }
@@ -40,15 +43,15 @@ android {
 
     flavorDimensions "channel"
     productFlavors {
-        demo {
-            manifestPlaceholders = ["APP_NAME": "测试哈哈"]
-            buildConfigField "String", "Host", "\"http://192.168.98.1:8080\""
-            dimension "channel"
-        }
-        demo1 {
-            buildConfigField "String", "Host", "\"http://192.168.18.1:8080\""
-            dimension "channel"
-        }
+//        demo {
+//            manifestPlaceholders = ["APP_NAME": "测试哈哈"]
+//            buildConfigField "String", "Host", "\"http://192.168.98.1:8080\""
+//            dimension "channel"
+//        }
+//        demo1 {
+//            buildConfigField "String", "Host", "\"http://192.168.18.1:8080\""
+//            dimension "channel"
+//        }
     }
 
     packagingOptions {
@@ -85,6 +88,14 @@ dependencies {
     implementation 'org.dom4j:dom4j:2.1.1'
     implementation 'com.wuyr:pathlayoutmanager:1.0.1'
 
+    //无需引入tinker的任何库,使用tinkerpatch sdk即可
+    provided("com.tinkerpatch.tinker:tinker-android-anno:1.9.9")
+    implementation("com.tinkerpatch.sdk:tinkerpatch-android-sdk:${TINKERPATCH_VERSION}") {
+        changing = true
+    }
+    implementation "com.android.support:multidex:1.0.1"
+
     compile 'com.alibaba:arouter-api:1.2.1.1'
     annotationProcessor 'com.alibaba:arouter-compiler:1.1.2.1'
+
 }

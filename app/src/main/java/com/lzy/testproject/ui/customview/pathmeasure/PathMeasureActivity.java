@@ -1,5 +1,6 @@
 package com.lzy.testproject.ui.customview.pathmeasure;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Path;
 import android.support.v7.app.AppCompatActivity;
@@ -26,6 +27,7 @@ public class PathMeasureActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(mPathLayoutManager);
         recyclerView.setAdapter(new MyAdapter(this));
 
+        ProgressDialog.show(this, "正在加载中", "", false, false);
         ProgressBar mLoadingProgressBar = new ProgressBar(this);
         mLoadingProgressBar.setVisibility(View.VISIBLE);
     }

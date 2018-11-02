@@ -44,7 +44,7 @@ public class CalendarActivity extends AppCompatActivity {
         List<com.haibin.calendarview.Calendar> schemes = new ArrayList<>();
         int year = mCalendarView.getCurYear();
         int month = mCalendarView.getCurMonth();
-        schemes.add(getSchemeCalendar(year, month, 3, R.color.pd_red, "假"));
+//        schemes.add(getSchemeCalendar(year, month, 3, R.color.pd_red, "假"));
         schemes.add(getSchemeCalendar(year, month, 6, 0xFFe69138, "事"));
         schemes.add(getSchemeCalendar(year, month, 10, 0xFFdf1356, "议"));
         schemes.add(getSchemeCalendar(year, month, 26, 0xFFdf1356, "议"));

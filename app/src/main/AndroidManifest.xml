@@ -9,7 +9,7 @@
     <uses-permission android:name="android.permission.WRITE_CALENDAR" />
 
     <application
-        android:name=".MyApplication"
+        android:name=".MyTinkerApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -44,11 +44,11 @@
         <activity android:name=".saunfa.SuanfaActivity" />
         <activity android:name=".ui.animation.object.ObjectAnimationActivity" />
         <activity android:name=".ui.animation.value.ValueActivity" />
-        <activity android:name=".ui.animation.layout.LayoutActivity">
-        </activity>
-        <activity android:name=".other.disklrucache.CacheActivity">
-        </activity>
+        <activity android:name=".ui.animation.layout.LayoutActivity" />
+        <activity android:name=".other.disklrucache.CacheActivity" />
         <activity android:name=".ui.customview.pathmeasure.PathMeasureActivity">
+        </activity>
+        <activity android:name=".framework.tinker.TinkerTestActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
