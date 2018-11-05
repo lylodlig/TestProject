@@ -10,6 +10,8 @@ public class PieInfo {
     public int color;
 
     public String describe;
+    public String title;
+
 
     public double value;
 
