@@ -9,7 +9,8 @@ public class PieInfo {
     @ColorInt
     public int color;
 
-    public String describe;
+    public String describe="";
+    public String describe2="";
     public String title;
 
 
