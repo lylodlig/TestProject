@@ -1,5 +1,6 @@
 package com.lzy.testproject.ui.customview.chart;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -14,6 +15,8 @@ import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.LinearInterpolator;
+import android.widget.Scroller;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -48,6 +51,8 @@ public class PieView extends View {
 
     private int mOuterExtendWidth = 50;
     private int mOuterExtendLineWidth = 200;
+    private boolean isAnimEnable = true;
+    private long mAnimDuration = 2000;
 
     public enum ModeEnum {
         PieFull, Pie, ColumnHorizontal, ColumnHorizontalFull, ColumnVertical
@@ -180,20 +185,24 @@ public class PieView extends View {
                 }
                 break;
             case Pie:
-
+                mPaint.setStrokeWidth(mPieWidth);
+                mPaint.setStyle(Paint.Style.STROKE);
                 if (mListData.size() > 0) {
-
                     PieInfo pieInfo = mListData.get(0);
-                    mPaint.setColor(pieInfo.color);
-                    mPaint.setAlpha(mAlpha);
-                    canvas.drawArc(rectF, 0, 360, false, mPaint);
-                    mPaint.setColor(pieInfo.color);
-                    canvas.drawArc(rectF, -90, (float) (360 * pieInfo.value / mMaxValue), false, mPaint);
+                        mPaint.setColor(Color.BLUE);
+                        Log.i("lzy", "onDraw: wfaffsf");
+                        mPaint.setAlpha(mAlpha);
+                        canvas.drawArc(rectF, 0, 360, false, mPaint);
+                        mPaint.setColor(pieInfo.color);
+                        canvas.drawArc(rectF, -90, endDegree, false, mPaint);
 
-                    Path path = new Path();
-                    path.lineTo(0, 0);
-                    path.lineTo(100, 10);
-                    canvas.drawText("sfs", 0, 0, mPaint);
+
+
+
+//                    Path path = new Path();
+//                    path.lineTo(0, 0);
+//                    path.lineTo(100, 10);
+//                    canvas.drawText("sfs", 0, 0, mPaint);
 //                    canvas.drawPath(path,mPaint);
                 }
             case ColumnHorizontal:
@@ -205,6 +214,25 @@ public class PieView extends View {
 
         }
     }
+
+    private float endDegree = 0;
+    private boolean isFirst = true;
+
+   public void start(){
+       BigDecimal b1 = new BigDecimal(360 * mListData.get(0).value);
+       BigDecimal b2 = new BigDecimal(mMaxValue);
+       BigDecimal divide = b1.divide(b2, 0, BigDecimal.ROUND_HALF_UP);
+       ValueAnimator valueAnimator = ValueAnimator.ofFloat(-90f, divide.floatValue());
+       valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+           @Override
+           public void onAnimationUpdate(ValueAnimator animation) {
+               endDegree = (float) animation.getAnimatedValue();
+               invalidate();
+           }
+       });
+       valueAnimator.setDuration(mAnimDuration);
+       valueAnimator.start();
+   }
 
     public void setBuilder(Builder builder) {
         mListData = builder.listData;
