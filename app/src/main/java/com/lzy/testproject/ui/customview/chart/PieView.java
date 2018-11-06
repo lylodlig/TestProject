@@ -15,8 +15,6 @@ import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
-import android.view.animation.LinearInterpolator;
-import android.widget.Scroller;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -30,6 +28,7 @@ public class PieView extends View {
     private int mPieWidth = 20;
     private Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.DITHER_FLAG);
     private Paint mInnerTextPaint = new Paint();
+    private Paint mTextPaint = new Paint();
     private Paint mOuterTextPaint = new Paint();
     private Paint mOuterTextPaintGray = new Paint();
     private Paint mOuterTextPaintGray2 = new Paint();
@@ -48,11 +47,17 @@ public class PieView extends View {
     private int mInnerTextSize = 40;
     private int mOuterTextSize = 40;
     private int mOuterGrayTextSize = 30;
+    private TextInfo mCenterText1;
+    private TextInfo mCenterText2;
 
     private int mOuterExtendWidth = 50;
     private int mOuterExtendLineWidth = 200;
     private boolean isAnimEnable = true;
     private long mAnimDuration = 2000;
+    private boolean isShowOuterText = false;
+    private int mDx;//分割的白色间距
+    private int mCenterTextMargin;
+    private double mTotalValue;
 
     public enum ModeEnum {
         PieFull, Pie, ColumnHorizontal, ColumnHorizontalFull, ColumnVertical
@@ -79,17 +84,21 @@ public class PieView extends View {
         mInnerTextPaint.setColor(Color.WHITE);
         mInnerTextPaint.setTextSize(mInnerTextSize);
 
-        mOuterTextPaint.setAntiAlias(true);
-        mOuterTextPaint.setColor(mOuterTextColor);
-        mOuterTextPaint.setTextSize(mOuterTextSize);
+        mTextPaint.setAntiAlias(true);
 
-        mOuterTextPaintGray.setAntiAlias(true);
-        mOuterTextPaintGray.setColor(mOuterTextColorGray);
-        mOuterTextPaintGray.setTextSize(mOuterGrayTextSize);
+        if (isShowOuterText) {
+            mOuterTextPaint.setAntiAlias(true);
+            mOuterTextPaint.setColor(mOuterTextColor);
+            mOuterTextPaint.setTextSize(mOuterTextSize);
 
-        mOuterTextPaintGray2.setAntiAlias(true);
-        mOuterTextPaintGray2.setColor(mOuterTextColorGray);
-        mOuterTextPaintGray2.setTextSize(mOuterGrayTextSize);
+            mOuterTextPaintGray.setAntiAlias(true);
+            mOuterTextPaintGray.setColor(mOuterTextColorGray);
+            mOuterTextPaintGray.setTextSize(mOuterGrayTextSize);
+
+            mOuterTextPaintGray2.setAntiAlias(true);
+            mOuterTextPaintGray2.setColor(mOuterTextColorGray);
+            mOuterTextPaintGray2.setTextSize(mOuterGrayTextSize);
+        }
 
 
     }
@@ -111,19 +120,34 @@ public class PieView extends View {
         startDegree = -180;
         switch (mMode) {
             case PieFull:
+                //画中间文字
+                Rect centerText1 = new Rect();
+                Rect centerText2 = new Rect();
+                mTextPaint.setTextSize(mCenterText1.size);
+                mTextPaint.setColor(mCenterText1.color);
+                mTextPaint.getTextBounds(mCenterText1.text, 0, mCenterText1.text.length(), centerText1);
+                canvas.drawText(mCenterText1.text, (mWidth - centerText1.width()) / 2, (mHeight / 2 - centerText1.height() - mCenterTextMargin / 2), mTextPaint);
+
+
+                mTextPaint.setTextSize(mCenterText2.size);
+                mTextPaint.setColor(mCenterText2.color);
+                mTextPaint.getTextBounds(mCenterText2.text, 0, mCenterText2.text.length(), centerText2);
+                canvas.drawText(mCenterText2.text, (mWidth - centerText2.width()) / 2, (mHeight / 2 + centerText2.height() + mCenterTextMargin / 2), mTextPaint);
                 for (int i = 0; i < mListData.size(); i++) {
                     mPaint.setStrokeWidth(mPieWidth);
                     mPaint.setStyle(Paint.Style.STROKE);
                     PieInfo pieInfo = mListData.get(i);
                     mPaint.setColor(pieInfo.color);
-                    canvas.drawArc(rectF, startDegree, pieInfo.degree + 2, false, mPaint);
+                    canvas.drawArc(rectF, startDegree, pieInfo.degree + mDx, false, mPaint);
+                    mPaint.setColor(Color.WHITE);
+                    canvas.drawArc(rectF, startDegree + pieInfo.degree, mDx, false, mPaint);
 
 
                     //画文字
                     int centerDegree = startDegree + pieInfo.degree / 2;
-                    BigDecimal bigDecimal1 = new BigDecimal(100 * pieInfo.degree);
-                    BigDecimal bigDecimal2 = new BigDecimal(360);
-                    bigDecimal1.setScale(1, BigDecimal.ROUND_HALF_UP);
+                    BigDecimal bigDecimal1 = new BigDecimal(100 * pieInfo.value);
+                    BigDecimal bigDecimal2 = new BigDecimal(mTotalValue);
+//                    bigDecimal1.setScale(1, BigDecimal.ROUND_HALF_UP);
                     BigDecimal divide = bigDecimal1.divide(bigDecimal2, 0, BigDecimal.ROUND_HALF_UP);
                     int raduis = mCircleWidth - mPieWidth / 2;
                     int innerTextX = (int) (Math.cos(2 * Math.PI / 360 * centerDegree) * raduis) + mWidth / 2;
@@ -133,55 +157,58 @@ public class PieView extends View {
 
                     canvas.drawText(divide.intValue() + "%", innerTextX - rectInnerText.width() / 2, innerTextY, mInnerTextPaint);
 
-                    //画外面文字的线条
-                    mPaint.setStrokeWidth(4);
-                    mPaint.setStyle(Paint.Style.FILL);
-                    int outterTextX = (int) (Math.cos(2 * Math.PI / 360 * centerDegree) * (mCircleWidth + 20)) + mWidth / 2;
-                    int outterTextY = (int) (Math.sin(2 * Math.PI / 360 * centerDegree) * (mCircleWidth + 20)) + mHeight / 2;
-                    canvas.drawCircle(outterTextX, outterTextY, 10, mPaint);
-                    mPaint.setStyle(Paint.Style.STROKE);
-                    Path path = new Path();
-                    path.moveTo(outterTextX, outterTextY);
-                    double x = Math.cos(2 * Math.PI / 360 * centerDegree);
-                    double y = Math.sin(2 * Math.PI / 360 * centerDegree);
-                    path.lineTo((float) (outterTextX + mOuterExtendWidth * x), (float) (outterTextY + mOuterExtendWidth * y));
-                    if (x > 0)
-                        path.lineTo((float) (outterTextX + mOuterExtendLineWidth), (float) (outterTextY + mOuterExtendWidth * y));
-                    else
-                        path.lineTo((float) (outterTextX - mOuterExtendLineWidth), (float) (outterTextY + mOuterExtendWidth * y));
 
-                    canvas.drawPath(path, mPaint);
+                    if (isShowOuterText) {
+                        //画外面文字的线条
+                        mPaint.setStrokeWidth(4);
+                        mPaint.setStyle(Paint.Style.FILL);
+                        int outterTextX = (int) (Math.cos(2 * Math.PI / 360 * centerDegree) * (mCircleWidth + 20)) + mWidth / 2;
+                        int outterTextY = (int) (Math.sin(2 * Math.PI / 360 * centerDegree) * (mCircleWidth + 20)) + mHeight / 2;
+                        canvas.drawCircle(outterTextX, outterTextY, 10, mPaint);
+                        mPaint.setStyle(Paint.Style.STROKE);
+                        Path path = new Path();
+                        path.moveTo(outterTextX, outterTextY);
+                        double x = Math.cos(2 * Math.PI / 360 * centerDegree);
+                        double y = Math.sin(2 * Math.PI / 360 * centerDegree);
+                        path.lineTo((float) (outterTextX + mOuterExtendWidth * x), (float) (outterTextY + mOuterExtendWidth * y));
+                        if (x > 0)
+                            path.lineTo((float) (outterTextX + mOuterExtendLineWidth), (float) (outterTextY + mOuterExtendWidth * y));
+                        else
+                            path.lineTo((float) (outterTextX - mOuterExtendLineWidth), (float) (outterTextY + mOuterExtendWidth * y));
 
-                    Rect rect = new Rect();
-                    Rect rectGrayDes = new Rect();
-                    Rect rectGrayDes2 = new Rect();
-                    mOuterTextPaint.getTextBounds(pieInfo.title, 0, pieInfo.title.length(), rect);
-                    mOuterTextPaintGray.getTextBounds(pieInfo.describe, 0, pieInfo.describe.length(), rectGrayDes);
-                    mOuterTextPaintGray2.getTextBounds(pieInfo.describe2, 0, pieInfo.describe2.length(), rectGrayDes2);
+                        canvas.drawPath(path, mPaint);
 
-                    if (y > 0) {
-                        if (x > 0) {
-                            canvas.drawText(pieInfo.title, (float) (outterTextX + x * mOuterExtendWidth), (float) (outterTextY + mOuterExtendWidth * y - 10), mOuterTextPaint);
-                            canvas.drawText(pieInfo.describe, outterTextX, (float) (outterTextY + mOuterExtendWidth * y + 10 + rectGrayDes.height()), mOuterTextPaintGray);
-                            canvas.drawText(pieInfo.describe2, outterTextX, (float) (outterTextY + mOuterExtendWidth * y + 20 + 2 * rectGrayDes2.height()), mOuterTextPaintGray);
+
+                        Rect rect = new Rect();
+                        Rect rectGrayDes = new Rect();
+                        Rect rectGrayDes2 = new Rect();
+                        mOuterTextPaint.getTextBounds(pieInfo.title, 0, pieInfo.title.length(), rect);
+                        mOuterTextPaintGray.getTextBounds(pieInfo.describe, 0, pieInfo.describe.length(), rectGrayDes);
+                        mOuterTextPaintGray2.getTextBounds(pieInfo.describe2, 0, pieInfo.describe2.length(), rectGrayDes2);
+
+                        if (y > 0) {
+                            if (x > 0) {
+                                canvas.drawText(pieInfo.title, (float) (outterTextX + x * mOuterExtendWidth), (float) (outterTextY + mOuterExtendWidth * y - 10), mOuterTextPaint);
+                                canvas.drawText(pieInfo.describe, outterTextX, (float) (outterTextY + mOuterExtendWidth * y + 10 + rectGrayDes.height()), mOuterTextPaintGray);
+                                canvas.drawText(pieInfo.describe2, outterTextX, (float) (outterTextY + mOuterExtendWidth * y + 20 + 2 * rectGrayDes2.height()), mOuterTextPaintGray);
+                            } else {
+                                canvas.drawText(pieInfo.title, (float) (outterTextX + x * mOuterExtendWidth) - rect.width() - 10, (float) (outterTextY + mOuterExtendWidth * y - 10), mOuterTextPaint);
+                                canvas.drawText(pieInfo.describe, outterTextX - rectGrayDes.width() - 10, (float) (outterTextY + mOuterExtendWidth * y + 10 + rectGrayDes.height()), mOuterTextPaintGray);
+                                canvas.drawText(pieInfo.describe2, (float) (outterTextX) - rectGrayDes2.width() - 10, (float) (outterTextY + mOuterExtendWidth * y + 20 + 2 * rectGrayDes2.height()), mOuterTextPaintGray);
+                            }
                         } else {
-                            canvas.drawText(pieInfo.title, (float) (outterTextX + x * mOuterExtendWidth) - rect.width() - 10, (float) (outterTextY + mOuterExtendWidth * y - 10), mOuterTextPaint);
-                            canvas.drawText(pieInfo.describe, outterTextX - rectGrayDes.width() - 10, (float) (outterTextY + mOuterExtendWidth * y + 10 + rectGrayDes.height()), mOuterTextPaintGray);
-                            canvas.drawText(pieInfo.describe2, (float) (outterTextX) - rectGrayDes2.width() - 10, (float) (outterTextY + mOuterExtendWidth * y + 20 + 2 * rectGrayDes2.height()), mOuterTextPaintGray);
-                        }
-                    } else {
-                        if (x > 0) {
-                            canvas.drawText(pieInfo.title, (float) (outterTextX + x * mOuterExtendWidth), (float) (outterTextY + mOuterExtendWidth * y + rect.height() + 10), mOuterTextPaint);
-                            canvas.drawText(pieInfo.describe, outterTextX, (float) (outterTextY + mOuterExtendWidth * y - 20 - 2 * rectGrayDes.height()), mOuterTextPaintGray);
-                            canvas.drawText(pieInfo.describe2, outterTextX, (float) (outterTextY + mOuterExtendWidth * y - 10 - rectGrayDes2.height()), mOuterTextPaintGray);
-                        } else {
-                            canvas.drawText(pieInfo.title, (float) (outterTextX + x * mOuterExtendWidth) - rect.width() - 10, (float) (outterTextY + mOuterExtendWidth * y + rect.height() + 10), mOuterTextPaint);
-                            canvas.drawText(pieInfo.describe, outterTextX - rectGrayDes.width() - 10, (float) (outterTextY + mOuterExtendWidth * y - 20 - 2 * rectGrayDes.height()), mOuterTextPaintGray);
-                            canvas.drawText(pieInfo.describe2, outterTextX - rectGrayDes2.width() - 10, (float) (outterTextY + mOuterExtendWidth * y - rectGrayDes2.height()), mOuterTextPaintGray);
+                            if (x > 0) {
+                                canvas.drawText(pieInfo.title, (float) (outterTextX + x * mOuterExtendWidth), (float) (outterTextY + mOuterExtendWidth * y + rect.height() + 10), mOuterTextPaint);
+                                canvas.drawText(pieInfo.describe, outterTextX, (float) (outterTextY + mOuterExtendWidth * y - 20 - 2 * rectGrayDes.height()), mOuterTextPaintGray);
+                                canvas.drawText(pieInfo.describe2, outterTextX, (float) (outterTextY + mOuterExtendWidth * y - 10 - rectGrayDes2.height()), mOuterTextPaintGray);
+                            } else {
+                                canvas.drawText(pieInfo.title, (float) (outterTextX + x * mOuterExtendWidth) - rect.width() - 10, (float) (outterTextY + mOuterExtendWidth * y + rect.height() + 10), mOuterTextPaint);
+                                canvas.drawText(pieInfo.describe, outterTextX - rectGrayDes.width() - 10, (float) (outterTextY + mOuterExtendWidth * y - 20 - 2 * rectGrayDes.height()), mOuterTextPaintGray);
+                                canvas.drawText(pieInfo.describe2, outterTextX - rectGrayDes2.width() - 10, (float) (outterTextY + mOuterExtendWidth * y - rectGrayDes2.height()), mOuterTextPaintGray);
+                            }
                         }
                     }
-
-                    startDegree = startDegree + pieInfo.degree;
+                    startDegree = startDegree + pieInfo.degree + mDx;
                 }
                 break;
             case Pie:
@@ -189,21 +216,11 @@ public class PieView extends View {
                 mPaint.setStyle(Paint.Style.STROKE);
                 if (mListData.size() > 0) {
                     PieInfo pieInfo = mListData.get(0);
-                        mPaint.setColor(Color.BLUE);
-                        Log.i("lzy", "onDraw: wfaffsf");
-                        mPaint.setAlpha(mAlpha);
-                        canvas.drawArc(rectF, 0, 360, false, mPaint);
-                        mPaint.setColor(pieInfo.color);
-                        canvas.drawArc(rectF, -90, endDegree, false, mPaint);
-
-
-
-
-//                    Path path = new Path();
-//                    path.lineTo(0, 0);
-//                    path.lineTo(100, 10);
-//                    canvas.drawText("sfs", 0, 0, mPaint);
-//                    canvas.drawPath(path,mPaint);
+                    mPaint.setColor(pieInfo.color);
+                    mPaint.setAlpha(mAlpha);
+                    canvas.drawArc(rectF, 0, 360, false, mPaint);
+                    mPaint.setColor(pieInfo.color);
+                    canvas.drawArc(rectF, -90, sweepDegree, false, mPaint);
                 }
             case ColumnHorizontal:
                 break;
@@ -215,24 +232,25 @@ public class PieView extends View {
         }
     }
 
-    private float endDegree = 0;
-    private boolean isFirst = true;
+    private float sweepDegree = 0;
 
-   public void start(){
-       BigDecimal b1 = new BigDecimal(360 * mListData.get(0).value);
-       BigDecimal b2 = new BigDecimal(mMaxValue);
-       BigDecimal divide = b1.divide(b2, 0, BigDecimal.ROUND_HALF_UP);
-       ValueAnimator valueAnimator = ValueAnimator.ofFloat(-90f, divide.floatValue());
-       valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-           @Override
-           public void onAnimationUpdate(ValueAnimator animation) {
-               endDegree = (float) animation.getAnimatedValue();
-               invalidate();
-           }
-       });
-       valueAnimator.setDuration(mAnimDuration);
-       valueAnimator.start();
-   }
+    public void show() {
+        if (mMode == ModeEnum.Pie && mListData.size() > 0) {
+            BigDecimal b1 = new BigDecimal(360 * mListData.get(0).value);
+            BigDecimal b2 = new BigDecimal(mMaxValue);
+            BigDecimal divide = b1.divide(b2, 0, BigDecimal.ROUND_HALF_UP);
+            ValueAnimator valueAnimator = ValueAnimator.ofFloat(0f, divide.floatValue());
+            valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public void onAnimationUpdate(ValueAnimator animation) {
+                    sweepDegree = (float) animation.getAnimatedValue();
+                    invalidate();
+                }
+            });
+            valueAnimator.setDuration(mAnimDuration);
+            valueAnimator.start();
+        }
+    }
 
     public void setBuilder(Builder builder) {
         mListData = builder.listData;
@@ -250,6 +268,11 @@ public class PieView extends View {
         mOuterGrayTextSize = builder.mOuterGrayTextSize;
         mOuterExtendWidth = builder.mOuterExtendWidth;
         mOuterExtendLineWidth = builder.mOuterExtendLineWidth;
+        mDx = builder.dx;
+        mCenterText1 = builder.centerText1;
+        mCenterText2 = builder.centerText2;
+        mCenterTextMargin = builder.centerTextMargin;
+        mTotalValue = builder.totalValue;
         invalidate();
     }
 
@@ -268,10 +291,34 @@ public class PieView extends View {
         private int mOuterGrayTextSize = 30;
         private int mOuterExtendWidth = 50;
         private int mOuterExtendLineWidth = 200;
+        private int dx = 3;
+        private TextInfo centerText1;
+        private TextInfo centerText2;
+        private int centerTextMargin;
 
         private ModeEnum mode = ModeEnum.Pie;
 
         public Builder() {
+        }
+
+        public Builder setCenterTextMargin(int centerTextMargin) {
+            this.centerTextMargin = centerTextMargin;
+            return this;
+        }
+
+        public Builder setDx(int dx) {
+            this.dx = dx;
+            return this;
+        }
+
+        public Builder setCenterText1(TextInfo centerText1) {
+            this.centerText1 = centerText1;
+            return this;
+        }
+
+        public Builder setCenterText2(TextInfo centerText2) {
+            this.centerText2 = centerText2;
+            return this;
         }
 
         public Builder setOuterExtendLineWidth(int mOuterExtendLineWidth) {
@@ -351,9 +398,15 @@ public class PieView extends View {
         }
 
         private void calculate() {
+            int tatalDx;
+            if (listData.size() > 1) {
+                tatalDx = listData.size() * dx;
+            } else {
+                tatalDx = 0;
+            }
             for (int i = 0; i < listData.size(); i++) {
                 PieInfo pieInfo = listData.get(i);
-                BigDecimal bigDecimal1 = new BigDecimal(360 * pieInfo.value);
+                BigDecimal bigDecimal1 = new BigDecimal((360 - tatalDx) * pieInfo.value);
                 BigDecimal bigDecimal2 = new BigDecimal(totalValue);
                 BigDecimal divide = bigDecimal1.divide(bigDecimal2, 0, BigDecimal.ROUND_HALF_UP);
                 pieInfo.degree = divide.intValue();

@@ -3,6 +3,7 @@ package com.lzy.testproject.ui.customview.chart;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.lzy.testproject.R;
 
@@ -17,6 +18,28 @@ public class ChatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat);
 
         PieView pieView = findViewById(R.id.pieView);
+        HistogramView histogramView = findViewById(R.id.histogramView);
+        PieInfo info = new PieInfo();
+        info.value = 60;
+        info.color = Color.RED;
+        info.title = "60";
+        PieInfo info2 = new PieInfo();
+        info2.value = 23;
+        info2.color = Color.BLUE;
+        PieInfo info3 = new PieInfo();
+        info3.value = 10;
+        info3.color = Color.CYAN;
+        List<PieInfo> list = new ArrayList<>();
+        list.add(info);
+        list.add(info2);
+        list.add(info3);
+        histogramView.setType(HistogramView.ModeEnum.HorizontalFull).setData(list, 80);
+        histogramView.setOnClickListener(new HistogramView.OnClickListener() {
+            @Override
+            public void onClick(PieInfo pieInfo) {
+                Toast.makeText(ChatActivity.this, "pieInfo.value:" + pieInfo.value, Toast.LENGTH_SHORT).show();
+            }
+        });
 
         PieInfo pieInfo1 = new PieInfo();
         pieInfo1.value = 20;
@@ -42,16 +65,19 @@ public class ChatActivity extends AppCompatActivity {
         pieInfo4.color = Color.YELLOW;
 
         PieView.Builder builder = new PieView.Builder()
-                .setWidth(250)
+                .setCenterText1(new TextInfo("案件数量总是", Color.GRAY, 30))
+                .setCenterText2(new TextInfo("1245", Color.BLACK, 30))
+                .setCenterTextMargin(2)
+                .setWidth(150)
                 .setCircleWidth(300)
                 .setMax(25)
                 .setAlpha(50)
-                .setMode(PieView.ModeEnum.Pie)
+                .setMode(PieView.ModeEnum.PieFull)
                 .addData(pieInfo1)
                 .addData(pieInfo2)
                 .addData(pieInfo3)
                 .addData(pieInfo4);
         pieView.setBuilder(builder);
-        pieView.start();
+        pieView.show();
     }
 }

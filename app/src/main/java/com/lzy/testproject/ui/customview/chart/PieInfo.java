@@ -1,5 +1,6 @@
 package com.lzy.testproject.ui.customview.chart;
 
+import android.graphics.RectF;
 import android.support.annotation.ColorInt;
 
 /**
@@ -12,6 +13,8 @@ public class PieInfo {
     public String describe="";
     public String describe2="";
     public String title;
+    //存储区域
+    public RectF rectF;
 
 
     public double value;

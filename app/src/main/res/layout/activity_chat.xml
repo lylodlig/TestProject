@@ -7,12 +7,19 @@
     android:orientation="vertical"
     tools:context=".ui.customview.chart.ChatActivity">
 
+    <com.lzy.testproject.ui.customview.chart.HistogramView
+        android:id="@+id/histogramView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/lzy_px_40"
+        android:layout_marginLeft="@dimen/lzy_px_10"
+        android:layout_marginRight="@dimen/lzy_px_10"
+        android:layout_marginTop="@dimen/lzy_px_10" />
+
     <com.lzy.testproject.ui.customview.chart.PieView
         android:id="@+id/pieView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center_horizontal"
         android:layout_margin="@dimen/lzy_px_10"
-        android:layout_marginTop="100dp"
-        android:background="@drawable/ic_launcher_background" />
+        android:layout_marginTop="100dp" />
 </LinearLayout>
