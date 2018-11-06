@@ -87,6 +87,7 @@ dependencies {
     implementation 'com.haibin:calendarview:3.4.4'
     implementation 'org.dom4j:dom4j:2.1.1'
     implementation 'com.wuyr:pathlayoutmanager:1.0.1'
+    implementation 'com.blankj:utilcode:1.16.3'
 
     //无需引入tinker的任何库,使用tinkerpatch sdk即可
     provided("com.tinkerpatch.tinker:tinker-android-anno:1.9.9")

@@ -13,7 +13,6 @@ import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
 import java.math.BigDecimal;
@@ -58,6 +57,7 @@ public class PieView extends View {
     private int mDx;//分割的白色间距
     private int mCenterTextMargin;
     private double mTotalValue;
+    private ValueAnimator valueAnimator;
 
     public enum ModeEnum {
         PieFull, Pie, ColumnHorizontal, ColumnHorizontalFull, ColumnVertical
@@ -118,11 +118,12 @@ public class PieView extends View {
         mPaint.setColor(mBackgroundColor);
         RectF rectF = new RectF(mWidth / 2 - mCircleWidth + mPieWidth / 2, mHeight / 2 - mCircleWidth + mPieWidth / 2, mWidth / 2 + mCircleWidth - mPieWidth / 2, mHeight / 2 + mCircleWidth - mPieWidth / 2);
         startDegree = -180;
+        Rect centerText1, centerText2;
         switch (mMode) {
             case PieFull:
                 //画中间文字
-                Rect centerText1 = new Rect();
-                Rect centerText2 = new Rect();
+                centerText1 = new Rect();
+                centerText2 = new Rect();
                 mTextPaint.setTextSize(mCenterText1.size);
                 mTextPaint.setColor(mCenterText1.color);
                 mTextPaint.getTextBounds(mCenterText1.text, 0, mCenterText1.text.length(), centerText1);
@@ -212,6 +213,20 @@ public class PieView extends View {
                 }
                 break;
             case Pie:
+                //画中间文字
+                centerText1 = new Rect();
+                centerText2 = new Rect();
+                mTextPaint.setTextSize(mCenterText1.size);
+                mTextPaint.setColor(mCenterText1.color);
+                mTextPaint.getTextBounds(mCenterText1.text, 0, mCenterText1.text.length(), centerText1);
+                canvas.drawText(mCenterText1.text, (mWidth - centerText1.width()) / 2, (mHeight / 2 - centerText1.height() - mCenterTextMargin / 2), mTextPaint);
+
+
+                mTextPaint.setTextSize(mCenterText2.size);
+                mTextPaint.setColor(mCenterText2.color);
+                mTextPaint.getTextBounds(mCenterText2.text, 0, mCenterText2.text.length(), centerText2);
+                canvas.drawText(mCenterText2.text, (mWidth - centerText2.width()) / 2, (mHeight / 2 + centerText2.height() + mCenterTextMargin / 2), mTextPaint);
+
                 mPaint.setStrokeWidth(mPieWidth);
                 mPaint.setStyle(Paint.Style.STROKE);
                 if (mListData.size() > 0) {
@@ -239,7 +254,20 @@ public class PieView extends View {
             BigDecimal b1 = new BigDecimal(360 * mListData.get(0).value);
             BigDecimal b2 = new BigDecimal(mMaxValue);
             BigDecimal divide = b1.divide(b2, 0, BigDecimal.ROUND_HALF_UP);
-            ValueAnimator valueAnimator = ValueAnimator.ofFloat(0f, divide.floatValue());
+            sweepDegree = divide.floatValue();
+            invalidate();
+        }
+    }
+
+    public void showWithAnim() {
+        if (mMode == ModeEnum.Pie && mListData.size() > 0) {
+            BigDecimal b1 = new BigDecimal(360 * mListData.get(0).value);
+            BigDecimal b2 = new BigDecimal(mMaxValue);
+            BigDecimal divide = b1.divide(b2, 0, BigDecimal.ROUND_HALF_UP);
+            if (valueAnimator != null && valueAnimator.isRunning()) {
+                valueAnimator.cancel();
+            }
+            valueAnimator = ValueAnimator.ofFloat(0f, divide.floatValue());
             valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public void onAnimationUpdate(ValueAnimator animation) {
@@ -249,6 +277,14 @@ public class PieView extends View {
             });
             valueAnimator.setDuration(mAnimDuration);
             valueAnimator.start();
+        }
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        if (valueAnimator != null && valueAnimator.isRunning()) {
+            valueAnimator.cancel();
         }
     }
 
@@ -283,7 +319,7 @@ public class PieView extends View {
         @ColorInt
         private int backColor;
         private int max;
-        private int alpha;
+        private int alpha = 50;
         private int circleWidth;
         private int startDegree;
         private int mInnerTextSize = 40;

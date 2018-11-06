@@ -20,4 +20,12 @@ public class PieInfo {
     public double value;
 
     public int degree;
+
+    public PieInfo() {
+    }
+
+    public PieInfo(int color, double value) {
+        this.color = color;
+        this.value = value;
+    }
 }

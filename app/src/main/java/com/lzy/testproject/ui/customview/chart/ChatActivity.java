@@ -72,7 +72,7 @@ public class ChatActivity extends AppCompatActivity {
                 .setCircleWidth(300)
                 .setMax(25)
                 .setAlpha(50)
-                .setMode(PieView.ModeEnum.PieFull)
+                .setMode(PieView.ModeEnum.Pie)
                 .addData(pieInfo1)
                 .addData(pieInfo2)
                 .addData(pieInfo3)

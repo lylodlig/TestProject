@@ -14,6 +14,9 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
+
+import com.blankj.utilcode.util.ConvertUtils;
+
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -98,14 +101,14 @@ public class HistogramView extends View {
         RectF rectF;
         switch (mType) {
             case Vertical:
-                int textHeight = 50;
-                rectF = new RectF(0, textHeight, mWidth, mHeight - textHeight);
+                int textHeight = ConvertUtils.dp2px(20);
+                rectF = new RectF(0, textHeight, mWidth, mHeight);
                 mPaint.setColor(mBackColor);
                 canvas.drawRoundRect(rectF, 3, 3, mPaint);
                 if (!isStartAnim) {
                     PieInfo pieInfo = mData.get(0);
                     mPaint.setColor(pieInfo.color);
-                    float height = (float) (mHeight * pieInfo.value / mTotalValue);
+                    float height = (float) ((mHeight - textHeight) * pieInfo.value / mTotalValue);
                     canvas.drawRoundRect(0, mHeight - height, mWidth, mHeight, mCorner, mCorner, mPaint);
 
 
@@ -113,7 +116,7 @@ public class HistogramView extends View {
                     mPaint.setColor(pieInfo.color);
                     mPaint.setTextSize(mTextSize);
                     Rect textRect = new Rect();
-                    BigDecimal b1 = new BigDecimal(pieInfo.value);
+                    BigDecimal b1 = new BigDecimal(100 * pieInfo.value);
                     BigDecimal b2 = new BigDecimal(mTotalValue);
                     String title = b1.divide(b2, 0, BigDecimal.ROUND_HALF_UP).intValue() + "%";
                     mPaint.getTextBounds(title, 0, title.length(), textRect);
@@ -187,7 +190,7 @@ public class HistogramView extends View {
 
     public void setData(List<PieInfo> list, int totalValue) {
         this.mData = list;
-        if (mType == ModeEnum.Horizontal) {
+        if (mType == ModeEnum.Horizontal || mType == ModeEnum.Vertical) {
             mTotalValue = totalValue;
         } else {
             for (int i = 0; i < list.size(); i++) {
