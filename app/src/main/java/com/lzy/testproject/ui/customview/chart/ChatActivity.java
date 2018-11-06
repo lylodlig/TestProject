@@ -33,7 +33,7 @@ public class ChatActivity extends AppCompatActivity {
         list.add(info);
         list.add(info2);
         list.add(info3);
-        histogramView.setType(HistogramView.ModeEnum.HorizontalFull).setData(list, 80);
+        histogramView.setType(HistogramView.ModeEnum.Vertical).setData(list, 80);
         histogramView.setOnClickListener(new HistogramView.OnClickListener() {
             @Override
             public void onClick(PieInfo pieInfo) {

@@ -31,6 +31,7 @@ public class HistogramView extends View {
     private long mAnimDuration = 2000;
     private int mTextSize = 30;
     private int mCorner = 10;
+    private int mBackColor;
     private OnClickListener onClickListener;
 
 
@@ -58,7 +59,7 @@ public class HistogramView extends View {
     }
 
     private void init() {
-
+        mBackColor = Color.parseColor("#F5F5F5");
     }
 
     public HistogramView setType(ModeEnum mType) {
@@ -97,10 +98,31 @@ public class HistogramView extends View {
         RectF rectF;
         switch (mType) {
             case Vertical:
+                int textHeight = 50;
+                rectF = new RectF(0, textHeight, mWidth, mHeight - textHeight);
+                mPaint.setColor(mBackColor);
+                canvas.drawRoundRect(rectF, 3, 3, mPaint);
+                if (!isStartAnim) {
+                    PieInfo pieInfo = mData.get(0);
+                    mPaint.setColor(pieInfo.color);
+                    float height = (float) (mHeight * pieInfo.value / mTotalValue);
+                    canvas.drawRoundRect(0, mHeight - height, mWidth, mHeight, mCorner, mCorner, mPaint);
+
+
+                    mPaint.setTextSize(mTextSize);
+                    mPaint.setColor(pieInfo.color);
+                    mPaint.setTextSize(mTextSize);
+                    Rect textRect = new Rect();
+                    BigDecimal b1 = new BigDecimal(pieInfo.value);
+                    BigDecimal b2 = new BigDecimal(mTotalValue);
+                    String title = b1.divide(b2, 0, BigDecimal.ROUND_HALF_UP).intValue() + "%";
+                    mPaint.getTextBounds(title, 0, title.length(), textRect);
+                    canvas.drawText(title, (mWidth - textRect.width()) / 2, mHeight - height - textRect.height(), mPaint);
+                }
                 break;
             case Horizontal:
                 rectF = new RectF(0, 0, mWidth, mHeight);
-                mPaint.setColor(Color.LTGRAY);
+                mPaint.setColor(mBackColor);
                 canvas.drawRoundRect(rectF, 3, 3, mPaint);
                 if (!isStartAnim) {
                     PieInfo pieInfo = mData.get(0);
@@ -116,7 +138,7 @@ public class HistogramView extends View {
                 break;
             case HorizontalFull:
                 rectF = new RectF(0, 0, mWidth, mHeight);
-                mPaint.setColor(Color.LTGRAY);
+                mPaint.setColor(mBackColor);
                 canvas.drawRect(rectF, mPaint);
                 float start = 0;
                 for (int i = 0; i < mData.size(); i++) {
