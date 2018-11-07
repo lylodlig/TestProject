@@ -189,6 +189,7 @@ public class HistogramView extends View {
             case MotionEvent.ACTION_UP:
                 for (int i = 0; i < mData.size(); i++) {
                     PieInfo pieInfo = mData.get(i);
+                    Log.i("lzy", "onTouchEvent: "+event.getRawX());
                     if (onClickListener != null && pieInfo.rectF != null && pieInfo.rectF.contains(startX, startY) && pieInfo.rectF.contains(event.getX(), event.getY())) {
                         onClickListener.onClick(pieInfo);
                     }

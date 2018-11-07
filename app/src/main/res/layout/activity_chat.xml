@@ -11,7 +11,7 @@
         android:id="@+id/histogramView"
         android:layout_width="@dimen/lzy_px_40"
         android:layout_height="@dimen/lzy_px_200"
-        android:layout_marginLeft="@dimen/lzy_px_10"
+        android:layout_marginLeft="@dimen/lzy_px_100"
         android:layout_marginRight="@dimen/lzy_px_10"
         android:layout_marginTop="@dimen/lzy_px_10" />
 
