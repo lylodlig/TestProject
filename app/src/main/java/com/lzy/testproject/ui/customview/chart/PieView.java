@@ -15,6 +15,8 @@ import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.blankj.utilcode.util.ConvertUtils;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,10 +44,10 @@ public class PieView extends View {
     private int mMaxValue;
     private int mAlpha;
     private int startDegree = 180;
-    private int mCircleWidth = 200;
-    private int mInnerTextSize = 40;
-    private int mOuterTextSize = 40;
-    private int mOuterGrayTextSize = 30;
+    private int mCircleRadius = 200;
+    private int mInnerTextSize = 16;
+    private int mOuterTextSize = 16;
+    private int mOuterGrayTextSize = 16;
     private TextInfo mCenterText1;
     private TextInfo mCenterText2;
 
@@ -58,6 +60,7 @@ public class PieView extends View {
     private int mCenterTextMargin;
     private double mTotalValue;
     private ValueAnimator valueAnimator;
+    private boolean isShowPercent;
 
     public enum ModeEnum {
         PieFull, Pie, ColumnHorizontal, ColumnHorizontalFull, ColumnVertical
@@ -82,22 +85,21 @@ public class PieView extends View {
         mPaint.setAntiAlias(true);
         mInnerTextPaint.setAntiAlias(true);
         mInnerTextPaint.setColor(Color.WHITE);
-        mInnerTextPaint.setTextSize(mInnerTextSize);
 
         mTextPaint.setAntiAlias(true);
 
         if (isShowOuterText) {
             mOuterTextPaint.setAntiAlias(true);
             mOuterTextPaint.setColor(mOuterTextColor);
-            mOuterTextPaint.setTextSize(mOuterTextSize);
+            mOuterTextPaint.setTextSize(ConvertUtils.sp2px(mOuterTextSize));
 
             mOuterTextPaintGray.setAntiAlias(true);
             mOuterTextPaintGray.setColor(mOuterTextColorGray);
-            mOuterTextPaintGray.setTextSize(mOuterGrayTextSize);
+            mOuterTextPaintGray.setTextSize(ConvertUtils.sp2px(mOuterGrayTextSize));
 
             mOuterTextPaintGray2.setAntiAlias(true);
             mOuterTextPaintGray2.setColor(mOuterTextColorGray);
-            mOuterTextPaintGray2.setTextSize(mOuterGrayTextSize);
+            mOuterTextPaintGray2.setTextSize(ConvertUtils.sp2px(mOuterGrayTextSize));
         }
 
 
@@ -108,15 +110,17 @@ public class PieView extends View {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         mWidth = getMeasuredWidth();
         mHeight = getMeasuredHeight();
-//        mCircleWidth = Math.min(mWidth, mHeight);
+//        mCircleRadius = Math.min(mWidth, mHeight);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        if (mMode == null)
+            return;
         mPaint.setColor(mBackgroundColor);
-        RectF rectF = new RectF(mWidth / 2 - mCircleWidth + mPieWidth / 2, mHeight / 2 - mCircleWidth + mPieWidth / 2, mWidth / 2 + mCircleWidth - mPieWidth / 2, mHeight / 2 + mCircleWidth - mPieWidth / 2);
+        RectF rectF = new RectF(mWidth / 2 - mCircleRadius + mPieWidth / 2, mHeight / 2 - mCircleRadius + mPieWidth / 2, mWidth / 2 + mCircleRadius - mPieWidth / 2, mHeight / 2 + mCircleRadius - mPieWidth / 2);
         startDegree = -180;
         Rect centerText1, centerText2;
         switch (mMode) {
@@ -124,16 +128,19 @@ public class PieView extends View {
                 //画中间文字
                 centerText1 = new Rect();
                 centerText2 = new Rect();
-                mTextPaint.setTextSize(mCenterText1.size);
-                mTextPaint.setColor(mCenterText1.color);
-                mTextPaint.getTextBounds(mCenterText1.text, 0, mCenterText1.text.length(), centerText1);
-                canvas.drawText(mCenterText1.text, (mWidth - centerText1.width()) / 2, (mHeight / 2 - centerText1.height() - mCenterTextMargin / 2), mTextPaint);
+                if (mCenterText1 != null) {
+                    mTextPaint.setTextSize(ConvertUtils.sp2px(mCenterText1.size));
+                    mTextPaint.setColor(mCenterText1.color);
+                    mTextPaint.getTextBounds(mCenterText1.text, 0, mCenterText1.text.length(), centerText1);
+                    canvas.drawText(mCenterText1.text, (mWidth - centerText1.width()) / 2, (mHeight / 2 - centerText1.height() - mCenterTextMargin / 2), mTextPaint);
+                }
+                if (mCenterText2 != null) {
+                    mTextPaint.setTextSize(ConvertUtils.sp2px(mCenterText2.size));
+                    mTextPaint.setColor(mCenterText2.color);
+                    mTextPaint.getTextBounds(mCenterText2.text, 0, mCenterText2.text.length(), centerText2);
+                    canvas.drawText(mCenterText2.text, (mWidth - centerText2.width()) / 2, (mHeight / 2 + centerText2.height() + mCenterTextMargin / 2), mTextPaint);
+                }
 
-
-                mTextPaint.setTextSize(mCenterText2.size);
-                mTextPaint.setColor(mCenterText2.color);
-                mTextPaint.getTextBounds(mCenterText2.text, 0, mCenterText2.text.length(), centerText2);
-                canvas.drawText(mCenterText2.text, (mWidth - centerText2.width()) / 2, (mHeight / 2 + centerText2.height() + mCenterTextMargin / 2), mTextPaint);
                 for (int i = 0; i < mListData.size(); i++) {
                     mPaint.setStrokeWidth(mPieWidth);
                     mPaint.setStyle(Paint.Style.STROKE);
@@ -143,28 +150,27 @@ public class PieView extends View {
                     mPaint.setColor(Color.WHITE);
                     canvas.drawArc(rectF, startDegree + pieInfo.degree, mDx, false, mPaint);
 
-
-                    //画文字
                     int centerDegree = startDegree + pieInfo.degree / 2;
-                    BigDecimal bigDecimal1 = new BigDecimal(100 * pieInfo.value);
-                    BigDecimal bigDecimal2 = new BigDecimal(mTotalValue);
-//                    bigDecimal1.setScale(1, BigDecimal.ROUND_HALF_UP);
-                    BigDecimal divide = bigDecimal1.divide(bigDecimal2, 0, BigDecimal.ROUND_HALF_UP);
-                    int raduis = mCircleWidth - mPieWidth / 2;
-                    int innerTextX = (int) (Math.cos(2 * Math.PI / 360 * centerDegree) * raduis) + mWidth / 2;
-                    int innerTextY = (int) (Math.sin(2 * Math.PI / 360 * centerDegree) * raduis) + mHeight / 2;
-                    Rect rectInnerText = new Rect();
-                    mInnerTextPaint.getTextBounds(divide.intValue() + "%", 0, (divide.intValue() + "%").length(), rectInnerText);
-
-                    canvas.drawText(divide.intValue() + "%", innerTextX - rectInnerText.width() / 2, innerTextY, mInnerTextPaint);
+                    if (isShowPercent) {
+                        //画文字
+                        BigDecimal bigDecimal1 = new BigDecimal(100 * pieInfo.value);
+                        BigDecimal bigDecimal2 = new BigDecimal(mTotalValue);
+                        BigDecimal divide = bigDecimal1.divide(bigDecimal2, 0, BigDecimal.ROUND_HALF_UP);
+                        int raduis = mCircleRadius - mPieWidth / 2;
+                        int innerTextX = (int) (Math.cos(2 * Math.PI / 360 * centerDegree) * raduis) + mWidth / 2;
+                        int innerTextY = (int) (Math.sin(2 * Math.PI / 360 * centerDegree) * raduis) + mHeight / 2;
+                        Rect rectInnerText = new Rect();
+                        mInnerTextPaint.getTextBounds(divide.intValue() + "%", 0, (divide.intValue() + "%").length(), rectInnerText);
+                        canvas.drawText(divide.intValue() + "%", innerTextX - rectInnerText.width() / 2, innerTextY, mInnerTextPaint);
+                    }
 
 
                     if (isShowOuterText) {
                         //画外面文字的线条
                         mPaint.setStrokeWidth(4);
                         mPaint.setStyle(Paint.Style.FILL);
-                        int outterTextX = (int) (Math.cos(2 * Math.PI / 360 * centerDegree) * (mCircleWidth + 20)) + mWidth / 2;
-                        int outterTextY = (int) (Math.sin(2 * Math.PI / 360 * centerDegree) * (mCircleWidth + 20)) + mHeight / 2;
+                        int outterTextX = (int) (Math.cos(2 * Math.PI / 360 * centerDegree) * (mCircleRadius + 20)) + mWidth / 2;
+                        int outterTextY = (int) (Math.sin(2 * Math.PI / 360 * centerDegree) * (mCircleRadius + 20)) + mHeight / 2;
                         canvas.drawCircle(outterTextX, outterTextY, 10, mPaint);
                         mPaint.setStyle(Paint.Style.STROKE);
                         Path path = new Path();
@@ -216,13 +222,13 @@ public class PieView extends View {
                 //画中间文字
                 centerText1 = new Rect();
                 centerText2 = new Rect();
-                mTextPaint.setTextSize(mCenterText1.size);
+                mTextPaint.setTextSize(ConvertUtils.sp2px(mCenterText1.size));
                 mTextPaint.setColor(mCenterText1.color);
                 mTextPaint.getTextBounds(mCenterText1.text, 0, mCenterText1.text.length(), centerText1);
                 canvas.drawText(mCenterText1.text, (mWidth - centerText1.width()) / 2, (mHeight / 2 - centerText1.height() - mCenterTextMargin / 2), mTextPaint);
 
 
-                mTextPaint.setTextSize(mCenterText2.size);
+                mTextPaint.setTextSize(ConvertUtils.sp2px(mCenterText2.size));
                 mTextPaint.setColor(mCenterText2.color);
                 mTextPaint.getTextBounds(mCenterText2.text, 0, mCenterText2.text.length(), centerText2);
                 canvas.drawText(mCenterText2.text, (mWidth - centerText2.width()) / 2, (mHeight / 2 + centerText2.height() + mCenterTextMargin / 2), mTextPaint);
@@ -297,7 +303,7 @@ public class PieView extends View {
         mAlpha = builder.alpha;
         mPaint.setStrokeWidth(mPieWidth);
         mRadius = (mWidth - mPieWidth) / 2;
-        mCircleWidth = builder.circleWidth;
+        mCircleRadius = builder.circleRadius;
         startDegree = builder.startDegree;
         mInnerTextSize = builder.mInnerTextSize;
         mOuterTextSize = builder.mOuterTextSize;
@@ -308,7 +314,9 @@ public class PieView extends View {
         mCenterText1 = builder.centerText1;
         mCenterText2 = builder.centerText2;
         mCenterTextMargin = builder.centerTextMargin;
+        isShowPercent = builder.isShowPercent;
         mTotalValue = builder.totalValue;
+        mInnerTextPaint.setTextSize(ConvertUtils.sp2px(mInnerTextSize));
         invalidate();
     }
 
@@ -320,21 +328,27 @@ public class PieView extends View {
         private int backColor;
         private int max;
         private int alpha = 50;
-        private int circleWidth;
+        private int circleRadius;
         private int startDegree;
-        private int mInnerTextSize = 40;
-        private int mOuterTextSize = 40;
-        private int mOuterGrayTextSize = 30;
+        private int mInnerTextSize = 14;
+        private int mOuterTextSize = 14;
+        private int mOuterGrayTextSize = 14;
         private int mOuterExtendWidth = 50;
         private int mOuterExtendLineWidth = 200;
         private int dx = 3;
         private TextInfo centerText1;
         private TextInfo centerText2;
         private int centerTextMargin;
+        private boolean isShowPercent = false;
 
         private ModeEnum mode = ModeEnum.Pie;
 
         public Builder() {
+        }
+
+        public Builder setShowPercent(boolean showPercent) {
+            isShowPercent = showPercent;
+            return this;
         }
 
         public Builder setCenterTextMargin(int centerTextMargin) {
@@ -392,8 +406,8 @@ public class PieView extends View {
             return this;
         }
 
-        public Builder setCircleWidth(int width) {
-            this.circleWidth = width;
+        public Builder setCircleRadius(int width) {
+            this.circleRadius = width;
             return this;
         }
 
@@ -428,7 +442,7 @@ public class PieView extends View {
             return this;
         }
 
-        public Builder setWidth(int width) {
+        public Builder setPieWidth(int width) {
             pieWidth = width;
             return this;
         }

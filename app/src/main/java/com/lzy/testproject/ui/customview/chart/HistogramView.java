@@ -11,9 +11,9 @@ import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-
 
 import com.blankj.utilcode.util.ConvertUtils;
 
@@ -36,6 +36,7 @@ public class HistogramView extends View {
     private int mCorner = 10;
     private int mBackColor;
     private OnClickListener onClickListener;
+    private ValueAnimator valueAnimator;
 
 
     public enum ModeEnum {
@@ -99,6 +100,8 @@ public class HistogramView extends View {
         if (mData == null || mData.size() == 0)
             return;
         RectF rectF;
+        PieInfo pieInfo;
+        float right;
         switch (mType) {
             case Vertical:
                 int textHeight = ConvertUtils.dp2px(20);
@@ -106,7 +109,7 @@ public class HistogramView extends View {
                 mPaint.setColor(mBackColor);
                 canvas.drawRoundRect(rectF, 3, 3, mPaint);
                 if (!isStartAnim) {
-                    PieInfo pieInfo = mData.get(0);
+                    pieInfo = mData.get(0);
                     mPaint.setColor(pieInfo.color);
                     float height = (float) ((mHeight - textHeight) * pieInfo.value / mTotalValue);
                     canvas.drawRoundRect(0, mHeight - height, mWidth, mHeight, mCorner, mCorner, mPaint);
@@ -127,17 +130,21 @@ public class HistogramView extends View {
                 rectF = new RectF(0, 0, mWidth, mHeight);
                 mPaint.setColor(mBackColor);
                 canvas.drawRoundRect(rectF, 3, 3, mPaint);
-                if (!isStartAnim) {
-                    PieInfo pieInfo = mData.get(0);
-                    mPaint.setColor(pieInfo.color);
-                    float right = (float) (mWidth * pieInfo.value / mTotalValue);
-                    canvas.drawRoundRect(0, 0, right, mHeight, mCorner, mCorner, mPaint);
+
+                pieInfo = mData.get(0);
+                mPaint.setColor(pieInfo.color);
+                right = (float) (mWidth * pieInfo.value / mTotalValue);
+                canvas.drawRoundRect(0, 0, currentAnimValue, mHeight, mCorner, mCorner, mPaint);
+                Log.i("lzy", "onDraw: " + currentAnimValue + "  " + right);
+                if ((right - currentAnimValue) < 1) {
                     mPaint.setTextSize(mTextSize);
                     mPaint.setColor(Color.WHITE);
                     Rect textRect = new Rect();
+                    pieInfo.title = String.valueOf((int) pieInfo.value);
                     mPaint.getTextBounds(pieInfo.title, 0, pieInfo.title.length(), textRect);
-                    canvas.drawText(pieInfo.title, (right - textRect.width()) / 2, mHeight / 2, mPaint);
+                    canvas.drawText(pieInfo.title, (right - textRect.width()) / 2, mHeight / 2 + textRect.height() / 2, mPaint);
                 }
+
                 break;
             case HorizontalFull:
                 rectF = new RectF(0, 0, mWidth, mHeight);
@@ -145,9 +152,12 @@ public class HistogramView extends View {
                 canvas.drawRect(rectF, mPaint);
                 float start = 0;
                 for (int i = 0; i < mData.size(); i++) {
-                    PieInfo pieInfo = mData.get(i);
+                    pieInfo = mData.get(i);
+                    if (pieInfo.value == 0) {
+                        continue;
+                    }
                     mPaint.setColor(pieInfo.color);
-                    float right = (float) (mWidth * pieInfo.value / mTotalValue) + start;
+                    right = (float) (mWidth * pieInfo.value / mTotalValue) + start;
                     RectF rectf = new RectF(start, 0, right, mHeight);
                     canvas.drawRect(rectf, mPaint);
                     pieInfo.rectF = rectf;
@@ -189,6 +199,7 @@ public class HistogramView extends View {
     }
 
     public void setData(List<PieInfo> list, int totalValue) {
+        mTotalValue = 0;
         this.mData = list;
         if (mType == ModeEnum.Horizontal || mType == ModeEnum.Vertical) {
             mTotalValue = totalValue;
@@ -197,12 +208,21 @@ public class HistogramView extends View {
                 mTotalValue = (mTotalValue + list.get(i).value);
             }
         }
+        post(new Runnable() {
+            @Override
+            public void run() {
+                if (!isStartAnim) {
+                    BigDecimal b1 = new BigDecimal(mWidth * mData.get(0).value);
+                    BigDecimal b2 = new BigDecimal(mTotalValue);
+                    BigDecimal divide = b1.divide(b2, 0, BigDecimal.ROUND_HALF_UP);
+                    currentAnimValue = divide.floatValue();
+                    invalidate();
+                } else {
+                    show();
+                }
+            }
+        });
 
-        if (!isStartAnim) {
-            invalidate();
-        } else {
-            show();
-        }
 
     }
 
@@ -210,10 +230,13 @@ public class HistogramView extends View {
 
     private void show() {
         if (mType == ModeEnum.Horizontal && mData.size() > 0) {
-            BigDecimal b1 = new BigDecimal(mData.get(0).value);
+            BigDecimal b1 = new BigDecimal(mWidth * mData.get(0).value);
             BigDecimal b2 = new BigDecimal(mTotalValue);
             BigDecimal divide = b1.divide(b2, 0, BigDecimal.ROUND_HALF_UP);
-            ValueAnimator valueAnimator = ValueAnimator.ofFloat(0f, divide.floatValue());
+            if (valueAnimator != null && valueAnimator.isRunning()) {
+                valueAnimator.cancel();
+            }
+            valueAnimator = ValueAnimator.ofFloat(0f, divide.floatValue());
             valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public void onAnimationUpdate(ValueAnimator animation) {
@@ -223,6 +246,14 @@ public class HistogramView extends View {
             });
             valueAnimator.setDuration(mAnimDuration);
             valueAnimator.start();
+        }
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        if (valueAnimator != null && valueAnimator.isRunning()) {
+            valueAnimator.cancel();
         }
     }
 
