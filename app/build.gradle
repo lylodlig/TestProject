@@ -73,6 +73,7 @@ dependencies {
     implementation rootProject.ext.dependencies["rxjava"]
     implementation rootProject.ext.dependencies["rxandroid"]
     implementation rootProject.ext.dependencies["room"]
+    implementation rootProject.ext.dependencies["lifecycle"]
     implementation rootProject.ext.dependencies["design"]
     implementation rootProject.ext.dependencies["retrofit"]
     implementation rootProject.ext.dependencies["converter-gson"]

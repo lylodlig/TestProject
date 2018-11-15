@@ -46,10 +46,12 @@
         <activity android:name=".ui.animation.value.ValueActivity" />
         <activity android:name=".ui.animation.layout.LayoutActivity" />
         <activity android:name=".other.disklrucache.CacheActivity" />
-        <activity android:name=".ui.customview.pathmeasure.PathMeasureActivity"></activity>
-        <activity android:name=".framework.tinker.TinkerTestActivity">
+        <activity android:name=".ui.customview.pathmeasure.PathMeasureActivity" />
+        <activity android:name=".framework.tinker.TinkerTestActivity" />
+        <activity android:name=".ui.customview.chart.ChatActivity" />
+        <activity android:name=".framework.jetpack.lifecycle.LifeCycleActivity">
         </activity>
-        <activity android:name=".ui.customview.chart.ChatActivity">
+        <activity android:name=".framework.jetpack.lifecycle.LifeCycle2Activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
