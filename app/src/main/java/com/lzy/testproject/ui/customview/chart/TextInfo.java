@@ -11,12 +11,15 @@ public class TextInfo {
     public int color;
     public int size;
 
+    public boolean isBold;
+
     public TextInfo() {
     }
 
-    public TextInfo(String text, int color, int size) {
+    public TextInfo(String text, int color, int size, boolean isBold) {
         this.text = text;
         this.color = color;
         this.size = size;
+        this.isBold = isBold;
     }
 }

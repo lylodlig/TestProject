@@ -11,7 +11,6 @@ import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -37,6 +36,7 @@ public class HistogramView extends View {
     private int mBackColor;
     private OnClickListener onClickListener;
     private ValueAnimator valueAnimator;
+    private boolean drawAsPercent;//是否按照百分比来画，不需要计算百分不
 
 
     public enum ModeEnum {
@@ -101,7 +101,7 @@ public class HistogramView extends View {
             return;
         RectF rectF;
         PieInfo pieInfo;
-        float right;
+        float right = 0;
         switch (mType) {
             case Vertical:
                 int textHeight = ConvertUtils.dp2px(20);
@@ -111,32 +111,45 @@ public class HistogramView extends View {
                 if (!isStartAnim) {
                     pieInfo = mData.get(0);
                     mPaint.setColor(pieInfo.color);
-                    float height = (float) ((mHeight - textHeight) * pieInfo.value / mTotalValue);
-                    canvas.drawRoundRect(0, mHeight - height, mWidth, mHeight, mCorner, mCorner, mPaint);
-
-
-                    mPaint.setTextSize(mTextSize);
+                    float height;
+                    String titleText;
+                    if (drawAsPercent) {
+                        height = (float) ((mHeight - textHeight) * pieInfo.percent / 100);
+                        titleText = pieInfo.percent + "%";
+                    } else {
+                        height = (float) ((mHeight - textHeight) * pieInfo.value / mTotalValue);
+                        BigDecimal b1 = new BigDecimal(100 * pieInfo.value);
+                        BigDecimal b2 = new BigDecimal(mTotalValue);
+                        titleText = b1.divide(b2, 0, BigDecimal.ROUND_HALF_UP).intValue() + "%";
+                    }
+                    RectF rectf = new RectF(0, mHeight - height, mWidth, mHeight);
+                    canvas.drawRoundRect(rectf, mCorner, mCorner, mPaint);
+                    pieInfo.rectF = rectf;
                     mPaint.setColor(pieInfo.color);
                     mPaint.setTextSize(mTextSize);
                     Rect textRect = new Rect();
-                    BigDecimal b1 = new BigDecimal(100 * pieInfo.value);
-                    BigDecimal b2 = new BigDecimal(mTotalValue);
-                    String title = b1.divide(b2, 0, BigDecimal.ROUND_HALF_UP).intValue() + "%";
-                    mPaint.getTextBounds(title, 0, title.length(), textRect);
-                    canvas.drawText(title, (mWidth - textRect.width()) / 2, mHeight - height - textRect.height(), mPaint);
+                    mPaint.getTextBounds(titleText, 0, titleText.length(), textRect);
+                    canvas.drawText(titleText, (mWidth - textRect.width()) / 2, mHeight - height - textRect.height(), mPaint);
                 }
                 break;
             case Horizontal:
                 rectF = new RectF(0, 0, mWidth, mHeight);
                 mPaint.setColor(mBackColor);
                 canvas.drawRoundRect(rectF, 3, 3, mPaint);
-
+                if (mData.size() == 0) {
+                    return;
+                }
                 pieInfo = mData.get(0);
                 mPaint.setColor(pieInfo.color);
-                right = (float) (mWidth * pieInfo.value / mTotalValue);
+                if (drawAsPercent) {
+                    right = (float) (mWidth * pieInfo.percent / 100);
+                } else {
+                    if (mTotalValue > 0)
+                        right = (float) (mWidth * pieInfo.value / mTotalValue);
+                }
                 canvas.drawRoundRect(0, 0, currentAnimValue, mHeight, mCorner, mCorner, mPaint);
-                Log.i("lzy", "onDraw: " + currentAnimValue + "  " + right);
-                if ((right - currentAnimValue) < 1) {
+
+                if (right > 0 && (right - currentAnimValue) < 1) {
                     mPaint.setTextSize(mTextSize);
                     mPaint.setColor(Color.WHITE);
                     Rect textRect = new Rect();
@@ -157,21 +170,45 @@ public class HistogramView extends View {
                         continue;
                     }
                     mPaint.setColor(pieInfo.color);
-                    right = (float) (mWidth * pieInfo.value / mTotalValue) + start;
+                    if (drawAsPercent) {
+                        right = (float) (mWidth * pieInfo.percent / 100) + start;
+                    } else {
+                        right = (float) (mWidth * pieInfo.value / mTotalValue) + start;
+                    }
+
                     RectF rectf = new RectF(start, 0, right, mHeight);
                     canvas.drawRect(rectf, mPaint);
                     pieInfo.rectF = rectf;
+                    start = pieInfo.rectF.right;
 
-
+                }
+                start = 0;
+                for (int i = 0; i < mData.size(); i++) {
+                    pieInfo = mData.get(i);
+                    if (pieInfo.value == 0) {
+                        continue;
+                    }
                     mPaint.setTextSize(mTextSize);
                     mPaint.setColor(Color.WHITE);
                     Rect textRect = new Rect();
-                    BigDecimal b1 = new BigDecimal(100 * pieInfo.value);
-                    BigDecimal b2 = new BigDecimal(mTotalValue);
-                    String title = b1.divide(b2, 0, BigDecimal.ROUND_HALF_UP).intValue() + "%";
+                    String title;
+                    if (drawAsPercent) {
+                        title = pieInfo.percent + "%";
+                    } else {
+                        BigDecimal b1 = new BigDecimal(100 * pieInfo.value);
+                        BigDecimal b2 = new BigDecimal(mTotalValue);
+                        title = b1.divide(b2, 0, BigDecimal.ROUND_HALF_UP).intValue() + "%";
+                    }
                     mPaint.getTextBounds(title, 0, title.length(), textRect);
-                    canvas.drawText(title, (right - start - textRect.width()) / 2 + start, (mHeight + textRect.height()) / 2, mPaint);
-                    start = right;
+                    String[] split = title.split("%");
+                    if (Double.valueOf(split[0]) < 10) {
+                        canvas.drawText(title, start, (mHeight + textRect.height()) / 2, mPaint);
+                    } else {
+                        canvas.drawText(title, (pieInfo.rectF.right - start - textRect.width()) / 2 + start, (mHeight + textRect.height()) / 2, mPaint);
+                    }
+
+
+                    start = pieInfo.rectF.right;
                 }
                 break;
         }
@@ -189,9 +226,9 @@ public class HistogramView extends View {
             case MotionEvent.ACTION_UP:
                 for (int i = 0; i < mData.size(); i++) {
                     PieInfo pieInfo = mData.get(i);
-                    Log.i("lzy", "onTouchEvent: "+event.getRawX());
                     if (onClickListener != null && pieInfo.rectF != null && pieInfo.rectF.contains(startX, startY) && pieInfo.rectF.contains(event.getX(), event.getY())) {
-                        onClickListener.onClick(pieInfo);
+                        onClickListener.onClick(pieInfo, event.getRawX(), event.getRawY());
+//                        show(getContext(), pieInfo.value + "", event.getRawX(), event.getRawY());
                     }
                 }
                 break;
@@ -201,6 +238,7 @@ public class HistogramView extends View {
 
     public void setData(List<PieInfo> list, int totalValue) {
         mTotalValue = 0;
+        currentAnimValue = 0;
         this.mData = list;
         if (mType == ModeEnum.Horizontal || mType == ModeEnum.Vertical) {
             mTotalValue = totalValue;
@@ -212,32 +250,53 @@ public class HistogramView extends View {
         post(new Runnable() {
             @Override
             public void run() {
-                if (!isStartAnim) {
-                    BigDecimal b1 = new BigDecimal(mWidth * mData.get(0).value);
-                    BigDecimal b2 = new BigDecimal(mTotalValue);
-                    BigDecimal divide = b1.divide(b2, 0, BigDecimal.ROUND_HALF_UP);
-                    currentAnimValue = divide.floatValue();
-                    invalidate();
-                } else {
+                if (isStartAnim && mType == ModeEnum.Horizontal) {//已动画方式展示
                     show();
+                } else {
+                    if (mData.size() > 0) {
+                        if (drawAsPercent) {
+                            currentAnimValue = (float) (mData.get(0).percent * mWidth / 100);
+                        } else {
+                            if (mTotalValue == 0) {
+                                currentAnimValue = 0;
+                            } else {
+                                BigDecimal b1 = new BigDecimal(mWidth * mData.get(0).value);
+                                BigDecimal b2 = new BigDecimal(mTotalValue);
+                                BigDecimal divide = b1.divide(b2, 0, BigDecimal.ROUND_HALF_UP);
+                                currentAnimValue = divide.floatValue();
+                            }
+                        }
+                    }
+                    invalidate();
                 }
             }
         });
+    }
 
-
+    //已经计算了百分比
+    public void setData(List<PieInfo> list) {
+        drawAsPercent = true;
+        setData(list, 0);
     }
 
     private float currentAnimValue;
 
     private void show() {
         if (mType == ModeEnum.Horizontal && mData.size() > 0) {
-            BigDecimal b1 = new BigDecimal(mWidth * mData.get(0).value);
-            BigDecimal b2 = new BigDecimal(mTotalValue);
-            BigDecimal divide = b1.divide(b2, 0, BigDecimal.ROUND_HALF_UP);
+            float value;
+            if (drawAsPercent) {
+                value = (float) (mData.get(0).percent * mWidth / 100);
+            } else {
+                BigDecimal b1 = new BigDecimal(mWidth * mData.get(0).value);
+                BigDecimal b2 = new BigDecimal(mTotalValue);
+                BigDecimal divide = b1.divide(b2, 0, BigDecimal.ROUND_HALF_UP);
+                value = divide.floatValue();
+            }
+
             if (valueAnimator != null && valueAnimator.isRunning()) {
                 valueAnimator.cancel();
             }
-            valueAnimator = ValueAnimator.ofFloat(0f, divide.floatValue());
+            valueAnimator = ValueAnimator.ofFloat(0f, value);
             valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public void onAnimationUpdate(ValueAnimator animation) {
@@ -259,7 +318,7 @@ public class HistogramView extends View {
     }
 
     public interface OnClickListener {
-        void onClick(PieInfo pieInfo);
+        void onClick(PieInfo pieInfo, float clickX, float clickY);
     }
 
 }
