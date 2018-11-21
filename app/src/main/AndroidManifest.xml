@@ -25,11 +25,6 @@
         <activity android:name=".kotlin.KotlinActivity" />
         <activity android:name=".ui.nestedscrolling.NestedScrollingActivity" />
         <activity android:name=".ui.recyclerview.drag.DragActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".ui.recyclerview.drag.SwipActivity" />
         <activity android:name=".ui.paging.PagingActivity" />
@@ -55,8 +50,15 @@
         <activity android:name=".ui.customview.pathmeasure.PathMeasureActivity" />
         <activity android:name=".framework.tinker.TinkerTestActivity" />
         <activity android:name=".ui.customview.chart.ChatActivity" />
-        <activity android:name=".framework.jetpack.lifecycle.LifeCycleActivity"></activity>
-        <activity android:name=".framework.jetpack.lifecycle.LifeCycle2Activity"></activity>
+        <activity android:name=".framework.jetpack.lifecycle.LifeCycleActivity" />
+        <activity android:name=".framework.jetpack.lifecycle.LifeCycle2Activity" />
+        <activity android:name=".framework.jetpack.viewmodel.ViewModelActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
