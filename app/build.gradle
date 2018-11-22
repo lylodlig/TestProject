@@ -57,16 +57,20 @@ android {
     packagingOptions {
         exclude 'META-INF/rxjava.properties'
     }
+
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-
     implementation rootProject.ext.dependencies["appcompat-v7"]
     implementation rootProject.ext.dependencies["design"]
     implementation rootProject.ext.dependencies["constraint-layout"]
@@ -82,24 +86,21 @@ dependencies {
     implementation rootProject.ext.dependencies["adapter-rxjava"]
     implementation rootProject.ext.dependencies["permission-helper"]
     annotationProcessor 'android.arch.persistence.room:compiler:1.0.0'
-
     debugImplementation 'com.github.whataa:pandora:v1.0.5'
     releaseImplementation 'com.github.whataa:pandora-no-op:v1.0.3'
-
     implementation 'net.zetetic:android-database-sqlcipher:3.5.9'
     implementation 'com.haibin:calendarview:3.4.4'
     implementation 'org.dom4j:dom4j:2.1.1'
     implementation 'com.wuyr:pathlayoutmanager:1.0.1'
     implementation 'com.blankj:utilcode:1.16.3'
-
     //无需引入tinker的任何库,使用tinkerpatch sdk即可
-    provided("com.tinkerpatch.tinker:tinker-android-anno:1.9.9")
+    provided 'com.tinkerpatch.tinker:tinker-android-anno:1.9.9'
     implementation("com.tinkerpatch.sdk:tinkerpatch-android-sdk:${TINKERPATCH_VERSION}") {
         changing = true
     }
-    implementation "com.android.support:multidex:1.0.1"
-
+    implementation 'com.android.support:multidex:1.0.1'
     compile 'com.alibaba:arouter-api:1.2.1.1'
     annotationProcessor 'com.alibaba:arouter-compiler:1.1.2.1'
-
+    implementation project(':annotation')
+    implementation project(':processor')
 }
