@@ -3,6 +3,7 @@ package com.lzy.testproject;
 import android.app.Activity;
 import android.app.Application;
 import android.content.ComponentCallbacks;
+import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -18,9 +19,16 @@ import tech.linjiang.pandora.Pandora;
  */
 public class MyApplication extends Application {
 
+    private static Application application;
+
+    public static Context getApplication() {
+        return application.getApplicationContext();
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
+        application = this;
 //        Pandora.init(this).enableShakeOpen();
 
 //        ARouter.openLog();     // 打印日志

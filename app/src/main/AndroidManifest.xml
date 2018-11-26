@@ -9,7 +9,7 @@
     <uses-permission android:name="android.permission.WRITE_CALENDAR" />
 
     <application
-        android:name=".MyTinkerApplication"
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -24,8 +24,7 @@
         <activity android:name=".ui.nestedscrolling.test1.Test1Activity" />
         <activity android:name=".kotlin.KotlinActivity" />
         <activity android:name=".ui.nestedscrolling.NestedScrollingActivity" />
-        <activity android:name=".ui.recyclerview.drag.DragActivity">
-        </activity>
+        <activity android:name=".ui.recyclerview.drag.DragActivity" />
         <activity android:name=".ui.recyclerview.drag.SwipActivity" />
         <activity android:name=".ui.paging.PagingActivity" />
         <activity android:name=".ui.recyclerview.diffcallback.DiffActivity" />
@@ -52,7 +51,10 @@
         <activity android:name=".ui.customview.chart.ChatActivity" />
         <activity android:name=".framework.jetpack.lifecycle.LifeCycleActivity" />
         <activity android:name=".framework.jetpack.lifecycle.LifeCycle2Activity" />
-        <activity android:name=".framework.jetpack.viewmodel.ViewModelActivity">
+        <activity android:name=".framework.jetpack.viewmodel.ViewModelActivity" />
+        <activity android:name=".ui.behavior.bottomsheetdialog.BottomSheetDialogActivity">
+        </activity>
+        <activity android:name=".ui.behavior.behavoir.Behavoir1Activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
