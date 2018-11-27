@@ -46,6 +46,7 @@ public class TestActivity extends AppCompatActivity {
         BigDecimal bigDecimal = new BigDecimal(val);
         bigDecimal.setScale(1, BigDecimal.ROUND_HALF_UP);
         Log.i("lzy", "bt: " + format);
+        Log.i("lzy", "bt: master");
     }
 
     @Override
