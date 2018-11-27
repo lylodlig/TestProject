@@ -40,6 +40,7 @@ public class TestActivity extends AppCompatActivity {
         float c = 121485;
         float val = c / 10000;
         Log.i("lzy", "bt: 哈哈");
+        Log.i("lzy", "bt: 哈哈");
         String format = new DecimalFormat("#.0").format(val);
         BigDecimal bigDecimal = new BigDecimal(val);
         bigDecimal.setScale(1, BigDecimal.ROUND_HALF_UP);
