@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 
@@ -29,6 +30,7 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         application = this;
+        Log.i("lzy", "onCreate: ");
 //        Pandora.init(this).enableShakeOpen();
 
 //        ARouter.openLog();     // 打印日志

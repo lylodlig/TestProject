@@ -1,5 +1,6 @@
 package com.lzy.testproject.ui.behavior.behavoir;
 
+import android.content.Intent;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.SwipeDismissBehavior;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.lzy.testproject.R;
+import com.lzy.testproject.test.MyService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +31,7 @@ public class Behavoir1Activity extends AppCompatActivity {
         setContentView(R.layout.activity_behavoir1);
         initView1();
         initView2();
+        startService(new Intent(this, MyService.class));
     }
 
     private void initView2() {

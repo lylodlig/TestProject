@@ -52,8 +52,7 @@
         <activity android:name=".framework.jetpack.lifecycle.LifeCycleActivity" />
         <activity android:name=".framework.jetpack.lifecycle.LifeCycle2Activity" />
         <activity android:name=".framework.jetpack.viewmodel.ViewModelActivity" />
-        <activity android:name=".ui.behavior.bottomsheetdialog.BottomSheetDialogActivity">
-        </activity>
+        <activity android:name=".ui.behavior.bottomsheetdialog.BottomSheetDialogActivity"></activity>
         <activity android:name=".ui.behavior.behavoir.Behavoir1Activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -61,6 +60,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name=".test.MyService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":test"></service>
     </application>
 
 </manifest>
