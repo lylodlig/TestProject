@@ -84,7 +84,7 @@ public class Behavoir1Activity extends AppCompatActivity {
 
     private List<String> mockData() {
         List<String> data = new ArrayList<>();
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 50; i++) {
             data.add("item:" + i);
         }
         return data;

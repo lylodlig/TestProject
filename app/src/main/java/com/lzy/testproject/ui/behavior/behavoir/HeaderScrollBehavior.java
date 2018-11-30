@@ -3,6 +3,7 @@ package com.lzy.testproject.ui.behavior.behavoir;
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
@@ -43,7 +44,6 @@ public class HeaderScrollBehavior extends CoordinatorLayout.Behavior<View> {
     @Override
     public boolean layoutDependsOn(CoordinatorLayout parent, View child, View dependency) {
         if (isDepend(dependency)) {
-            Log.i("zhouwei", "isDeoendent : true");
             mDependencyView = new WeakReference<View>(dependency);
             return true;
         }
@@ -56,7 +56,6 @@ public class HeaderScrollBehavior extends CoordinatorLayout.Behavior<View> {
         Resources resources = getDependencyView().getResources();
         final float progress = 1.f -
                 Math.abs(dependency.getTranslationY() / (dependency.getHeight() - resources.getDimension(R.dimen.header_offset)));
-        Log.i(TAG, "dependency.getTranslationY():" + dependency.getTranslationY());
         child.setTranslationY(dependency.getHeight() + dependency.getTranslationY());
 
         float scale = 1 + 0.4f * (1.f - progress);
@@ -72,6 +71,7 @@ public class HeaderScrollBehavior extends CoordinatorLayout.Behavior<View> {
     @Override
     public boolean onLayoutChild(CoordinatorLayout parent, View child, int layoutDirection) {
         CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) child.getLayoutParams();
+        //当为MATCH_PARENT
         if (params != null && params.height == CoordinatorLayout.LayoutParams.MATCH_PARENT) {
             child.layout(0, 0, parent.getWidth(), parent.getHeight() - getHeaderCollspateHeight());
             return true;
@@ -81,19 +81,19 @@ public class HeaderScrollBehavior extends CoordinatorLayout.Behavior<View> {
     }
 
     @Override
-    public boolean onStartNestedScroll(CoordinatorLayout coordinatorLayout, View child, View directTargetChild, View target, int nestedScrollAxes) {
-        return (nestedScrollAxes & ViewCompat.SCROLL_AXIS_VERTICAL) != 0;
+    public boolean onStartNestedScroll(@NonNull CoordinatorLayout coordinatorLayout, @NonNull View child, @NonNull View directTargetChild, @NonNull View target, int axes, int type) {
+        return (axes & ViewCompat.SCROLL_AXIS_VERTICAL) != 0;
     }
 
     @Override
-    public void onNestedScrollAccepted(CoordinatorLayout coordinatorLayout, View child, View directTargetChild, View target, int nestedScrollAxes) {
+    public void onNestedScrollAccepted(@NonNull CoordinatorLayout coordinatorLayout, @NonNull View child, @NonNull View directTargetChild, @NonNull View target, int axes, int type) {
         isScrolling = false;
         mOverScroller.abortAnimation();
-        super.onNestedScrollAccepted(coordinatorLayout, child, directTargetChild, target, nestedScrollAxes);
+        super.onNestedScrollAccepted(coordinatorLayout, child, directTargetChild, target, axes, type);
     }
 
     @Override
-    public void onNestedPreScroll(CoordinatorLayout coordinatorLayout, View child, View get, int dx, int dy, int[] consumed) {
+    public void onNestedPreScroll(@NonNull CoordinatorLayout coordinatorLayout, @NonNull View child, @NonNull View target, int dx, int dy, @NonNull int[] consumed, int type) {
         Log.e(TAG, "--->invoke onNestedPreScroll");
         Log.i(TAG, "dy---->" + dy);
         if (dy < 0) {
@@ -111,7 +111,7 @@ public class HeaderScrollBehavior extends CoordinatorLayout.Behavior<View> {
     }
 
     @Override
-    public void onNestedScroll(CoordinatorLayout coordinatorLayout, View child, View target, int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed) {
+    public void onNestedScroll(@NonNull CoordinatorLayout coordinatorLayout, @NonNull View child, @NonNull View target, int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed, int type) {
         Log.e(TAG, "++++invoke onNestedScroll");
         Log.i(TAG, "dyUnconsumed:" + dyUnconsumed);
         if (dyUnconsumed > 0) {
@@ -132,7 +132,7 @@ public class HeaderScrollBehavior extends CoordinatorLayout.Behavior<View> {
     }
 
     @Override
-    public void onStopNestedScroll(CoordinatorLayout coordinatorLayout, View child, View target) {
+    public void onStopNestedScroll(@NonNull CoordinatorLayout coordinatorLayout, @NonNull View child, @NonNull View target, int type) {
         if (!isScrolling) {
             onUserStopDragging(800);
         }
