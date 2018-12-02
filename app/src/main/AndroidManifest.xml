@@ -21,7 +21,13 @@
         <activity android:name=".framework.rx.RxActivity" />
         <activity android:name=".designpatterns.strategy.StrategyActivity" />
         <activity android:name=".kotlin.MainActivity" />
-        <activity android:name=".ui.nestedscrolling.test1.Test1Activity" />
+        <activity android:name=".ui.nestedscrolling.test1.Test1Activity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".kotlin.KotlinActivity" />
         <activity android:name=".ui.nestedscrolling.NestedScrollingActivity" />
         <activity android:name=".ui.recyclerview.drag.DragActivity" />
@@ -54,11 +60,7 @@
         <activity android:name=".framework.jetpack.viewmodel.ViewModelActivity" />
         <activity android:name=".ui.behavior.bottomsheetdialog.BottomSheetDialogActivity" />
         <activity android:name=".ui.behavior.behavoir.Behavoir1Activity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <service

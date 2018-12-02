@@ -53,17 +53,17 @@ public class MyNestedScrollChild extends LinearLayout implements NestedScrolling
                 int y = (int) (event.getRawY());
                 int dy = y - lastY;
                 lastY = y;
+                //找到支持NestedScrollParent父View返回true
                 if (startNestedScroll(ViewCompat.SCROLL_AXIS_HORIZONTAL)
-                        && dispatchNestedPreScroll(0, dy, consumed, offset)) //如果找到了支持嵌套滑动的父类,父类进行了一系列的滑动
+                        && dispatchNestedPreScroll(0, dy, consumed, offset)) //如果找到了支持嵌套滑动的父类,父类进行了一系列的滑动，并且把消耗的距离写入consumed
                 {       //dispatchNestedPreScroll询问父View是否需要滚动
                     //startNestedScroll是否找到能够接受的父view
-                    //获取滑动距离
-                    int remain = dy - consumed[1];//减去父view消耗的距离
+                    //获取子View的滑动距离
+                    int remain = dy - consumed[1];//减去父view消耗的距离|
                     if (remain != 0) {
                         scrollBy(0, -remain);
                     }
-
-                } else {
+                } else {//没有找到对应的父Viw则全部由子View处理
                     scrollBy(0, -dy);
                 }
                 break;
