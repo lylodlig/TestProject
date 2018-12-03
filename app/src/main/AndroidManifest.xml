@@ -4,9 +4,11 @@
 
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_CALENDAR" />
     <uses-permission android:name="android.permission.WRITE_CALENDAR" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:name=".MyApplication"
@@ -21,13 +23,7 @@
         <activity android:name=".framework.rx.RxActivity" />
         <activity android:name=".designpatterns.strategy.StrategyActivity" />
         <activity android:name=".kotlin.MainActivity" />
-        <activity android:name=".ui.nestedscrolling.test1.Test1Activity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".ui.nestedscrolling.test1.Test1Activity"></activity>
         <activity android:name=".kotlin.KotlinActivity" />
         <activity android:name=".ui.nestedscrolling.NestedScrollingActivity" />
         <activity android:name=".ui.recyclerview.drag.DragActivity" />
@@ -59,9 +55,7 @@
         <activity android:name=".framework.jetpack.lifecycle.LifeCycle2Activity" />
         <activity android:name=".framework.jetpack.viewmodel.ViewModelActivity" />
         <activity android:name=".ui.behavior.bottomsheetdialog.BottomSheetDialogActivity" />
-        <activity android:name=".ui.behavior.behavoir.Behavoir1Activity">
-
-        </activity>
+        <activity android:name=".ui.behavior.behavoir.Behavoir1Activity"></activity>
 
         <service
             android:name=".test.MyService"
@@ -69,7 +63,13 @@
             android:exported="true"
             android:process=":test" />
 
-        <activity android:name=".ui.behavior.behavoir.Behavoir2Activity"></activity>
+        <activity android:name=".ui.behavior.behavoir.Behavoir2Activity" />
+        <activity android:name=".other.multipleshooting.MultipleShootingActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
