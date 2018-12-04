@@ -3,6 +3,7 @@ package com.lzy.testproject.framework.okhttp;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.lzy.testproject.R;
@@ -37,9 +38,9 @@ public class OkHttpActivity extends AppCompatActivity {
                 .readTimeout(30, TimeUnit.SECONDS)
                 .cache(cache)
                 .addInterceptor(new CacheInterceptor())
-                .addInterceptor(new LoggerInterceptor())
-                .addInterceptor(new TokenInterceptor())
-                .addInterceptor(new TestInterceptor())
+//                .addInterceptor(new LoggerInterceptor())
+//                .addInterceptor(new TokenInterceptor())
+//                .addInterceptor(new TestInterceptor())
                 .build();
 
     }
@@ -57,6 +58,7 @@ public class OkHttpActivity extends AppCompatActivity {
                     public void onResponse(Call call, Response response) throws IOException {
                         ResponseBody body = response.body();
                         String string = body.string();
+                        Log.i("lzy", "onResponse: "+string);
                     }
                 });
     }

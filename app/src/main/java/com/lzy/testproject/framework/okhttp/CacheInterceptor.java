@@ -18,21 +18,16 @@ public class CacheInterceptor implements Interceptor {
     @Override
     public Response intercept(Chain chain) throws IOException {
         Request request = chain.request();
-        Request request1 = request.newBuilder()
-                .cacheControl(new CacheControl.Builder()
-                        .onlyIfCached()
-                        .maxStale(30, TimeUnit.SECONDS)
-                        .build()).build();
+//        request = request.newBuilder()
+//                .cacheControl(new CacheControl.Builder()
+//                        .onlyIfCached()
+//                        .maxAge(30, TimeUnit.SECONDS)
+//                        .build()).build();
 
-        Response response = chain.proceed(request1);
-        return response;
-//        String cache = request.cacheControl().toString();
-//        if (TextUtils.isEmpty(cache)) {
-//            cache = "public,max-age=60";
-//        }
-//        return response.newBuilder()
-//                .header("Cache-Control", cache)
-//                .removeHeader("Pragma")
-//                .build();
+        Response response = chain.proceed(request);
+        return response.newBuilder().removeHeader("Pragma")
+                .removeHeader("Cache-Control")
+                .header("Cache-Control", "public,max-age=10")
+                .build();
     }
 }
