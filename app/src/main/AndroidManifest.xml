@@ -23,7 +23,7 @@
         <activity android:name=".framework.rx.RxActivity" />
         <activity android:name=".designpatterns.strategy.StrategyActivity" />
         <activity android:name=".kotlin.MainActivity" />
-        <activity android:name=".ui.nestedscrolling.test1.Test1Activity"></activity>
+        <activity android:name=".ui.nestedscrolling.test1.Test1Activity" />
         <activity android:name=".kotlin.KotlinActivity" />
         <activity android:name=".ui.nestedscrolling.NestedScrollingActivity" />
         <activity android:name=".ui.recyclerview.drag.DragActivity" />
@@ -33,12 +33,7 @@
         <activity android:name=".framework.room.RoomActivity" />
         <activity android:name=".ui.bigpicture.BigActivity" />
         <activity android:name=".ui.softinput.SoftInputActivity" />
-        <activity android:name=".test.TestActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".test.TestActivity"></activity>
         <activity android:name=".framework.rx.ExampleActivity" />
         <activity android:name=".test.TestKActivity" />
         <activity android:name=".other.getwechatrecord.WechatRecordActivity" />
@@ -60,7 +55,7 @@
         <activity android:name=".framework.jetpack.lifecycle.LifeCycle2Activity" />
         <activity android:name=".framework.jetpack.viewmodel.ViewModelActivity" />
         <activity android:name=".ui.behavior.bottomsheetdialog.BottomSheetDialogActivity" />
-        <activity android:name=".ui.behavior.behavoir.Behavoir1Activity"></activity>
+        <activity android:name=".ui.behavior.behavoir.Behavoir1Activity" />
 
         <service
             android:name=".test.MyService"
@@ -69,7 +64,14 @@
             android:process=":test" />
 
         <activity android:name=".ui.behavior.behavoir.Behavoir2Activity" />
-        <activity android:name=".other.multipleshooting.MultipleShootingActivity"></activity>
+        <activity android:name=".other.multipleshooting.MultipleShootingActivity" />
+        <activity android:name=".framework.okhttp.OkHttpActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

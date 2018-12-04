@@ -22,11 +22,12 @@ ext {
             "room"             : "android.arch.persistence.room:runtime:${dependVersion.jetpack_version}",
             "lifecycle"        : "android.arch.lifecycle:runtime:${dependVersion.jetpack_version}",
             "viewmodel"        : "android.arch.lifecycle:viewmodel:${dependVersion.jetpack_version}",
-            "extensions"        : "android.arch.lifecycle:extensions:${dependVersion.jetpack_version}",
+            "extensions"       : "android.arch.lifecycle:extensions:${dependVersion.jetpack_version}",
             "retrofit"         : "com.squareup.retrofit2:retrofit:${dependVersion.retrofit}",
             "converter-gson"   : "com.squareup.retrofit2:converter-gson:${dependVersion.retrofit}",
             "adapter-rxjava"   : "com.squareup.retrofit2:adapter-rxjava:${dependVersion.retrofit}",
             'permission-helper': 'com.leeiidesu:permission-helper:1.1.3',
+            'okhttp'           : 'com.squareup.okhttp3:okhttp:3.11.0',
 
     ]
 }
