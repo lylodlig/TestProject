@@ -33,7 +33,12 @@
         <activity android:name=".framework.room.RoomActivity" />
         <activity android:name=".ui.bigpicture.BigActivity" />
         <activity android:name=".ui.softinput.SoftInputActivity" />
-        <activity android:name=".test.TestActivity" />
+        <activity android:name=".test.TestActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".framework.rx.ExampleActivity" />
         <activity android:name=".test.TestKActivity" />
         <activity android:name=".other.getwechatrecord.WechatRecordActivity" />
@@ -64,12 +69,7 @@
             android:process=":test" />
 
         <activity android:name=".ui.behavior.behavoir.Behavoir2Activity" />
-        <activity android:name=".other.multipleshooting.MultipleShootingActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".other.multipleshooting.MultipleShootingActivity"></activity>
     </application>
 
 </manifest>

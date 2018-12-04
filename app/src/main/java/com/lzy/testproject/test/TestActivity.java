@@ -1,53 +1,66 @@
 package com.lzy.testproject.test;
 
-import android.media.MediaPlayer;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
-import android.view.View;
-import android.widget.EditText;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
 
-import com.alibaba.android.arouter.launcher.ARouter;
 import com.lzy.testproject.R;
 
-import java.math.BigDecimal;
-import java.text.DecimalFormat;
-import java.util.Observable;
-
-import io.reactivex.Observer;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
+import java.util.ArrayList;
 
 public class TestActivity extends AppCompatActivity {
 
     private static final String TAG = "lzy";
     private int count = 1;
+    private ArrayList<String> tabNameList;
+    private ViewPagerAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test3);
 
+        ViewPager viewPager = findViewById(R.id.viewpager);
+        TabLayout tabLayout = findViewById(R.id.tabLayout);
 
-    }
+        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
 
-    public void bt(View view) {
-//        ARouter.getInstance().build("/lzy/constraint/TestActivity").navigation();
-//        MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.notify);
-//        mediaPlayer.start();
-        float c = 121485;
-        float val = c / 10000;
-        String format = new DecimalFormat("#.0").format(val);
-        BigDecimal bigDecimal = new BigDecimal(val);
-        bigDecimal.setScale(1, BigDecimal.ROUND_HALF_UP);
-    }
+        tabNameList = new ArrayList<>();
+        tabNameList.add("1");
+        tabNameList.add("2");
+        tabNameList.add("3");
+        mAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+        viewPager.setAdapter(mAdapter);
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
+        tabLayout.setupWithViewPager(viewPager);
     }
 
 
+    class ViewPagerAdapter extends FragmentPagerAdapter {
+
+        public ViewPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+
+            TestFragment fragment = new TestFragment();
+            return fragment;
+        }
+
+        @Override
+        public int getCount() {
+            return tabNameList.size();
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return tabNameList.get(position);
+        }
+    }
 }

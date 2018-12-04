@@ -1,14 +1,11 @@
 package com.lzy.testproject.other.multipleshooting;
 
 import android.app.Activity;
-import android.app.Fragment;
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.util.Log;
 
 import com.lzy.testproject.utils.ImageFactory;
 
@@ -22,7 +19,7 @@ import java.util.regex.Pattern;
 import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.observers.DefaultObserver;
+import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -32,11 +29,14 @@ public class MultipleShootingPictureManager {
     private int maxSize = 100;//压缩到maxSize之下，kb
     private boolean compress = true;//是否压缩
     private String outPath;
-    private boolean isDelete = false;//是否删除照片源文件
+    private boolean isDelete = false;//压缩后是否删除照片源文件
     private Activity context;
     private OnListener onListener;
     private long startTime;
-    private MultipleShootingPictureManager manager;
+    private String orderBy = MediaStore.Images.Media.DISPLAY_NAME;
+    ;
+    private Uri uri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+    private DisposableObserver<String> disposableObserver;
 
     public MultipleShootingPictureManager(Activity context) {
         this.context = context;
@@ -50,10 +50,7 @@ public class MultipleShootingPictureManager {
     public void getPictureData(List<String> path) {
         if (path == null)
             return;
-        final String orderBy = MediaStore.Images.Media.DISPLAY_NAME;
-        final Uri uri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
-
-        Observable.create((ObservableOnSubscribe<String>) e -> {
+        disposableObserver = Observable.create((ObservableOnSubscribe<String>) e -> {
             Cursor cursor = context.getContentResolver().query(uri, null, null,
                     null, orderBy);
             if (null == cursor) {
@@ -72,13 +69,17 @@ public class MultipleShootingPictureManager {
                         //判断是此次拍照
                         if (time > startTime && time < new Date().getTime()) {
                             String out = outPath + File.separator + substring + ".jpg";
-                            try {
-                                ImageFactory.compressAndGenImage(string, out, 100, true);
-                                e.onNext(out);
-                            } catch (Exception e1) {
-                                e.onComplete();
+                            if (compress) {
+                                try {
+                                    ImageFactory.compressAndGenImage(string, out, maxSize, isDelete);
+                                    e.onNext(out);
+                                } catch (Exception e1) {
+                                    e.onComplete();
+                                }
+                            } else {
+                                //不压缩直接返回
+                                e.onNext(string);
                             }
-
                         }
                     }
                 }
@@ -86,10 +87,10 @@ public class MultipleShootingPictureManager {
             e.onComplete();
         }).subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new DefaultObserver<String>() {
+                .subscribeWith(new DisposableObserver<String>() {
                     @Override
-                    public void onNext(String value) {
-                        path.add(value);
+                    public void onNext(String s) {
+                        path.add(s);
                     }
 
                     @Override
@@ -103,6 +104,12 @@ public class MultipleShootingPictureManager {
                         }
                     }
                 });
+    }
+
+    public void cancel() {
+        if (disposableObserver != null && !disposableObserver.isDisposed()) {
+            disposableObserver.dispose();
+        }
     }
 
     public void request(int requestCode) {
@@ -129,11 +136,6 @@ public class MultipleShootingPictureManager {
 
     public MultipleShootingPictureManager setDelete(boolean delete) {
         isDelete = delete;
-        return this;
-    }
-
-    public MultipleShootingPictureManager setContext(Activity context) {
-        this.context = context;
         return this;
     }
 
