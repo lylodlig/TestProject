@@ -37,7 +37,8 @@ public class OkHttpActivity extends AppCompatActivity {
                 .writeTimeout(10, TimeUnit.SECONDS)
                 .readTimeout(30, TimeUnit.SECONDS)
                 .cache(cache)
-                .addInterceptor(new CacheInterceptor())
+                .addNetworkInterceptor(new CacheNetworkInterceptor())
+                .addInterceptor(new CacheNetworkInterceptor.CacheInterceptor())
 //                .addInterceptor(new LoggerInterceptor())
 //                .addInterceptor(new TokenInterceptor())
 //                .addInterceptor(new TestInterceptor())
@@ -51,14 +52,16 @@ public class OkHttpActivity extends AppCompatActivity {
                 .enqueue(new Callback() {
                     @Override
                     public void onFailure(Call call, IOException e) {
-
+                        Log.i("lzy", "onFailure: ");
                     }
 
                     @Override
                     public void onResponse(Call call, Response response) throws IOException {
+
                         ResponseBody body = response.body();
                         String string = body.string();
-                        Log.i("lzy", "onResponse: "+string);
+                        Log.i("lzy", "onResponseCode: " + response.code());
+                        Log.i("lzy", "onResponse: " + string);
                     }
                 });
     }
