@@ -3,6 +3,7 @@ package com.lzy.testproject.test;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
@@ -21,6 +22,13 @@ public class TestFragment extends Fragment {
         FragmentActivity activity = getActivity();
     }
 
+    public static TestFragment newInstance(String name) {
+        TestFragment fragment = new TestFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("name", name);
+        fragment.setArguments(bundle);
+        return fragment;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -33,5 +41,13 @@ public class TestFragment extends Fragment {
     public void onAttach(Context context) {
         FragmentActivity activity = getActivity();
         super.onAttach(context);
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments()!=null) {
+
+        }
     }
 }

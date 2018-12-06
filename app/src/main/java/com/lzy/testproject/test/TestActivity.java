@@ -13,7 +13,10 @@ import com.lzy.testproject.R;
 import java.util.ArrayList;
 
 public class TestActivity extends AppCompatActivity {
-
+    public static final String TAB_ALL = "      全部      ";
+    public static final String TAB_ALLFLLOW = "  全部跟进  ";
+    public static final String TAB_WAIT_FOLLOW = "全部待跟进";
+    public static final String TAB_OVER_FOLLOW = "超期未跟进";
     private static final String TAG = "lzy";
     private int count = 1;
     private ArrayList<String> tabNameList;
@@ -27,12 +30,13 @@ public class TestActivity extends AppCompatActivity {
         ViewPager viewPager = findViewById(R.id.viewpager);
         TabLayout tabLayout = findViewById(R.id.tabLayout);
 
-        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+        tabLayout.setTabMode(TabLayout.MODE_FIXED);
 
         tabNameList = new ArrayList<>();
-        tabNameList.add("1");
-        tabNameList.add("2");
-        tabNameList.add("3");
+        tabNameList.add(TAB_ALL);
+        tabNameList.add(TAB_ALLFLLOW);
+        tabNameList.add(TAB_WAIT_FOLLOW);
+        tabNameList.add(TAB_OVER_FOLLOW);
         mAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(mAdapter);
 
@@ -48,9 +52,7 @@ public class TestActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-
-            TestFragment fragment = new TestFragment();
-            return fragment;
+            return TestFragment.newInstance("111" + position);
         }
 
         @Override

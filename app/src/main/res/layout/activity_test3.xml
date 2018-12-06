@@ -6,19 +6,45 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".test.TestActivity">
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
 
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tabLayout"
-        android:layout_width="0dp"
-        android:layout_height="44dp"
-        android:layout_weight="1"
-        android:fillViewport="true"
-        app:layout_scrollFlags="scroll"
-        app:tabIndicatorColor="#1F90FF"
-        app:tabIndicatorHeight="2.0dp"
-        app:tabMode="fixed"
-        app:tabSelectedTextColor="#1F90FF"
-        app:tabTextColor="#666666" />
+        <LinearLayout
+            android:id="@+id/tabLL"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:orientation="horizontal">
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fillViewport="true"
+                app:layout_scrollFlags="scroll"
+                app:tabGravity="fill"
+                app:tabIndicatorColor="#1F90FF"
+                app:tabIndicatorHeight="2.0dp"
+                app:tabMode="fixed"
+                app:tabSelectedTextColor="#1F90FF"
+                app:tabTextColor="#666666" />
+
+            <ImageView
+                android:id="@+id/tabMore"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:paddingLeft="7dp"
+                android:paddingRight="7dp"
+                android:src="@mipmap/ic_launcher"
+                android:visibility="gone" />
+
+        </LinearLayout>
+    </LinearLayout>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager"
