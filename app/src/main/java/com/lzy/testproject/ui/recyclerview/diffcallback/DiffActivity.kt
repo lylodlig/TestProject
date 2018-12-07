@@ -37,7 +37,7 @@ class DiffActivity : AppCompatActivity() {
         for (item in 0 until 10) {
             list.add(Student(item))
         }
-
+        //比较新老数据,耗时操作最好放在主线程
         var calculateDiff = DiffUtil.calculateDiff(DiffCallback(list, newList), true)
         reyclerView.layoutManager = LinearLayoutManager(this)
         reyclerView.adapter = MyAdapter()
