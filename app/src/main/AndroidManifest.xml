@@ -67,8 +67,10 @@
         <activity android:name=".other.multipleshooting.MultipleShootingActivity" />
         <activity android:name=".framework.okhttp.OkHttpActivity" />
         <activity android:name=".ui.recyclerview.sortedlist.SortListActivity" />
-        <activity android:name=".ui.recyclerview.asynclistutil.AsyncListUtilActivity"></activity>
+        <activity android:name=".ui.recyclerview.asynclistutil.AsyncListUtilActivity" />
         <activity android:name=".ui.recyclerview.snaphelper.SnapHelperActivity">
+        </activity>
+        <activity android:name=".ui.calendar.CalendarActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
