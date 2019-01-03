@@ -1,6 +1,7 @@
 package com.lzy.testproject.other.getwechatrecord;
 
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
@@ -23,6 +24,7 @@ public class WechatRecordActivity extends AppCompatActivity {
 
     //	String oldPath = "/data/data/com.tencent.mm/MicroMsg/54466d9340acc4a839b45831dadd8dc0/EnMicroMsg.db";
     String newPath = "/data/data/com.lzy.testproject/EnMicroMsg.db";
+//    String newPath = Environment.getExternalStorageDirectory() + "/aaa/EnMicroMsg.db";
     //	String uin = "669000982";
 
 
@@ -55,7 +57,6 @@ public class WechatRecordActivity extends AppCompatActivity {
                         database.rawExecSQL("PRAGMA cipher_migrate;");//很重要
                     }
                 };
-
                 SQLiteDatabase db = openDatabase(newPath, password, null, NO_LOCALIZED_COLLATORS, hook);
                 String sql = "select * from message";
 //                Log.e("sql", sql);
