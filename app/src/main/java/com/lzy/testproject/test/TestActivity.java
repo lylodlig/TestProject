@@ -26,6 +26,12 @@ public class TestActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onStop() {
+        super.onStop();
+        Log.i("lzy", "onStop: ");
+    }
+
+    @Override
     protected void onStart() {
         super.onStart();
         Log.i("lzy", "onStart: ");

@@ -34,15 +34,10 @@
         <activity android:name=".ui.bigpicture.BigActivity" />
         <activity android:name=".ui.softinput.SoftInputActivity" />
         <activity android:name=".test.TestActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".framework.rx.ExampleActivity" />
         <activity android:name=".test.TestKActivity" />
-        <activity android:name=".other.getwechatrecord.WechatRecordActivity"></activity>
+        <activity android:name=".other.getwechatrecord.WechatRecordActivity" />
         <activity android:name=".framework.retrofit.RetrofitActivity" />
         <activity android:name=".framework.arouter.RouterActivity" />
         <activity
@@ -76,7 +71,14 @@
         <activity android:name=".ui.recyclerview.asynclistutil.AsyncListUtilActivity" />
         <activity android:name=".ui.recyclerview.snaphelper.SnapHelperActivity" />
         <activity android:name=".ui.calendar.CalendarActivity" />
-        <activity android:name=".test.Test2Activity"></activity>
+        <activity android:name=".test.Test2Activity" />
+        <activity android:name=".other.jsbridge.JsBridgeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

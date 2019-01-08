@@ -88,6 +88,7 @@ dependencies {
     implementation rootProject.ext.dependencies["permission-helper"]
     implementation rootProject.ext.dependencies["okhttp"]
     implementation rootProject.ext.dependencies["multitype"]
+    implementation rootProject.ext.dependencies["jsbridge"]
     annotationProcessor 'android.arch.persistence.room:compiler:1.0.0'
     debugImplementation 'com.github.whataa:pandora:v1.0.5'
     releaseImplementation 'com.github.whataa:pandora-no-op:v1.0.3'
