@@ -44,7 +44,7 @@ class RoomActivity : AppCompatActivity() {
                         Log.e("lzy", "DB onOpen")
                     }
                 })
-                .allowMainThreadQueries()//允许主线程查询数据
+//                .allowMainThreadQueries()//允许主线程查询数据
                 .build()
 
         var studentEntity = StudentEntity()

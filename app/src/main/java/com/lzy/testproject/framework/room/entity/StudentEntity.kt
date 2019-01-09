@@ -18,7 +18,7 @@ class StudentEntity {
     var name: String? = null
     @ColumnInfo(name = "sex")
     var sex: Int = 0
-    @Ignore//指示Room需要忽略的字段或方法666+416
+    @Ignore//指示Room需要忽略的字段或方法
     var ignoreText: String? = null
     @ColumnInfo(name = "class_id")
     var class_id: String? = null
