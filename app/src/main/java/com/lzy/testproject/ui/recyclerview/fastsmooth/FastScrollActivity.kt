@@ -1,6 +1,9 @@
 package com.lzy.testproject.ui.recyclerview.fastsmooth
 
+import android.content.AsyncQueryHandler
+import android.os.AsyncTask
 import android.os.Bundle
+import android.os.HandlerThread
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -10,6 +13,7 @@ import android.widget.TextView
 import com.lzy.testproject.R
 import kotlinx.android.synthetic.main.activity_fast_scroll.*
 
+//RecyclerView滚动
 class FastScrollActivity : AppCompatActivity() {
     var list = mutableListOf<String>()
 
@@ -21,7 +25,7 @@ class FastScrollActivity : AppCompatActivity() {
             list.add("还是开放的狂欢节   $index")
         }
         recyclerview.layoutManager = FastScrollLinearLayoutManager(this)
-        recyclerview.adapter=MyAdapter()
+        recyclerview.adapter = MyAdapter()
 
         btfast.setOnClickListener {
             recyclerview.smoothScrollToPosition(40)

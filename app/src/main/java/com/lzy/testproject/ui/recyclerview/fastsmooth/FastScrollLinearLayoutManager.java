@@ -9,6 +9,7 @@ import android.util.DisplayMetrics;
 
 /**
  * Created by LiZhiyu on 2019/1/17.
+ *
  */
 public class FastScrollLinearLayoutManager extends LinearLayoutManager {
     public FastScrollLinearLayoutManager(Context context) {

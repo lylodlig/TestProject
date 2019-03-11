@@ -22,11 +22,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.DeviceUtils;
 import com.leeiidesu.permission.PermissionHelper;
 import com.leeiidesu.permission.callback.OnPermissionResultListener;
 import com.lzy.testproject.R;
 
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
@@ -36,6 +38,13 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Lock;
+
+import okhttp3.Call;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class TestActivity extends AppCompatActivity {
 
@@ -48,26 +57,42 @@ public class TestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test3);
 
-        HashSet set = new HashSet();
-        set.add("df");
-        set.add(null);
-        set.add("df");
-        set.add("d1");
-        Log.i("lzy", "onCreate: ");
-//        printTelephonyManagerMethodNamesForThisDevice();
-//        getSubscriberId();
+//        bindService(new Intent(this, TestService.class), null, Context.BIND_AUTO_CREATE);
 
-        Calendar calendar = Calendar.getInstance();
-        int i = calendar.get(Calendar.MONTH);
-        int j = calendar.get(Calendar.DAY_OF_MONTH);
-
-        mTelephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-        if (mTelephonyManager == null) {
-            throw new Error("telephony manager is null");
+        String b=null;
+        try {
+            boolean contains = b.contains("-");
+        } catch (Exception e) {
+            Log.i("lzy", "onCreate: ");
         }
-//        mConnMngr = (ConnectivityManager).getSystemService(Context.CONNECTIVITY_SERVICE);
-        mSubscriptionManager = SubscriptionManager.from(this);
-//        getPhoneNumber();
+//        Calendar calendar = Calendar.getInstance();
+//        int i = calendar.get(Calendar.MONTH);
+//        int j = calendar.get(Calendar.DAY_OF_MONTH);
+//
+//        mTelephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+//        if (mTelephonyManager == null) {
+//            throw new Error("telephony manager is null");
+//        }
+////        mConnMngr = (ConnectivityManager).getSystemService(Context.CONNECTIVITY_SERVICE);
+//        mSubscriptionManager = SubscriptionManager.from(this);
+////        getPhoneNumber();
+//
+//        //1.构建 OkHttpClient 对象
+//        OkHttpClient.Builder builder = new OkHttpClient.Builder()
+//                .connectTimeout(3000, TimeUnit.MILLISECONDS)
+//                .readTimeout(3000, TimeUnit.MILLISECONDS);
+//        OkHttpClient client = builder.build();
+////        OkHttpClient client = new OkHttpClient();
+//        //2.构建 Request 对象。
+//        Request request = new Request.Builder().url("").build();
+//        //3.由 OkHttpClient 通过 Request 创建 Call 对象
+//        Call call = client.newCall(request);
+//        try {
+//            //4.通过 Call 对象发起请求
+//            Response response = call.execute();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
 
@@ -126,6 +151,11 @@ public class TestActivity extends AppCompatActivity {
 
 
     public void bt(View view) {
+        String a = "6";
+        String s1 = a.split("\\.")[0];
+        float a1 = Float.valueOf(a);
+
+        int s = (int) a1;
 //        getPhoneNumber();
 //        String msisdn = getMsisdn(0);
 //        String msisdn1 = getMsisdn(1);

@@ -36,6 +36,11 @@
         <activity android:name=".ui.bigpicture.BigActivity" />
         <activity android:name=".ui.softinput.SoftInputActivity" />
         <activity android:name=".test.TestActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".framework.rx.ExampleActivity" />
         <activity android:name=".test.TestKActivity" />
@@ -75,13 +80,9 @@
         <activity android:name=".ui.calendar.CalendarActivity" />
         <activity android:name=".test.Test2Activity" />
         <activity android:name=".other.jsbridge.JsBridgeActivity"></activity>
-        <activity android:name=".ui.recyclerview.fastsmooth.FastScrollActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".ui.recyclerview.fastsmooth.FastScrollActivity"></activity>
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <service android:name=".test.TestService" />
     </application>
 
 </manifest>
