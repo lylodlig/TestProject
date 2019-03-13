@@ -29,6 +29,7 @@ ext {
             'permission-helper': 'com.leeiidesu:permission-helper:1.1.3',
             'okhttp'           : 'com.squareup.okhttp3:okhttp:3.11.0',
             'multitype'           : 'me.drakeet.multitype:multitype-kotlin:3.4.4',
+            'jsbridge'           : 'com.github.lzyzsd:jsbridge:1.0.4',
 
     ]
 }

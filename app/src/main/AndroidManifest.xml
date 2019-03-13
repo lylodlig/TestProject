@@ -3,6 +3,8 @@
     package="com.lzy.testproject">
 
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -42,7 +44,7 @@
         </activity>
         <activity android:name=".framework.rx.ExampleActivity" />
         <activity android:name=".test.TestKActivity" />
-        <activity android:name=".other.getwechatrecord.WechatRecordActivity"></activity>
+        <activity android:name=".other.getwechatrecord.WechatRecordActivity" />
         <activity android:name=".framework.retrofit.RetrofitActivity" />
         <activity android:name=".framework.arouter.RouterActivity" />
         <activity
@@ -76,7 +78,11 @@
         <activity android:name=".ui.recyclerview.asynclistutil.AsyncListUtilActivity" />
         <activity android:name=".ui.recyclerview.snaphelper.SnapHelperActivity" />
         <activity android:name=".ui.calendar.CalendarActivity" />
-        <activity android:name=".test.Test2Activity"></activity>
+        <activity android:name=".test.Test2Activity" />
+        <activity android:name=".other.jsbridge.JsBridgeActivity"></activity>
+        <activity android:name=".ui.recyclerview.fastsmooth.FastScrollActivity"></activity>
+
+        <service android:name=".test.TestService" />
     </application>
 
 </manifest>

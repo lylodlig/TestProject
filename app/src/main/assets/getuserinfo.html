@@ -1,0 +1,35 @@
+<html>
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>
+        js调用java
+    </title>
+</head>
+
+<body>
+<p>
+    <xmp id="show">
+    </xmp>
+</p>
+<div align="center">
+    <p>
+        <input type="button" id="enter" value="获取用户信息" onclick="getUserInfo();"
+        />
+    </p>
+</div>
+</body>
+<script>
+
+    connectWebViewJavascriptBridge(function(bridge) {
+            bridge.registerHandler("functionInJs", function(data, responseCallback) {
+                document.getElementById("show").innerHTML = ("data from Java: = " + data);
+                var responseData = "Javascript Says Right back aka!";
+                responseCallback(responseData);
+            });
+        })
+
+
+
+</script>
+
+</html>
