@@ -1,6 +1,8 @@
 package com.lzy.testproject.test;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -34,6 +36,7 @@ public class TestActivity extends AppCompatActivity {
     }
 
     public void bt(View view) {
+        getApplicationContext().startActivity(new Intent());
 //        ARouter.getInstance().build("/lzy/constraint/TestActivity").navigation();
 //        MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.notify);
 //        mediaPlayer.start();
