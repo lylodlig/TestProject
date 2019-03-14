@@ -2,8 +2,12 @@ package com.lzy.testproject.test;
 
 import android.app.Activity;
 import android.app.Instrumentation;
+import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.os.IBinder;
+import android.support.annotation.Nullable;
+import android.support.annotation.RequiresPermission;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,7 +26,9 @@ import java.lang.reflect.Proxy;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 
-public class TestActivity extends Activity {
+public class TestActivity extends AppCompatActivity {
+
+    private Test test = new Test();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,12 +36,13 @@ public class TestActivity extends Activity {
         setContentView(R.layout.activity_test3);
 
         final Instrumentation mInstrumentation = (Instrumentation) RefInvoke.getFiledObject(Activity.class, this, "mInstrumentation");
-        Instrumentation instrumentation = new EvilInsrumentation(mInstrumentation);
-        Object mnstrumentation1 = RefInvoke.getFiledObject(Activity.class, this, "mInstrumentation");
+        EvilInsrumentation instrumentation = new EvilInsrumentation(mInstrumentation);
+        Object before = RefInvoke.getFiledObject(Activity.class, this, "mInstrumentation");
         RefInvoke.setFiledObject(Activity.class, this, "mInstrumentation", instrumentation);
-        Object mInstrumentation1 = RefInvoke.getFiledObject(Activity.class, this, "mInstrumentation");
+        Object after = RefInvoke.getFiledObject(Activity.class, this, "mInstrumentation");
 
-//        Proxy.newProxyInstance(getClassLoader(), this.getClass().getInterfaces(), new InvocationHandler() {
+
+//        Proxy.newProxyInstance(getClassLoader(), mInstrumentation.getClass().getInterfaces(), new InvocationHandler() {
 //            @Override
 //            public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 //                Log.i("lzy", "invoke: Hook Activity");
@@ -45,6 +52,9 @@ public class TestActivity extends Activity {
 //        });
     }
 
+    public void test() {
+        test.tess();
+    }
 
     @Override
     protected void onStart() {

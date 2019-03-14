@@ -1,5 +1,7 @@
 package com.lzy.testproject.other.reflect;
 
+import com.lzy.testproject.test.Test;
+
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -127,6 +129,20 @@ public class RefInvoke {
 
     public static Object invokeInstanceMethod(Object object, String methodName, Class[] parseTypes, Object[] parseValues) {
         if (object == null) return null;
+        try {
+            Method method = object.getClass().getDeclaredMethod(methodName, parseTypes);
+            method.setAccessible(true);
+            return method.invoke(object, parseValues);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static Object invokeInstanceMethod(Object object, String methodName) {
+        if (object == null) return null;
+        Class[] parseTypes = new Class[]{};
+        Object[] parseValues = new Object[]{};
         try {
             Method method = object.getClass().getDeclaredMethod(methodName, parseTypes);
             method.setAccessible(true);
