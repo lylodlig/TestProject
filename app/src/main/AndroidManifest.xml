@@ -32,7 +32,7 @@
         <activity android:name=".ui.recyclerview.drag.SwipActivity" />
         <activity android:name=".ui.paging.PagingActivity" />
         <activity android:name=".ui.recyclerview.diffcallback.DiffActivity" />
-        <activity android:name=".framework.room.RoomActivity" />
+        <activity android:name=".framework.jetpack.room.RoomActivity" />
         <activity android:name=".ui.bigpicture.BigActivity" />
         <activity android:name=".ui.softinput.SoftInputActivity" />
         <activity android:name=".test.TestActivity">

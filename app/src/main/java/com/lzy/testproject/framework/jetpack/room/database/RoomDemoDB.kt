@@ -1,9 +1,9 @@
-package com.lzy.testproject.framework.room.database
+package com.lzy.testproject.framework.jetpack.room.database
 
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.RoomDatabase
-import com.lzy.testproject.framework.room.dao.StudentDao
-import com.lzy.testproject.framework.room.entity.StudentEntity
+import com.lzy.testproject.framework.jetpack.room.dao.StudentDao
+import com.lzy.testproject.framework.jetpack.room.entity.StudentEntity
 
 /**
  * Created by LiZhiyu on 2018/7/20.

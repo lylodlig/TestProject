@@ -1,4 +1,4 @@
-package com.lzy.testproject.framework.room
+package com.lzy.testproject.framework.jetpack.room
 
 import android.arch.persistence.db.SupportSQLiteDatabase
 import android.arch.persistence.room.Room
@@ -8,9 +8,9 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.lzy.testproject.R
-import com.lzy.testproject.framework.room.dao.StudentDao
-import com.lzy.testproject.framework.room.database.RoomDemoDB
-import com.lzy.testproject.framework.room.entity.StudentEntity
+import com.lzy.testproject.framework.jetpack.room.dao.StudentDao
+import com.lzy.testproject.framework.jetpack.room.database.RoomDemoDB
+import com.lzy.testproject.framework.jetpack.room.entity.StudentEntity
 import com.lzy.testproject.ui.softinput.SoftInputActivity
 import kotlinx.android.synthetic.main.activity_room.*
 import tech.linjiang.pandora.Pandora

@@ -1,4 +1,4 @@
-package com.lzy.testproject.framework.room.entity
+package com.lzy.testproject.framework.jetpack.room.entity
 
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey

@@ -1,10 +1,10 @@
-package com.lzy.testproject.framework.room.dao
+package com.lzy.testproject.framework.jetpack.room.dao
 
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Delete
 import android.arch.persistence.room.Insert
 import android.arch.persistence.room.Query
-import com.lzy.testproject.framework.room.entity.StudentEntity
+import com.lzy.testproject.framework.jetpack.room.entity.StudentEntity
 
 
 /**
