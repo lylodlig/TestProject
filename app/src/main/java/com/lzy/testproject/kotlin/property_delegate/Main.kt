@@ -4,7 +4,7 @@ import kotlin.properties.Delegates
 import kotlin.reflect.KProperty
 
 class Example {
-    var p: String by Delegate()
+//    var p: String by SingleValueVar()
 }
 class Delegate {
     operator fun getValue(thisRef: Any?, property: KProperty<*>): String {
@@ -36,8 +36,12 @@ class Person{
     })
 }
 
+
 fun main(args: Array<String>) {
-//    val e = Example()
+    val e = Example()
+//    e.p="fddf"
+//    println(e.p)
+//    e.p="fddf222"
 //    println(e.p)
 //
 //    println(lazyValue)   // 第一次执行
