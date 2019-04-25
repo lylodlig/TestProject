@@ -80,7 +80,7 @@ class Model : ViewModel() {
 `val model = ViewModelProviders.of(this)[Model::class.java]`  
 
 3. 在ViewModel中存储数据，点击按钮改变，旋转屏幕Activity销毁，可以发现ViewModel中的值是改变后的  
-```java
+```
 class ViewModelActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
