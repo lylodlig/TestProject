@@ -1,6 +1,6 @@
 package com.lzy.testproject.ui.loading.change;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.lzy.testproject.ui.loading.view.IStatusView;
 

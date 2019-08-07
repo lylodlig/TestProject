@@ -1,7 +1,7 @@
 package com.lzy.testproject.framework.room.database
 
-import android.arch.persistence.room.Database
-import android.arch.persistence.room.RoomDatabase
+import androidx.room.Database
+import androidx.room.RoomDatabase
 import com.lzy.testproject.framework.room.dao.StudentDao
 import com.lzy.testproject.framework.room.entity.StudentEntity
 

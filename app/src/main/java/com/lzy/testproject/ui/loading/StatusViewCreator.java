@@ -1,7 +1,8 @@
 package com.lzy.testproject.ui.loading;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
+
+import androidx.annotation.Nullable;
 
 import com.lzy.testproject.ui.loading.callback.OnRetryClickListener;
 import com.lzy.testproject.ui.loading.view.IStatusView;

@@ -1,6 +1,6 @@
 package com.lzy.testproject.framework.jetpack.viewmodel
 
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.ViewModel
 
 
 /**

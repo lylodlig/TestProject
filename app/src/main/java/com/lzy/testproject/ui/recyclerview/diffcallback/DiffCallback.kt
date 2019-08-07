@@ -1,6 +1,6 @@
 package com.lzy.testproject.ui.recyclerview.diffcallback
 
-import android.support.v7.util.DiffUtil
+import androidx.recyclerview.widget.DiffUtil
 import com.lzy.testproject.ui.paging.Student
 
 /**

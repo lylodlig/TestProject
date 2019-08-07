@@ -1,13 +1,13 @@
 package com.lzy.testproject.ui.recyclerview.diffcallback
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.util.DiffUtil
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.appcompat.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.lzy.testproject.R
 import com.lzy.testproject.ui.paging.Student
 import com.lzy.testproject.ui.recyclerview.ViewHolder
@@ -29,7 +29,7 @@ class DiffActivity : AppCompatActivity() {
             newList.add(3, Student(428574))
 
             var calculateDiff = DiffUtil.calculateDiff(DiffCallback(list, newList), true)
-            calculateDiff.dispatchUpdatesTo(reyclerView.adapter)
+            calculateDiff.dispatchUpdatesTo(reyclerView.adapter!!)
             list.clear()
             list.addAll(newList)
         }
@@ -41,7 +41,7 @@ class DiffActivity : AppCompatActivity() {
         var calculateDiff = DiffUtil.calculateDiff(DiffCallback(list, newList), true)
         reyclerView.layoutManager = LinearLayoutManager(this)
         reyclerView.adapter = MyAdapter()
-        calculateDiff?.dispatchUpdatesTo(reyclerView.adapter)
+        calculateDiff?.dispatchUpdatesTo(reyclerView.adapter!!)
     }
 
     inner class MyAdapter : RecyclerView.Adapter<ViewHolder>() {

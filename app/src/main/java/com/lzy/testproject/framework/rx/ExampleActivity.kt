@@ -3,8 +3,8 @@ package com.lzy.testproject.framework.rx
 import android.app.Activity
 import android.graphics.Color
 import android.os.Bundle
-import android.support.annotation.Size
 import android.util.Log
+import androidx.annotation.Size
 import com.lzy.testproject.R
 import com.lzy.testproject.utils.StatusBarUtil
 import io.reactivex.Observable

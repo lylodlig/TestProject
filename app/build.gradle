@@ -40,7 +40,9 @@ android {
             }
         }
     }
-
+    dataBinding {
+        enabled true
+    }
     flavorDimensions "channel"
     productFlavors {
 //        demo {
@@ -101,4 +103,5 @@ dependencies {
     implementation 'com.android.support:multidex:1.0.1'
     compile 'com.alibaba:arouter-api:1.2.1.1'
     annotationProcessor 'com.alibaba:arouter-compiler:1.1.2.1'
+    implementation project(path: ':jetpack')
 }

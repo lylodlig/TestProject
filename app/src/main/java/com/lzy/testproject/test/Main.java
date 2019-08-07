@@ -21,6 +21,7 @@ class Child extends Parent {
 
 class Parent {
     public static void method() {
+
         Log.i("lzy", "Parent ");
     }
 

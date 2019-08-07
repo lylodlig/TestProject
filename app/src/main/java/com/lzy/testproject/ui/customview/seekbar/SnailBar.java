@@ -3,7 +3,7 @@ package com.lzy.testproject.ui.customview.seekbar;
 import android.content.Context;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Looper;
-import android.support.v7.widget.AppCompatSeekBar;
+import androidx.appcompat.widget.AppCompatSeekBar;
 import android.util.AttributeSet;
 
 import com.lzy.testproject.R;

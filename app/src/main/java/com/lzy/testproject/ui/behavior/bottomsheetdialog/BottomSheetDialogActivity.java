@@ -1,18 +1,19 @@
 package com.lzy.testproject.ui.behavior.bottomsheetdialog;
 
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomSheetBehavior;
-import android.support.design.widget.BottomSheetDialog;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.lzy.testproject.R;
 
 import java.util.ArrayList;
@@ -47,7 +48,8 @@ public class BottomSheetDialogActivity extends AppCompatActivity {
                 mBottomSheetDialog.setCancelable(true);
                 mBottomSheetDialog.setCanceledOnTouchOutside(true);
                 // 解决下滑隐藏dialog 后，再次调用show 方法显示时，不能弹出Dialog
-                View view1 = mBottomSheetDialog.getDelegate().findViewById(android.support.design.R.id.design_bottom_sheet);
+//                View view1 = mBottomSheetDialog.getDelegate().findViewById(android.support.design.R.id.design_bottom_sheet);
+                View view1 = mBottomSheetDialog.getDelegate().findViewById(androidx.appcompat.R.id.bottom);
                 final BottomSheetBehavior bottomSheetBehavior = BottomSheetBehavior.from(view1);
                 bottomSheetBehavior.setPeekHeight(400);
                 bottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {

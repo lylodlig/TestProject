@@ -1,11 +1,11 @@
 package com.lzy.testproject.framework.jetpack.lifecycle
 
 import android.app.Activity
-import android.arch.lifecycle.Lifecycle
-import android.arch.lifecycle.LifecycleOwner
-import android.arch.lifecycle.LifecycleRegistry
 import android.content.Intent
 import android.os.Bundle
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LifecycleRegistry
 import com.lzy.testproject.R
 import kotlinx.android.synthetic.main.activity_life_cycle2.*
 

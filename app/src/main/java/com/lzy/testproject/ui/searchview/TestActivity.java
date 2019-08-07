@@ -1,8 +1,8 @@
 package com.lzy.testproject.ui.searchview;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -17,7 +17,7 @@ public class TestActivity extends AppCompatActivity {
 		setContentView(R.layout.activity_test);
 
 		SearchView searchView = findViewById(R.id.searchView);
-		TextView textView = searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
+		TextView textView = searchView.findViewById(androidx.appcompat.R.id.search_src_text);
 		textView.setHint("东方航空是");
 		textView.setTextSize(16);
 //		searchView.setIconified(false);

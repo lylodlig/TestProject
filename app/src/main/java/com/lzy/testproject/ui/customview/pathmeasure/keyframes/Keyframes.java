@@ -2,7 +2,8 @@ package com.lzy.testproject.ui.customview.pathmeasure.keyframes;
 
 import android.graphics.Path;
 import android.graphics.PathMeasure;
-import android.support.annotation.FloatRange;
+
+import androidx.annotation.FloatRange;
 
 /**
  * Created by wuyr on 17-11-22 上午12:45.

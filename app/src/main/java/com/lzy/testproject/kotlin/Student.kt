@@ -4,7 +4,8 @@ import android.util.Log
 
 object Student {
     val TAG = "lzy"
-    fun ks() {
+    @JvmOverloads
+    fun ks(tag:String="meihuan",text:String) {
         Log.d(TAG, "我是object类实现的静态方法")
     }
 }

@@ -1,12 +1,11 @@
 package com.lzy.testproject.framework.rx;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
 import com.lzy.testproject.R;
 
-import org.reactivestreams.Subscriber;
 
 import java.util.concurrent.TimeUnit;
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.lzy.testproject">
 
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
@@ -14,7 +15,8 @@
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:replace="android:icon">
         <activity android:name=".MainActivity" />
         <activity android:name=".ui.searchview.TestActivity" />
         <activity android:name=".ui.constraintlayout.TestActivity" />
@@ -33,7 +35,13 @@
         <activity android:name=".ui.softinput.SoftInputActivity" />
         <activity android:name=".test.TestActivity" />
         <activity android:name=".framework.rx.ExampleActivity" />
-        <activity android:name=".test.TestKActivity" />
+        <activity android:name=".test.TestKActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".other.getwechatrecord.WechatRecordActivity" />
         <activity android:name=".framework.retrofit.RetrofitActivity" />
         <activity android:name=".framework.arouter.RouterActivity" />
@@ -53,14 +61,10 @@
         <activity android:name=".framework.jetpack.lifecycle.LifeCycle2Activity" />
         <activity android:name=".framework.jetpack.viewmodel.ViewModelActivity" />
         <activity android:name=".ui.behavior.bottomsheetdialog.BottomSheetDialogActivity">
-        </activity>
-        <activity android:name=".ui.behavior.behavoir.Behavoir1Activity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
+        <activity android:name=".ui.behavior.behavoir.Behavoir1Activity"></activity>
+        <activity android:name=".performance.ViewTimeActivity"></activity>
     </application>
 
 </manifest>

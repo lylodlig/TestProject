@@ -1,10 +1,11 @@
 package com.lzy.testproject.ui.behavior.behavoir;
 
 import android.content.Context;
-import android.support.design.widget.CoordinatorLayout;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import com.lzy.testproject.MyApplication;
 import com.lzy.testproject.R;

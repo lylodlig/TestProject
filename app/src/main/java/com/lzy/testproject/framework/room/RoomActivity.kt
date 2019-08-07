@@ -1,12 +1,12 @@
 package com.lzy.testproject.framework.room
 
-import android.arch.persistence.db.SupportSQLiteDatabase
-import android.arch.persistence.room.Room
-import android.arch.persistence.room.RoomDatabase
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.room.Room
+import androidx.room.RoomDatabase
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.lzy.testproject.R
 import com.lzy.testproject.framework.room.dao.StudentDao
 import com.lzy.testproject.framework.room.database.RoomDemoDB

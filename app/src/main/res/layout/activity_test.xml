@@ -8,10 +8,10 @@
 	android:orientation="vertical"
 	tools:context=".ui.searchview.TestActivity">
 
-	<android.support.v7.widget.SearchView
+	<androidx.appcompat.widget.SearchView
 		android:id="@+id/searchView"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"></android.support.v7.widget.SearchView>
+		android:layout_height="wrap_content"></androidx.appcompat.widget.SearchView>
 
 	<View
 		android:id="@+id/view"

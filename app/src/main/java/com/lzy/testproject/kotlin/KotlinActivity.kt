@@ -1,6 +1,6 @@
 package com.lzy.testproject.kotlin
 
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -16,7 +16,7 @@ class KotlinActivity : AppCompatActivity() {
         var school = School()
 //        school.sayWord("woxihuanni ")
         School.teach()
-        Student.ks()
+//        Student.ks()
 
 //        Log.d("lzy",school.sayWord("sha"))
 

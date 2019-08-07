@@ -1,9 +1,10 @@
 package com.lzy.testproject.ui.loading.change.impl;
 
-import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+
+import androidx.annotation.NonNull;
 
 import com.lzy.testproject.ui.loading.change.SwitchLayoutHelper;
 import com.lzy.testproject.ui.loading.view.IStatusView;

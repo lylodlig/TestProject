@@ -1,9 +1,9 @@
 package com.lzy.testproject.framework.jetpack.viewmodel
 
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
+import androidx.lifecycle.ViewModelProviders
 import com.lzy.testproject.R
 import kotlinx.android.synthetic.main.activity_view_model.*
 

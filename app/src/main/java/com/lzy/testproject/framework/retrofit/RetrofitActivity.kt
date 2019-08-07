@@ -1,6 +1,6 @@
 package com.lzy.testproject.framework.retrofit
 
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.google.gson.Gson
 import com.lzy.testproject.R

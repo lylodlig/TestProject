@@ -18,15 +18,14 @@ package com.lzy.testproject.ui.behavior.behavoir.helper;
 
 import android.content.Context;
 import android.graphics.Rect;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.CoordinatorLayout.Behavior;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.view.GravityCompat;
+import androidx.core.view.ViewCompat;
 
 import java.util.List;
 
@@ -50,8 +49,8 @@ public abstract class HeaderScrollingViewBehavior extends ViewOffsetBehavior<Vie
 
     @Override
     public boolean onMeasureChild(CoordinatorLayout parent, View child,
-            int parentWidthMeasureSpec, int widthUsed, int parentHeightMeasureSpec,
-            int heightUsed) {
+                                  int parentWidthMeasureSpec, int widthUsed, int parentHeightMeasureSpec,
+                                  int heightUsed) {
         final int childLpHeight = child.getLayoutParams().height;
         if (childLpHeight == ViewGroup.LayoutParams.MATCH_PARENT
                 || childLpHeight == ViewGroup.LayoutParams.WRAP_CONTENT) {

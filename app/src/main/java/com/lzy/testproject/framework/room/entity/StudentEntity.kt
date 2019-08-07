@@ -1,7 +1,6 @@
 package com.lzy.testproject.framework.room.entity
 
-import android.arch.persistence.room.*
-import com.lzy.testproject.framework.room.entity.ClassEntity
+import androidx.room.*
 
 
 /**

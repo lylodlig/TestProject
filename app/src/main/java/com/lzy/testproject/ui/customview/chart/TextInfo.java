@@ -1,6 +1,7 @@
 package com.lzy.testproject.ui.customview.chart;
 
-import android.support.annotation.ColorInt;
+
+import androidx.annotation.ColorInt;
 
 /**
  * Created by LiZhiyu on 2018/11/6.

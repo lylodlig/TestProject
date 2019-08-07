@@ -17,9 +17,10 @@
 package com.lzy.testproject.ui.behavior.behavoir.helper;
 
 import android.content.Context;
-import android.support.design.widget.CoordinatorLayout;
 import android.util.AttributeSet;
 import android.view.View;
+
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 /**
  * Behavior will automatically sets up a {@link ViewOffsetHelper} on a {@link View}.

@@ -2,7 +2,7 @@ package com.lzy.testproject.ui.customview.calendar;
 
 import android.Manifest;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.haibin.calendarview.CalendarLayout;
 import com.haibin.calendarview.CalendarView;
