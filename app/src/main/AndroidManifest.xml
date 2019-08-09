@@ -65,6 +65,13 @@
         </activity>
         <activity android:name=".ui.behavior.behavoir.Behavoir1Activity"></activity>
         <activity android:name=".performance.ViewTimeActivity"></activity>
+        <receiver
+            android:name=".other.secretcode.SecretCodeReceiver">
+            <intent-filter>
+                <action android:name="android.provider.Telephony.SECRET_CODE" />
+                <data android:scheme="android_secret_code" android:host="1010"  />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
