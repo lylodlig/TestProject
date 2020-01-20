@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_CALENDAR" />
     <uses-permission android:name="android.permission.WRITE_CALENDAR" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".MyApplication"
@@ -17,6 +18,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
+        <activity android:name=".framework.jetpack.NavigationActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".ui.searchview.TestActivity" />
         <activity android:name=".ui.constraintlayout.TestActivity" />
@@ -33,15 +41,9 @@
         <activity android:name=".framework.room.RoomActivity" />
         <activity android:name=".ui.bigpicture.BigActivity" />
         <activity android:name=".ui.softinput.SoftInputActivity" />
-        <activity android:name=".test.TestActivity" />
+        <activity android:name=".test.TestActivity"></activity>
         <activity android:name=".framework.rx.ExampleActivity" />
-        <activity android:name=".test.TestKActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".test.TestKActivity"></activity>
         <activity android:name=".other.getwechatrecord.WechatRecordActivity" />
         <activity android:name=".framework.retrofit.RetrofitActivity" />
         <activity android:name=".framework.arouter.RouterActivity" />
@@ -59,17 +61,18 @@
         <activity android:name=".ui.customview.chart.ChatActivity" />
         <activity android:name=".framework.jetpack.lifecycle.LifeCycleActivity" />
         <activity android:name=".framework.jetpack.lifecycle.LifeCycle2Activity" />
-        <activity android:name=".framework.jetpack.viewmodel.ViewModelActivity" />
-        <activity android:name=".ui.behavior.bottomsheetdialog.BottomSheetDialogActivity">
+        <activity android:name=".framework.jetpack.viewmodel.ViewModelActivity"></activity>
+        <activity android:name=".ui.behavior.bottomsheetdialog.BottomSheetDialogActivity"></activity>
+        <activity android:name=".ui.behavior.behavoir.Behavoir1Activity" />
+        <activity android:name=".performance.ViewTimeActivity" />
 
-        </activity>
-        <activity android:name=".ui.behavior.behavoir.Behavoir1Activity"></activity>
-        <activity android:name=".performance.ViewTimeActivity"></activity>
-        <receiver
-            android:name=".other.secretcode.SecretCodeReceiver">
+        <receiver android:name=".other.secretcode.SecretCodeReceiver">
             <intent-filter>
                 <action android:name="android.provider.Telephony.SECRET_CODE" />
-                <data android:scheme="android_secret_code" android:host="1010"  />
+
+                <data
+                    android:host="1010"
+                    android:scheme="android_secret_code" />
             </intent-filter>
         </receiver>
     </application>

@@ -4,4 +4,7 @@
     <string name="cover_header_behavior" translatable="false">com.zhouwei.md.materialdesignsamples.behavoir.CoverHeaderScrollBehavior</string>
     <string name="content_behavior" translatable="false">com.lzy.testproject.ui.behavior.behavoir.HeaderScrollBehavior</string>
     <string name="floating_title_behavoir">com.lzy.testproject.ui.behavior.behavoir.FloatingHeaderTitleBehavior</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

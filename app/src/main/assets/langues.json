@@ -1,0 +1,1046 @@
+﻿[
+  {
+    "ID": 2,
+    "text": "tab1",
+    "chinese": "地震烈度仪",
+    "english": "Sensor"
+  },
+  {
+    "ID": 3,
+    "text": "tab2",
+    "chinese": "预警接收服务器",
+    "english": "EEW Receiver"
+  },
+  {
+    "ID": 4,
+    "text": "setting",
+    "chinese": "设置",
+    "english": "Setting"
+  },
+  {
+    "ID": 5,
+    "text": "intensity_install",
+    "chinese": "烈度仪安装",
+    "english": "Sensor Installation"
+  },
+  {
+    "ID": 6,
+    "text": "new_install",
+    "chinese": "新增安装",
+    "english": "New Installation"
+  },
+  {
+    "ID": 7,
+    "text": "view_install_record",
+    "chinese": "查看安装历史记录",
+    "english": "All records of installation"
+  },
+  {
+    "ID": 8,
+    "text": "intensity_maintain",
+    "chinese": "烈度仪维护",
+    "english": "Sensor Maintenance"
+  },
+  {
+    "ID": 9,
+    "text": "new_maintain",
+    "chinese": "新增维护",
+    "english": "New Maintenance"
+  },
+  {
+    "ID": 10,
+    "text": "view_maintain_history",
+    "chinese": "查看维护历史记录",
+    "english": "All records of Maintenance"
+  },
+  {
+    "ID": 11,
+    "text": "equipment_id",
+    "chinese": "仪器设备ID",
+    "english": "Device ID"
+  },
+  {
+    "ID": 12,
+    "text": "equipment_type",
+    "chinese": "仪器型号",
+    "english": "Device Model"
+  },
+  {
+    "ID": 13,
+    "text": "longitude",
+    "chinese": "经度",
+    "english": "Longitude"
+  },
+  {
+    "ID": 14,
+    "text": "degree",
+    "chinese": "度",
+    "english": "Degree"
+  },
+  {
+    "ID": 15,
+    "text": "latitude",
+    "chinese": "纬度",
+    "english": "Latitude"
+  },
+  {
+    "ID": 16,
+    "text": "altitude",
+    "chinese": "海拔",
+    "english": "Altitude"
+  },
+  {
+    "ID": 17,
+    "text": "meter",
+    "chinese": "米",
+    "english": "m"
+  },
+  {
+    "ID": 18,
+    "text": "gps_location",
+    "chinese": "GPS位置（经度，纬度，海拔）",
+    "english": "GPS information"
+  },
+  {
+    "ID": 19,
+    "text": "install_address",
+    "chinese": "安装详细地址",
+    "english": "Address"
+  },
+  {
+    "ID": 20,
+    "text": "communication_mode",
+    "chinese": "通讯方式",
+    "english": "Communication Type"
+  },
+  {
+    "ID": 21,
+    "text": "contact",
+    "chinese": "联系人",
+    "english": "Contact"
+  },
+  {
+    "ID": 22,
+    "text": "please_enter_detail_address",
+    "chinese": "请输入详细地址",
+    "english": "Please input detailed address"
+  },
+  {
+    "ID": 23,
+    "text": "name",
+    "chinese": "姓名",
+    "english": "Name"
+  },
+  {
+    "ID": 24,
+    "text": "job",
+    "chinese": "职务",
+    "english": "Title"
+  },
+  {
+    "ID": 25,
+    "text": "company_phone",
+    "chinese": "单位电话",
+    "english": "Office Number"
+  },
+  {
+    "ID": 26,
+    "text": "add_contact",
+    "chinese": "添加联系人",
+    "english": "Add one contact"
+  },
+  {
+    "ID": 27,
+    "text": "delete_contact",
+    "chinese": "删除联系人",
+    "english": "Remove contact"
+  },
+  {
+    "ID": 28,
+    "text": "upload_install_pic",
+    "chinese": "上传安装照片",
+    "english": "Upload photos for installation"
+  },
+  {
+    "ID": 29,
+    "text": "take_pic",
+    "chinese": "拍照（%d/8）",
+    "english": "Photo Taken (%d/8)"
+  },
+  {
+    "ID": 30,
+    "text": "take_pic2",
+    "chinese": "拍照（%d/10）",
+    "english": "Photo Taken (%d/10)"
+  },
+  {
+    "ID": 31,
+    "text": "take_pic_title",
+    "chinese": "拍摄照片（%d/8）",
+    "english": "Photo Taken (%d/8)"
+  },
+  {
+    "ID": 32,
+    "text": "take_pic_title2",
+    "chinese": "拍摄照片（%d/10）",
+    "english": "Photo Taken (%d/10)"
+  },
+  {
+    "ID": 33,
+    "text": "submit",
+    "chinese": "提交",
+    "english": "Submit"
+  },
+  {
+    "ID": 34,
+    "text": "please_enter_install_address",
+    "chinese": "请填写完整的安装地址",
+    "english": "Please input detailed address"
+  },
+  {
+    "ID": 35,
+    "text": "please_select_province",
+    "chinese": "请先选择省份",
+    "english": "Please select Province"
+  },
+  {
+    "ID": 36,
+    "text": "please_select_city",
+    "chinese": "请先选择城市",
+    "english": "Please select City"
+  },
+  {
+    "ID": 37,
+    "text": "get_location_permission_fail",
+    "chinese": "获取定位权限失败",
+    "english": "Fail to get location permission"
+  },
+  {
+    "ID": 38,
+    "text": "install_floor",
+    "chinese": "安装楼层",
+    "english": "Floor"
+  },
+  {
+    "ID": 39,
+    "text": "install_location",
+    "chinese": "安装位置",
+    "english": "Room"
+  },
+  {
+    "ID": 40,
+    "text": "distance_ground",
+    "chinese": "距离地面",
+    "english": "Distances above the ground"
+  },
+  {
+    "ID": 41,
+    "text": "cm",
+    "chinese": "厘米",
+    "english": "cm"
+  },
+  {
+    "ID": 42,
+    "text": "photo1",
+    "chinese": "1、大门口",
+    "english": "1. Main Entrance"
+  },
+  {
+    "ID": 43,
+    "text": "photo12",
+    "chinese": "标志性标识前或门牌前",
+    "english": "With the house number or building plate"
+  },
+  {
+    "ID": 44,
+    "text": "take_p",
+    "chinese": "拍照",
+    "english": "Photo Taken"
+  },
+  {
+    "ID": 45,
+    "text": "photo2",
+    "chinese": "2、安装维护人员",
+    "english": "2. Installers and Repairers"
+  },
+  {
+    "ID": 46,
+    "text": "photo21",
+    "chinese": "穿工装在大门或门牌前自拍照",
+    "english": "Selfie with uniform at the gate"
+  },
+  {
+    "ID": 47,
+    "text": "photo3",
+    "chinese": "3、设备安装房间",
+    "english": "3. Room with the device"
+  },
+  {
+    "ID": 48,
+    "text": "photo31",
+    "chinese": "设备安装所在房间的门口",
+    "english": "The door of the room with the device"
+  },
+  {
+    "ID": 49,
+    "text": "photo4",
+    "chinese": "4、设备全景",
+    "english": "4. Device Panorama"
+  },
+  {
+    "ID": 50,
+    "text": "photo41",
+    "chinese": "设备全景包含插板的照片",
+    "english": "The device with its plug."
+  },
+  {
+    "ID": 51,
+    "text": "photo5",
+    "chinese": "5、设备ID和手机号码",
+    "english": "5. Device ID and No."
+  },
+  {
+    "ID": 52,
+    "text": "photo51",
+    "chinese": "设备上的标签",
+    "english": "The infomation tag on the device"
+  },
+  {
+    "ID": 53,
+    "text": "photo6",
+    "chinese": "6、安装单",
+    "english": "6. Installation work sheet"
+  },
+  {
+    "ID": 54,
+    "text": "photo61",
+    "chinese": "地震烈度仪安装维护记录表",
+    "english": "Installation table for sensors"
+  },
+  {
+    "ID": 55,
+    "text": "photo7",
+    "chinese": "7、看护协议",
+    "english": "7. Delegate Service Agreement"
+  },
+  {
+    "ID": 56,
+    "text": "optional",
+    "chinese": "选填",
+    "english": "Optional"
+  },
+  {
+    "ID": 57,
+    "text": "photo8",
+    "chinese": "8、身份证、银行卡",
+    "english": "8. ID, Bank Card"
+  },
+  {
+    "ID": 58,
+    "text": "device_phone",
+    "chinese": "设备手机号",
+    "english": "Device Phone Number"
+  },
+  {
+    "ID": 59,
+    "text": "satellite",
+    "chinese": "北斗卫星",
+    "english": "BeiDou Satellite"
+  },
+  {
+    "ID": 60,
+    "text": "terminal_id",
+    "chinese": "终端ID",
+    "english": "Terminal ID"
+  },
+  {
+    "ID": 61,
+    "text": "ethernet",
+    "chinese": "以太网络",
+    "english": "Ethernet"
+  },
+  {
+    "ID": 62,
+    "text": "net_ip",
+    "chinese": "网络IP",
+    "english": "IP"
+  },
+  {
+    "ID": 63,
+    "text": "attention",
+    "chinese": "注意",
+    "english": "Notes"
+  },
+  {
+    "ID": 64,
+    "text": "install_explain_1",
+    "chinese": "1. 安装的位置距离路边约100米",
+    "english": "1. Install the device about 100 meters away from the road"
+  },
+  {
+    "ID": 65,
+    "text": "install_explain_2",
+    "chinese": "2. 安装在墙上距离地面的距离不超过30厘米",
+    "english": "2. Install the device on the wall and no more than 30 cm above the ground"
+  },
+  {
+    "ID": 66,
+    "text": "contanct_phone",
+    "chinese": "联系电话",
+    "english": "Contact phone number"
+  },
+  {
+    "ID": 67,
+    "text": "remark",
+    "chinese": "备注",
+    "english": "Comment"
+  },
+  {
+    "ID": 68,
+    "text": "finish",
+    "chinese": "完成",
+    "english": "Finish"
+  },
+  {
+    "ID": 69,
+    "text": "need_maintain_device_info",
+    "chinese": "需要维护的设备信息",
+    "english": "Device Info (maintenance required)"
+  },
+  {
+    "ID": 70,
+    "text": "update_device_info",
+    "chinese": "更新设备信息",
+    "english": "Update device info"
+  },
+  {
+    "ID": 71,
+    "text": "update_communication_mode",
+    "chinese": "更新通讯方式",
+    "english": "Update communication type"
+  },
+  {
+    "ID": 72,
+    "text": "update_gps",
+    "chinese": "更新GPS位置",
+    "english": "Update GPS location"
+  },
+  {
+    "ID": 73,
+    "text": "update_detail_address",
+    "chinese": "更新详细地址",
+    "english": "Update address"
+  },
+  {
+    "ID": 74,
+    "text": "update_contact",
+    "chinese": "更新联系人",
+    "english": "Update contact"
+  },
+  {
+    "ID": 75,
+    "text": "device_problem",
+    "chinese": "设备故障现象",
+    "english": "Describe the problem"
+  },
+  {
+    "ID": 76,
+    "text": "maintain_measure",
+    "chinese": "维护措施",
+    "english": "Maintenance detail"
+  },
+  {
+    "ID": 77,
+    "text": "communication_phone",
+    "chinese": "通讯号码",
+    "english": "Device Phone Number"
+  },
+  {
+    "ID": 78,
+    "text": "type",
+    "chinese": "类别",
+    "english": "Type"
+  },
+  {
+    "ID": 79,
+    "text": "internet_connect",
+    "chinese": "网络连接",
+    "english": "Internet connection"
+  },
+  {
+    "ID": 80,
+    "text": "wired",
+    "chinese": "有线",
+    "english": "Wired"
+  },
+  {
+    "ID": 81,
+    "text": "wireless",
+    "chinese": "无线",
+    "english": "Wireless"
+  },
+  {
+    "ID": 82,
+    "text": "enter_communication_phone",
+    "chinese": "输入通讯号码",
+    "english": "Input device phone number"
+  },
+  {
+    "ID": 83,
+    "text": "radio_connect",
+    "chinese": "广播连接",
+    "english": "Broadcast connection"
+  },
+  {
+    "ID": 84,
+    "text": "connected",
+    "chinese": "已连接",
+    "english": "Connected"
+  },
+  {
+    "ID": 85,
+    "text": "unconnect",
+    "chinese": "未连接",
+    "english": "Disconnected"
+  },
+  {
+    "ID": 86,
+    "text": "terminal_install",
+    "chinese": "预警终端安装",
+    "english": "EEW Receiver Installation"
+  },
+  {
+    "ID": 87,
+    "text": "terminal_maintain",
+    "chinese": "预警终端维护",
+    "english": "EEW Receiver Maintenance"
+  },
+  {
+    "ID": 88,
+    "text": "sound",
+    "chinese": "音响",
+    "english": "speaker"
+  },
+  {
+    "ID": 89,
+    "text": "trumpet",
+    "chinese": "配套大喇叭",
+    "english": "Loudspeaker"
+  },
+  {
+    "ID": 90,
+    "text": "radio_system",
+    "chinese": "已有广播系统",
+    "english": "Broadcast system"
+  },
+  {
+    "ID": 91,
+    "text": "user_feedback",
+    "chinese": "用户意见反馈",
+    "english": "Feedback from User"
+  },
+  {
+    "ID": 92,
+    "text": "install_condition",
+    "chinese": "安装情况",
+    "english": "Installation description"
+  },
+  {
+    "ID": 93,
+    "text": "company_info",
+    "chinese": "单位信息",
+    "english": "Company info"
+  },
+  {
+    "ID": 94,
+    "text": "company_name",
+    "chinese": "单位名字",
+    "english": "Company name"
+  },
+  {
+    "ID": 95,
+    "text": "manoeuvre_software",
+    "chinese": "演习软件",
+    "english": "Software for EEW Drill"
+  },
+  {
+    "ID": 96,
+    "text": "operate_train",
+    "chinese": "操作培训",
+    "english": "Operation training"
+  },
+  {
+    "ID": 97,
+    "text": "installed",
+    "chinese": "已安装",
+    "english": "Installed"
+  },
+  {
+    "ID": 98,
+    "text": "un_install",
+    "chinese": "未安装",
+    "english": "Not installed"
+  },
+  {
+    "ID": 99,
+    "text": "trained",
+    "chinese": "已培训",
+    "english": "Trained"
+  },
+  {
+    "ID": 100,
+    "text": "un_train",
+    "chinese": "未培训",
+    "english": "Untrained"
+  },
+  {
+    "ID": 101,
+    "text": "device_test",
+    "chinese": "设备测试",
+    "english": "Device test"
+  },
+  {
+    "ID": 102,
+    "text": "tested",
+    "chinese": "已测试",
+    "english": "Tested"
+  },
+  {
+    "ID": 103,
+    "text": "un_test",
+    "chinese": "未测试",
+    "english": "Untested"
+  },
+  {
+    "ID": 104,
+    "text": "install_remark",
+    "chinese": "安装备注",
+    "english": "Installation comment"
+  },
+  {
+    "ID": 105,
+    "text": "photo60",
+    "chinese": "6、安装记录单",
+    "english": "6. Installation work sheet"
+  },
+  {
+    "ID": 106,
+    "text": "photo601",
+    "chinese": "预警终端安装维护记录表",
+    "english": "Installation/maintenance work sheet for EEW Receiver"
+  },
+  {
+    "ID": 107,
+    "text": "photo70",
+    "chinese": "7、喇叭线路照片",
+    "english": "7. Photo of the loudspeaker lines"
+  },
+  {
+    "ID": 108,
+    "text": "photo71",
+    "chinese": "至少安装1个喇叭",
+    "english": "At least one loudspeaker required"
+  },
+  {
+    "ID": 109,
+    "text": "photo80",
+    "chinese": "8、喇叭-1",
+    "english": "8. Loudspeaker 1"
+  },
+  {
+    "ID": 110,
+    "text": "photo9",
+    "chinese": "9、喇叭-2",
+    "english": "9. Loudspeaker 2"
+  },
+  {
+    "ID": 111,
+    "text": "photo10",
+    "chinese": "10、喇叭-3",
+    "english": "10. Loudspeaker 3"
+  },
+  {
+    "ID": 112,
+    "text": "is_save_content",
+    "chinese": "是否保存内容？",
+    "english": "Save the content？"
+  },
+  {
+    "ID": 113,
+    "text": "no",
+    "chinese": "否",
+    "english": "No"
+  },
+  {
+    "ID": 114,
+    "text": "yes",
+    "chinese": "是",
+    "english": "Yes"
+  },
+  {
+    "ID": 115,
+    "text": "update_company_info",
+    "chinese": "更新单位信息",
+    "english": "Update Company info"
+  },
+  {
+    "ID": 116,
+    "text": "device_fault_picture",
+    "chinese": "设备故障现象照片",
+    "english": "Photo of the fault on the device"
+  },
+  {
+    "ID": 117,
+    "text": "take_device_fault_picture",
+    "chinese": "拍摄设备故障现象",
+    "english": "Take photo of the fault scene"
+  },
+  {
+    "ID": 118,
+    "text": "intensity_install_history",
+    "chinese": "烈度仪安装历史记录",
+    "english": "Installation records of Sensors"
+  },
+  {
+    "ID": 119,
+    "text": "intensity_maintain_history",
+    "chinese": "烈度仪维护历史记录",
+    "english": "Maintenance records of Sensors"
+  },
+  {
+    "ID": 120,
+    "text": "terminal_install_history",
+    "chinese": "预警终端安装历史记录",
+    "english": "Installation records of EEW Receiver"
+  },
+  {
+    "ID": 121,
+    "text": "terminal_maintain_history",
+    "chinese": "预警终端维护历史记录",
+    "english": "Maintenance records of EEW Receiver"
+  },
+  {
+    "ID": 122,
+    "text": "un_submit",
+    "chinese": "未提交",
+    "english": "Not submitted"
+  },
+  {
+    "ID": 123,
+    "text": "un_check_finish",
+    "chinese": "审核未完成",
+    "english": "Unchecked"
+  },
+  {
+    "ID": 124,
+    "text": "check_finish",
+    "chinese": "审核完成",
+    "english": "Checked"
+  },
+  {
+    "ID": 125,
+    "text": "un_finish_please_apply",
+    "chinese": "未完成，请补充内容",
+    "english": "Undone. Please check your input"
+  },
+  {
+    "ID": 126,
+    "text": "wait_submit",
+    "chinese": "待提交",
+    "english": "Not submitted"
+  },
+  {
+    "ID": 127,
+    "text": "submit_failed",
+    "chinese": "提交失败，请重新提交",
+    "english": "Fail to submit. Please submit again"
+  },
+  {
+    "ID": 128,
+    "text": "wait_for_check",
+    "chinese": "已提交，等待审核",
+    "english": "Submitted. Please wait for approval"
+  },
+  {
+    "ID": 129,
+    "text": "check_pass",
+    "chinese": "审核通过",
+    "english": "Approved"
+  },
+  {
+    "ID": 131,
+    "text": "time",
+    "chinese": "时间",
+    "english": "Time"
+  },
+  {
+    "ID": 132,
+    "text": "device_type",
+    "chinese": "型号",
+    "english": "Device Model"
+  },
+  {
+    "ID": 133,
+    "text": "address",
+    "chinese": "地址",
+    "english": "Address"
+  },
+  {
+    "ID": 134,
+    "text": "account",
+    "chinese": "账号",
+    "english": "Account"
+  },
+  {
+    "ID": 135,
+    "text": "exit",
+    "chinese": "退出登录",
+    "english": "Log out"
+  },
+  {
+    "ID": 136,
+    "text": "please_select_communication_mode",
+    "chinese": "请选择通讯方式",
+    "english": "Please select Communication Type"
+  },
+  {
+    "ID": 137,
+    "text": "please_enter_gps_info",
+    "chinese": "请填写完整的GPS信息",
+    "english": "Please check GPS info"
+  },
+  {
+    "ID": 138,
+    "text": "please_enter_contacts_info",
+    "chinese": "请填写完整的联系人信息",
+    "english": "Please check Contact Detail"
+  },
+  {
+    "ID": 139,
+    "text": "please_take_picture",
+    "chinese": "请拍摄完整的照片",
+    "english": "Please check photos"
+  },
+  {
+    "ID": 140,
+    "text": "please_enter_device_id",
+    "chinese": "请输入设备ID",
+    "english": "Please input Device ID"
+  },
+  {
+    "ID": 141,
+    "text": "please_enter_device_num",
+    "chinese": "请输入通讯号码",
+    "english": "Please input Device Phone Number"
+  },
+  {
+    "ID": 142,
+    "text": "please_enter_communication_num",
+    "chinese": "请输入通讯号码",
+    "english": "Please input Device Phone Number"
+  },
+  {
+    "ID": 143,
+    "text": "please_select_device_model",
+    "chinese": "请选择设备型号",
+    "english": "Please select Device Model"
+  },
+  {
+    "ID": 144,
+    "text": "please_select_type",
+    "chinese": "请选择类别",
+    "english": "Please select type"
+  },
+  {
+    "ID": 145,
+    "text": "please_select_internet",
+    "chinese": "请选择网络连接",
+    "english": "Please select Internet connection"
+  },
+  {
+    "ID": 146,
+    "text": "please_enter_company",
+    "chinese": "请填写单位信息",
+    "english": "Please input Company Info"
+  },
+  {
+    "ID": 147,
+    "text": "please_enter_install_info",
+    "chinese": "请填写安装情况",
+    "english": "Please check Installation Description"
+  },
+  {
+    "ID": 148,
+    "text": "please_select_broadcast",
+    "chinese": "请选择广播连接",
+    "english": "Please select Broadcast connection"
+  },
+  {
+    "ID": 149,
+    "text": "floor",
+    "chinese": "层",
+    "english": "Floor"
+  },
+  {
+    "ID": 150,
+    "text": "photo_11",
+    "chinese": "11、设备故障现象照片",
+    "english": "11. Take photo of the fault scene"
+  },
+  {
+    "ID": 151,
+    "text": "take_pic_title3",
+    "chinese": "拍摄照片（%d/11）",
+    "english": "Photo Taken"
+  },
+  {
+    "ID": 152,
+    "text": "take_pic3",
+    "chinese": "拍照（%d/11）",
+    "english": "Photo Taken"
+  },
+  {
+    "ID": 153,
+    "text": "please_enter_account",
+    "chinese": "请输入账号",
+    "english": "Please input Account"
+  },
+  {
+    "ID": 154,
+    "text": "please_enter_password",
+    "chinese": "请输入密码",
+    "english": "Please input Password"
+  },
+  {
+    "ID": 155,
+    "text": "login",
+    "chinese": "登录",
+    "english": "Login"
+  },
+  {
+    "ID": 156,
+    "text": "account_password_not_empty",
+    "chinese": "账号或密码不能为空",
+    "english": "Account or Password can‘t be null"
+  },
+  {
+    "ID": 157,
+    "text": "submit_success",
+    "chinese": "提交成功",
+    "english": "Submitted successfully"
+  },
+  {
+    "ID": 158,
+    "text": "save",
+    "chinese": "保存",
+    "english": "Save"
+  },
+  {
+    "ID": 159,
+    "text": "check_un_pass",
+    "chinese": "审核未通过，请修改",
+    "english": "Failed. Please modify the record"
+  },
+  {
+    "ID": 160,
+    "text": "app_name",
+    "chinese": "设备安装维护",
+    "english": "Device Management"
+  },
+  {
+    "ID": 161,
+    "text": "install_location_1",
+    "chinese": "承重墙",
+    "english": "Load bearing wall"
+  },
+  {
+    "ID": 162,
+    "text": "install_location_2",
+    "chinese": "水泥墩",
+    "english": "Cement pier"
+  },
+  {
+    "ID": 163,
+    "text": "install_location_3",
+    "chinese": "地面",
+    "english": "Ground"
+  },
+  {
+    "ID": 164,
+    "text": "install_location_4",
+    "chinese": "井下",
+    "english": "Underground device room"
+  },
+  {
+    "ID": 165,
+    "text": "install_location_5",
+    "chinese": "其他",
+    "english": "Other place"
+  },
+  {
+    "ID": 166,
+    "text": "intensity",
+    "chinese": "烈度仪",
+    "english": "Sensor"
+  },
+  {
+    "ID": 167,
+    "text": "terminal",
+    "chinese": "接收终端",
+    "english": "EEW Receiver"
+  },
+  {
+    "ID": 168,
+    "text": "upload_fail",
+    "chinese": "上传图片失败",
+    "english": "Photo upload failed. Please submit again"
+  },
+  {
+    "ID": 169,
+    "text": "file_upload_fail_retry",
+    "chinese": "上传图片失败！是否重试？",
+    "english": "Photo upload failed. Try again？"
+  },
+  {
+    "ID": 170,
+    "text": "request_fail",
+    "chinese": "请求失败",
+    "english": "Request failed"
+  },
+  {
+    "ID": 171,
+    "text": "retry",
+    "chinese": "重试",
+    "english": "Retry"
+  },
+  {
+    "ID": 172,
+    "text": "cancel_upload",
+    "chinese": "取消上传",
+    "english": "Uploading cancel"
+  },
+  {
+    "ID": 173,
+    "text": "skip_file",
+    "chinese": "跳过该文件",
+    "english": "Skip this file"
+  },
+  {
+    "ID": 174,
+    "text": "upload_fial",
+    "chinese": "上传失败",
+    "english": "Uploading failed"
+  },
+  {
+    "ID": 175,
+    "text": "get_storage_permission_fail",
+    "chinese": "获取存储权限失败",
+    "english": "Fail to get phone storage permission"
+  },
+  {
+    "ID": 176,
+    "text": "get_camera_permission_fail",
+    "chinese": "获取相机权限失败",
+    "english": "Fail to get camera permission"
+  }
+]

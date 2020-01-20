@@ -17,7 +17,7 @@
         <!--android:layout_height="100px"-->
         <!--android:background="@color/colorPrimary" />-->
 
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -26,5 +26,5 @@
             android:layout_height="wrap_content"
             android:text="顺丰航空件还顺丰航空件还是尽快发货数据开发和数据库顺丰航空件还是尽快发货数据开发和数据库顺丰航空件还是尽快发货数据开发和数据库顺丰航空件还是尽快发货数据开发和数据库顺丰航空件还是尽快发货数据开发和数据库顺丰航空件还是尽快发货数据开发和数据库顺丰航空件还是尽快发货数据开发和数据库顺丰航空件还是尽快发货数据开发和数据库顺丰航空件还是尽快发货数据开发和数据库顺丰航空件还是尽快发货数据开发和数据库顺丰航空件还是尽快发货数据开发和数据库顺丰航空件还是尽快发货数据开发和数据库顺丰航空件还是尽快发货数据开发和数据库顺丰航空件还是尽快发货数据开发和数据库顺丰航空件还是尽快发货数据开发和数据库顺丰航空件还是尽快发货数据开发和数据库顺丰航空件还是尽快发货数据开发和数据库是尽快发货数据开发和数据库"
             android:textSize="30sp" />
-    </android.support.v4.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 </com.lzy.testproject.ui.nestedscrolling.MyNestedScrollParent>

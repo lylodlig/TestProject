@@ -89,7 +89,7 @@
             app:year_view_month_text_size="20sp"
             app:year_view_scheme_color="#f17706" />
 
-        <android.support.v4.widget.NestedScrollView
+        <androidx.core.widget.NestedScrollView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -121,7 +121,7 @@
                     android:layout_height="wrap_content"
                     android:text="胜多负少开发计划书管理局是可以很感动/n放暑假了烦死了开发几乎是豆腐干胜多负少开发计划书管理局是可以很感动/n放暑假了烦死了开发几乎是豆腐干胜多负少开发计划书管理局是可以很感动/n放暑假了烦死了开发几乎是豆腐干胜多负少开发计划书管理局是可以很感动/n放暑假了烦死了开发几乎是豆腐干胜多负少开发计划书管理局是可以很感动/n放暑假了烦死了开发几乎是豆腐干胜多负少开发计划书管理局是可以很感动/n放暑假了烦死了开发几乎是豆腐干胜多负少开发计划书管理局是可以很感动/n放暑假了烦死了开发几乎是豆腐干" />
             </LinearLayout>
-        </android.support.v4.widget.NestedScrollView>
+        </androidx.core.widget.NestedScrollView>
 
     </com.haibin.calendarview.CalendarLayout>
 

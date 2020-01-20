@@ -9,7 +9,12 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.joe.jetpackdemo.ui.activity.LoginActivity
 import com.lzy.testproject.R
 import kotlinx.android.synthetic.main.activity_test_k.*
+import java.io.BufferedReader
+import java.io.File
+import java.io.FileOutputStream
+import java.io.InputStreamReader
 import java.math.BigDecimal
+import java.text.SimpleDateFormat
 import kotlin.math.pow
 
 class TestKActivity : AppCompatActivity() {
@@ -32,8 +37,39 @@ class TestKActivity : AppCompatActivity() {
 //            tv1.text = "${f.toFloat()}"
             startActivity(Intent(this@TestKActivity,LoginActivity::class.java))
         }
-    }
 
+        Thread{
+            var manager = resources.assets
+            val inputStream = manager.open("langues.json")
+            val format = SimpleDateFormat("yyyy-M-d-H:mm:ss")
+            val sb = StringBuilder()
+            //把文件内容读取进缓冲读取器（use方法会自动对BufferedReader进行关闭）
+            BufferedReader(InputStreamReader(inputStream)).use {
+                var line: String
+                while (true) {
+                    line = it.readLine() ?: break //当有内容时读取一行数据，否则退出循环
+                    var data = line.split(" ")
+                    sb.append("<string name=\"device_phone\">设备号码</string>")
+                }
+            }
+        }.start()
+    }
+    fun makeAll(text:String, buildDir: String) {
+        try {
+            val file = File(buildDir + File.separator + "tttt")
+            if (!file.exists()) {
+                file.mkdirs()
+            }
+
+            val fos = FileOutputStream(file.absolutePath + "/dimens.xml")
+            fos.write(text.toByteArray())
+            fos.flush()
+            fos.close()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+    }
     /**
      * scale:保留几位小数
      */

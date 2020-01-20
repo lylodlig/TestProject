@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/navigationFragment">
+
+    <fragment
+        android:id="@+id/navigationFragment"
+        android:name="com.lzy.testproject.framework.jetpack.navigation.NavigationFragment"
+        android:label="fragment_navigation"
+        tools:layout="@layout/fragment_navigation">
+        <action
+            android:id="@+id/action_navigationFragment_to_databindingFragment"
+            app:destination="@id/databindingFragment" />
+        <action
+            android:id="@+id/action_navigationFragment_to_nav0Fragment"
+            app:destination="@id/nav0Fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/databindingFragment"
+        android:name="com.lzy.testproject.framework.jetpack.databinding.DatabindingFragment"
+        android:label="fragment_databinding"
+        tools:layout="@layout/fragment_databinding" />
+    <fragment
+        android:id="@+id/navi1Fragment"
+        android:name="com.lzy.testproject.framework.jetpack.navigation.Navi1Fragment"
+        android:label="fragment_navi1"
+        tools:layout="@layout/fragment_navi1">
+        <action
+            android:id="@+id/action_navi1Fragment_to_nav2Fragment"
+            app:destination="@id/nav2Fragment" />
+        <argument
+            android:name="name"
+            android:defaultValue="dsgd"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav2Fragment"
+        android:name="com.lzy.testproject.framework.jetpack.navigation.Nav2Fragment"
+        android:label="fragment_nav2"
+        tools:layout="@layout/fragment_nav2">
+        <action
+            android:id="@+id/action_nav2Fragment_to_navigationFragment2"
+            app:popUpTo="@id/navigationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav0Fragment"
+        android:name="com.lzy.testproject.framework.jetpack.navigation.Nav0Fragment"
+        android:label="fragment_nav0"
+        tools:layout="@layout/fragment_nav0">
+        <action
+            android:id="@+id/action_nav0Fragment_to_navi1Fragment"
+            app:destination="@id/navi1Fragment" />
+        <action
+            android:id="@+id/action_nav0Fragment_to_nav2Fragment"
+            app:destination="@id/nav2Fragment" />
+    </fragment>
+</navigation>

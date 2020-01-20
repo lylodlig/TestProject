@@ -49,7 +49,8 @@ public class BottomSheetDialogActivity extends AppCompatActivity {
                 mBottomSheetDialog.setCanceledOnTouchOutside(true);
                 // 解决下滑隐藏dialog 后，再次调用show 方法显示时，不能弹出Dialog
 //                View view1 = mBottomSheetDialog.getDelegate().findViewById(android.support.design.R.id.design_bottom_sheet);
-                View view1 = mBottomSheetDialog.getDelegate().findViewById(androidx.appcompat.R.id.bottom);
+//                View view1 = mBottomSheetDialog.getDelegate().findViewById(androidx.appcompat.R.id.bottom);
+                View view1 = mBottomSheetDialog.getDelegate().findViewById(androidx.appcompat.R.id.accessibility_action_clickable_span);
                 final BottomSheetBehavior bottomSheetBehavior = BottomSheetBehavior.from(view1);
                 bottomSheetBehavior.setPeekHeight(400);
                 bottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {

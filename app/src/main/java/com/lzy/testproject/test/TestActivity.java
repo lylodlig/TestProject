@@ -1,10 +1,14 @@
 package com.lzy.testproject.test;
 
+import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.os.EnvironmentCompat;
+
 import android.os.Bundle;
+import android.os.Environment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -14,6 +18,12 @@ import android.widget.EditText;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.lzy.testproject.R;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.Observable;
@@ -31,10 +41,31 @@ public class TestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test3);
-
+        new Thread() {
+            @Override
+            public void run() {
+                super.run();
+                String s=getJson("langues.json",TestActivity.this);
+                makeAll(Environment.getExternalStorageDirectory().getAbsolutePath(),s);
+            }
+        }.start();
 
     }
+    public static void makeAll(String buildDir,String t) {
+        try {
+            File file = new File(buildDir + File.separator + "tt");
+            if (!file.exists()) {
+                file.mkdirs();
+            }
 
+            FileOutputStream fos = new FileOutputStream(file.getAbsolutePath() + "/dimens.xml");
+            fos.write(t.getBytes());
+            fos.flush();
+            fos.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     public void bt(View view) {
         getApplicationContext().startActivity(new Intent());
 //        ARouter.getInstance().build("/lzy/constraint/TestActivity").navigation();
@@ -56,4 +87,19 @@ public class TestActivity extends AppCompatActivity {
     }
 
 
+    public static String getJson(String fileName, Context context) {
+        StringBuilder stringBuilder = new StringBuilder();
+        try {
+            InputStream is = context.getAssets().open(fileName);
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(is));
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                stringBuilder.append(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return stringBuilder.toString();
+    }
 }
