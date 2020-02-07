@@ -12,8 +12,9 @@ ext {
             support         : "26.1.0",
             retrofit        : "2.4.0",
             jetpack_version : "1.1.1",
-            lifecycleVersion: "2.1.0",
-            nav_version     : "2.1.0"
+            lifecycleVersion: "2.2.0",
+            nav_version     : "2.1.0",
+            paging          : "2.1.0"
     ]
     dependencies = [
             "appcompat-v7"           : 'androidx.appcompat:appcompat:1.0.0',
@@ -32,5 +33,8 @@ ext {
             "converter-gson"         : "com.squareup.retrofit2:converter-gson:${dependVersion.retrofit}",
             "adapter-rxjava"         : "com.squareup.retrofit2:adapter-rxjava:${dependVersion.retrofit}",
             'permission-helper'      : 'com.leeiidesu:permission-helper:1.1.3',
+            'paging'                 : "androidx.paging:paging-runtime-ktx:${dependVersion.paging}",
+            'lifecycle-livedata-ktx' : "androidx.lifecycle:lifecycle-livedata-ktx:$dependVersion.lifecycleVersion",
+            'viewmodel-ktx'          : "androidx.lifecycle:lifecycle-viewmodel-ktx:$dependVersion.lifecycleVersion",
     ]
 }

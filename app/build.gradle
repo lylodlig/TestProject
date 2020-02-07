@@ -65,6 +65,10 @@ android {
         targetCompatibility 1.8
         sourceCompatibility 1.8
     }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
 
 dependencies {
@@ -90,6 +94,9 @@ dependencies {
     implementation rootProject.ext.dependencies["converter-gson"]
     implementation rootProject.ext.dependencies["adapter-rxjava"]
     implementation rootProject.ext.dependencies["permission-helper"]
+    implementation rootProject.ext.dependencies["paging"]
+    implementation rootProject.ext.dependencies["viewmodel-ktx"]
+    implementation rootProject.ext.dependencies["lifecycle-livedata-ktx"]
     annotationProcessor 'androidx.room:room-compiler:2.0.0'
     debugImplementation 'com.github.whataa:pandora:v1.0.5'
     releaseImplementation 'com.github.whataa:pandora-no-op:v1.0.3'
